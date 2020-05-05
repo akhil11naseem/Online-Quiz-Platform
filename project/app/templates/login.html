@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="content-section">
+    <div class="row">
+        <div class="col-md-6">
+            <h1>Welcome to Quix Platform</h1>
+            <p>Instructions</p>
+        </div>
+        <div class="col-md-6">
+            <form action='' method='POST'>
+                {{ form.hidden_tag() }}
+                <legend class = "mb-4">Log In</legend>
+                    <fieldset class = "form-group">
+                        <div class="form-group row">
+                            {{ form.email.label }}
+                            {{ form.email(class="form-control") }}
+                        </div>
+                        <div class="form-group row">
+                            {{ form.password.label }}
+                            {{ form.password(class="form-control") }}
+                        </div>
+                        <div class="form-group row">
+                            {{ form.remember_me.label(class="form-check-label") }}
+                            {{ form.remember_me(class="form-check-input") }}
+                        </div>
+                    </fieldset>
+                    <div class="form-group">
+                        {{ form.submit() }}
+                    </div>
+            </form>
+        </div>
+    </div>
+    
+</div>
+    
+
+
+{% endblock %}
