@@ -1,0 +1,61 @@
+{%extends 'base.html' %}
+
+{% block nav %}
+    <h1>Settings</h1>
+                <nav>
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a href="" class="nav-link">Test Topics</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="" class="nav-link">Class Scores</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="" class="nav-link">Manage Students</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="" class="nav-link">Change Passwords</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="" class="nav-link">Change Usernames</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="" class="nav-link">Log Out</a>
+                        </li>
+                    </ul>
+                </nav>
+
+{% endblock %}
+
+{% block table %}
+<h2>Class Scores</h2>
+<div class="table">
+    <table>
+        <thead>
+            <tr>
+                <th>Student</th>
+                <th>Enable/Disable</th>
+                <th>Delete</th>
+            </tr>
+            <tbody>
+                <tr>
+                  <th scope="row">Student 1</th>
+                  <td><button>Yes/No</button></td>
+                  <td>Delete</td>
+                </tr>
+                <tr>
+                    <th scope="row">Student 2</th>
+                    <td><button>Yes/No</button></td>
+                    <td>Delete</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Student 3</th>
+                    <td><button>Yes/No</button></td>
+                    <td>Delete</td>
+                  </tr>
+              </tbody>
+        </thead>
+    </table>
+</div>
+
+{% endblock %}
