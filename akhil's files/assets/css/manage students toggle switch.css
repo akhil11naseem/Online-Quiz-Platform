@@ -1,0 +1,52 @@
+.user-switch {
+  position: relative;
+  width: 49px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
+.user-switch-checkbox {
+  display: none;
+}
+
+.user-switch-label {
+  display: block;
+  overflow: hidden;
+  cursor: pointer;
+  height: 25px;
+  padding: 0;
+  line-height: 25px;
+  border: 2px solid #E3E3E3;
+  border-radius: 25px;
+  background-color: #E74A3B;
+  transition: background-color 0.3s ease-in;
+}
+
+.user-switch-label:before {
+  content: "";
+  display: block;
+  width: 25px;
+  margin: 0px;
+  background: #FFFFFF;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 22px;
+  border: 2px solid #E3E3E3;
+  border-radius: 25px;
+  transition: all 0.3s ease-in 0s;
+}
+
+.user-switch-checkbox:checked + .user-switch-label {
+  background-color: #1CC88A;
+}
+
+.user-switch-checkbox:checked + .user-switch-label, .user-switch-checkbox:checked + .user-switch-label:before {
+  border-color: #1CC88A;
+}
+
+.user-switch-checkbox:checked + .user-switch-label:before {
+  right: 0px;
+}
+
