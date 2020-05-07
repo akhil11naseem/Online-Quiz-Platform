@@ -22,6 +22,8 @@
 html, body {
   height: 100%;
   font-size: 25px;
+  color: rgb(0,0,0);
+  font-family: Montserrat, sans-serif;
 }
 
 .btn-success:not(:disabled):not(.disabled).active, .btn-success:not(:disabled):not(.disabled):active, .show > .btn-success.dropdown-toggle {
@@ -30,8 +32,8 @@ html, body {
   border-color: #1cc88a;
 }
 
-.btn-outline-danger.focus, .btn-outline-danger:focus {
-  box-shadow: none;
+.btn-outline-danger {
+  text-decoration: line-through;
 }
 
 .btn-outline-danger:hover {
@@ -50,5 +52,10 @@ html, body {
 .nav-link:hover, .current-page {
   text-decoration: underline;
   color: black;
+}
+
+.class-scores-row td:not(:first-child) {
+  font-size: 2em;
+  font-weight: bolder;
 }
 

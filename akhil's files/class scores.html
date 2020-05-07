@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Dashboard - Brand</title>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,600,700,800,900">
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/manage%20students%20toggle%20switch.css">
+</head>
+
+<body style="color: rgb(0,0,0);">
+    <div class="container-fluid fill">
+        <div class="row">
+            <div class="col-lg-3 border-right" id="settings-column">
+                <nav class="navbar navbar-light d-xl-flex justify-content-xl-start mt-5">
+                    <div class="container-fluid d-flex flex-column p-0">
+                        <h2 class="text-center mt-3" style="font-family: Montserrat, sans-serif;font-weight: bold;font-size: 35px;">Settings</h2><a class="text-center nav-item nav-link" href="toggle%20topics.html">Select topics</a><a class="text-center nav-item nav-link current-page" href="class%20scores.html">Class scores</a><a class="text-center nav-item nav-link"
+                            href="manage%20students.html">Manage students</a><a class="text-center nav-item nav-link" href="#">Change password</a><a class="text-center nav-item nav-link" href="#">Log out</a></div>
+                </nav>
+            </div>
+            <div class="col" id="content-column">
+                <div class="row border-bottom">
+                    <div class="col">
+                        <h1 class="mt-5" style="font-family: Montserrat, sans-serif;font-weight: bold;font-size: 60px;">Welcome, Admin!</h1>
+                    </div>
+                </div>
+                <div class="row my-3">
+                    <div class="col">
+                        <h2 class="text-left mt-3" style="font-family: Montserrat, sans-serif;font-weight: bold;font-size: 35px;">Class scores</h2>
+                    </div>
+                </div>
+                <div class="table-responsive" id="class-scores-table">
+                    <table class="table">
+                        <thead style="color: rgb(0,0,0);">
+                            <tr>
+                                <th style="color: rgb(0,0,0);">Students</th>
+                                <th>Biology</th>
+                                <th>English</th>
+                                <th>History</th>
+                            </tr>
+                        </thead>
+                        <tbody style="color: rgb(0,0,0);">
+                            <tr class="class-scores-row">
+                                <td>Student 1</td>
+                                <td>219</td>
+                                <td>234</td>
+                                <td>-</td>
+                            </tr>
+                            <tr class="class-scores-row">
+                                <td>Student 2</td>
+                                <td>345</td>
+                                <td>214</td>
+                                <td>142</td>
+                            </tr>
+                            <tr class="class-scores-row">
+                                <td>Student 3</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>452</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/bs-init.js"></script>
+    <script src="assets/js/topic%20button.js"></script>
+</body>
+
+</html>
