@@ -4,8 +4,10 @@
 
 .topic-btn {
   margin: 20px;
+  margin-top: initial;
   width: 200px;
-  font-size: 25px;
+  border-width: 3px;
+  border-radius: 35px;
 }
 
 .fill {
@@ -29,25 +31,15 @@ html, body {
   border-color: #1cc88a;
 }
 
-.btn-success.focus, .btn-success:focus, .btn-success:hover {
-  color: #fff;
-  background-color: #1cc88a;
-  border-color: #1cc88a;
-  box-shadow: none;
-}
-
-.btn-outline-danger:not(:disabled):not(.disabled).active:focus, .btn-outline-danger:not(:disabled):not(.disabled):active:focus, .show > .btn-outline-danger.dropdown-toggle:focus {
-  box-shadow: none;
-}
-
 .btn-outline-danger.focus, .btn-outline-danger:focus {
   box-shadow: none;
 }
 
 .btn-outline-danger:hover {
-  color: #e74a3b;
+  color: #1cc88a;
   background-color: transparent;
-  border-color: #e74a3b;
+  border-color: #1cc88a;
+  border-width: 3px;
 }
 
 .btn-outline-danger:not(:disabled):not(.disabled).active, .btn-outline-danger:not(:disabled):not(.disabled):active, .show > .btn-outline-danger.dropdown-toggle {
