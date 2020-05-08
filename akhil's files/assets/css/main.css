@@ -2,13 +2,6 @@
   color: rgb(0,0,0);
 }
 
-.topic-btn {
-  margin: 20px;
-  width: 200px;
-  border-width: 3px;
-  border-radius: 35px;
-}
-
 .fill {
   min-height: 100%;
   overflow: hidden;
@@ -57,5 +50,35 @@ html, body {
 .class-scores-row td:not(:first-child) {
   font-size: 2em;
   font-weight: bolder;
+}
+
+.topic-btn, #log-in-btn {
+  margin: 20px;
+  width: 200px;
+  border-width: 3px;
+  border-radius: 35px;
+}
+
+#log-in-btn, #username-input, #password-input {
+  border-color: black;
+  color: black;
+  border-width: 1px;
+  max-width: 500px;
+}
+
+#log-in-btn:hover {
+  color: #1cc88a;
+  background-color: transparent;
+  border-color: #1cc88a;
+  border-width: 2px;
+}
+
+button:focus, .btn.focus, .btn:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.form-control:focus {
+  box-shadow: 0 0 0 .2rem rgba(154,154,154,0.25);
 }
 
