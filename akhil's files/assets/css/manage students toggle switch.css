@@ -1,16 +1,16 @@
-.user-switch {
+.student-switch {
   position: relative;
   width: 49px;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
+  -webkit-student-select: none;
+  -moz-student-select: none;
+  -ms-student-select: none;
 }
 
-.user-switch-checkbox {
+.student-switch-checkbox {
   display: none;
 }
 
-.user-switch-label {
+.student-switch-label {
   display: block;
   overflow: hidden;
   cursor: pointer;
@@ -23,7 +23,7 @@
   transition: background-color 0.3s ease-in;
 }
 
-.user-switch-label:before {
+.student-switch-label:before {
   content: "";
   display: block;
   width: 25px;
@@ -38,15 +38,15 @@
   transition: all 0.3s ease-in 0s;
 }
 
-.user-switch-checkbox:checked + .user-switch-label {
+.student-switch-checkbox:checked + .student-switch-label {
   background-color: #1CC88A;
 }
 
-.user-switch-checkbox:checked + .user-switch-label, .user-switch-checkbox:checked + .user-switch-label:before {
+.student-switch-checkbox:checked + .student-switch-label, .student-switch-checkbox:checked + .student-switch-label:before {
   border-color: #1CC88A;
 }
 
-.user-switch-checkbox:checked + .user-switch-label:before {
+.student-switch-checkbox:checked + .student-switch-label:before {
   right: 0px;
 }
 
