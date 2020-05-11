@@ -7,7 +7,7 @@
   overflow: hidden;
 }
 
-#settings-column, #content-column {
+.left-main-column, .right-main-column {
   margin-bottom: -9999px;
   padding-bottom: 9999px;
 }
@@ -52,21 +52,28 @@ html, body {
   font-weight: bolder;
 }
 
-.topic-btn, #log-in-btn {
+.topic-btn, #log-in-btn, #change-password-confirm-btn {
   margin: 20px;
   width: 200px;
   border-width: 3px;
   border-radius: 35px;
 }
 
-#log-in-btn, #username-input, #password-input {
+#play-again-btn {
+  font-size: 1.4rem;
+  width: 300px;
+  border-width: 3px;
+  border-radius: 35px;
+}
+
+#log-in-btn, #username-input, #password-input, #current-password-input, #new-password-input, #change-password-confirm-btn {
   border-color: black;
   color: black;
   border-width: 1px;
   max-width: 500px;
 }
 
-#log-in-btn:hover {
+#log-in-btn:hover, #change-password-confirm-btn:hover {
   color: #1cc88a;
   background-color: transparent;
   border-color: #1cc88a;
@@ -80,5 +87,30 @@ button:focus, .btn.focus, .btn:focus {
 
 .form-control:focus {
   box-shadow: 0 0 0 .2rem rgba(154,154,154,0.25);
+}
+
+.table {
+  margin-bottom: 0;
+  color: black;
+}
+
+#manage-students-table > table {
+  width: auto;
+}
+
+#hint-and-answer-input {
+  /*width: 100%;*/
+  line-height: 0;
+  border-style: none;
+  outline: none;
+  font-size: 3rem;
+  font-weight: 700;
+}
+
+.question-text {
+  font-family: Helvetica;
+  font-size: 1.4em;
+  font-family: initial;
+  font-weight: 300;
 }
 
