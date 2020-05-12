@@ -1,0 +1,61 @@
+.nav-item {
+  color: rgb(0,0,0);
+}
+
+.topic-btn {
+  margin: 20px;
+  width: 200px;
+  border-width: 3px;
+  border-radius: 35px;
+}
+
+.fill {
+  min-height: 100%;
+  overflow: hidden;
+}
+
+#settings-column, #content-column {
+  margin-bottom: -9999px;
+  padding-bottom: 9999px;
+}
+
+html, body {
+  height: 100%;
+  font-size: 25px;
+  color: rgb(0,0,0);
+  font-family: Montserrat, sans-serif;
+}
+
+.btn-success:not(:disabled):not(.disabled).active, .btn-success:not(:disabled):not(.disabled):active, .show > .btn-success.dropdown-toggle {
+  color: #fff;
+  background-color: #1cc88a;
+  border-color: #1cc88a;
+}
+
+.btn-outline-danger {
+  text-decoration: line-through;
+}
+
+.btn-outline-danger:hover {
+  color: #1cc88a;
+  background-color: transparent;
+  border-color: #1cc88a;
+  border-width: 3px;
+}
+
+.btn-outline-danger:not(:disabled):not(.disabled).active, .btn-outline-danger:not(:disabled):not(.disabled):active, .show > .btn-outline-danger.dropdown-toggle {
+  color: #e74a3b;
+  background-color: transparent;
+  border-color: #e74a3b;
+}
+
+.nav-link:hover, .current-page {
+  text-decoration: underline;
+  color: black;
+}
+
+.class-scores-row td:not(:first-child) {
+  font-size: 2em;
+  font-weight: bolder;
+}
+
