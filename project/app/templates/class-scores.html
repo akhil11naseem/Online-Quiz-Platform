@@ -1,65 +1,61 @@
 {% extends 'base.html' %}
+{% include 'add-user.html' %}
 
-{% block nav %}
-    <h1>Settings</h1>
-                <nav>
-                    <ul class="nav flex-column">
-                        <li class="nav-item">
-                            <a href="" class="nav-link">Test Topics</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="" class="nav-link">Class Scores</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="" class="nav-link">Manage Students</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="" class="nav-link">Change Passwords</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="" class="nav-link">Change Usernames</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="" class="nav-link">Log Out</a>
-                        </li>
-                    </ul>
-                </nav>
-
-{% endblock %}
-
-{% block table %}
-<h2>Class Scores</h2>
-                                <div class="table">
-                                    <table>
-                                        <thead>
-                                            <tr>
-                                                <th>Student</th>
-                                                <th>Statistics</th>
-                                                <th>English</th>
-                                                <th>Science</th>
-                                            </tr>
-                                            <tbody>
-                                                <tr>
-                                                  <th scope="row">Student 1</th>
-                                                  <td>219</td>
-                                                  <td>345</td>
-                                                  <td>-</td>
-                                                </tr>
-                                                <tr>
-                                                  <th scope="row">Student 2</th>
-                                                  <td>219</td>
-                                                  <td>345</td>
-                                                  <td>-</td>
-                                                </tr>
-                                                <tr>
-                                                  <th scope="row">Student 3</th>
-                                                  <td>219</td>
-                                                  <td>345</td>
-                                                  <td>-</td>
-                                                </tr>
-                                              </tbody>
-                                        </thead>
-                                    </table>
-                                </div>
+{% block content %}
+<div class="col-lg-3 border-right" id="settings-column">
+    <nav class="navbar navbar-light d-xl-flex justify-content-xl-start mt-5">
+        <div class="container-fluid d-flex flex-column p-0">
+            <h2 class="text-center mt-3" style="font-family: Montserrat, sans-serif;font-weight: bold;font-size: 35px;">Settings</h2>
+            <a class="text-center nav-item nav-link" href="{{ url_for('topics') }}">Select topics</a>
+            <a class="text-center nav-item nav-link current-page" href="{{ url_for('scores') }}">Class scores</a>
+            <a class="text-center nav-item nav-link" href="{{ url_for('students') }}">Manage students</a>
+            <a class="text-center nav-item nav-link" href="#">Change password</a>
+            <a class="text-center nav-item nav-link" href="#">Log out</a></div>
+    </nav>
+</div>
+<div class="col" id="content-column">
+    <div class="row border-bottom">
+        <div class="col">
+            <h1 class="mt-5" style="font-family: Montserrat, sans-serif;font-weight: bold;font-size: 60px;">Welcome, Admin!</h1>
+        </div>
+    </div>
+    <div class="row my-3">
+        <div class="col">
+            <h2 class="text-left mt-3" style="font-family: Montserrat, sans-serif;font-weight: bold;font-size: 35px;">Class scores</h2>
+        </div>
+    </div>
+    <div class="table-responsive" id="class-scores-table">
+        <table class="table">
+            <thead style="color: rgb(0,0,0);">
+                <tr>
+                    <th style="color: rgb(0,0,0);">Students</th>
+                    <th>Biology</th>
+                    <th>English</th>
+                    <th>History</th>
+                </tr>
+            </thead>
+            <tbody style="color: rgb(0,0,0);">
+                <tr class="class-scores-row">
+                    <td>Student 1</td>
+                    <td>219</td>
+                    <td>234</td>
+                    <td>-</td>
+                </tr>
+                <tr class="class-scores-row">
+                    <td>Student 2</td>
+                    <td>345</td>
+                    <td>214</td>
+                    <td>142</td>
+                </tr>
+                <tr class="class-scores-row">
+                    <td>Student 3</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>452</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
 
 {% endblock %}
