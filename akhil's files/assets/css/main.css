@@ -52,7 +52,7 @@ html, body {
   font-weight: bolder;
 }
 
-.topic-btn, #log-in-btn, #change-password-confirm-btn {
+.topic-btn, #log-in-btn, #change-password-confirm-btn, #timer-box {
   margin: 20px;
   width: 200px;
   border-width: 3px;
@@ -66,7 +66,7 @@ html, body {
   border-radius: 35px;
 }
 
-#log-in-btn, #username-input, #password-input, #current-password-input, #new-password-input, #change-password-confirm-btn {
+#log-in-btn, #username-input, #password-input, #current-password-input, #new-password-input, #change-password-confirm-btn, #timer-box {
   border-color: black;
   color: black;
   border-width: 1px;
@@ -99,7 +99,6 @@ button:focus, .btn.focus, .btn:focus {
 }
 
 #hint-and-answer-input {
-  /*width: 100%;*/
   line-height: 0;
   border-style: none;
   outline: none;
@@ -112,5 +111,54 @@ button:focus, .btn.focus, .btn:focus {
   font-size: 1.4em;
   font-family: initial;
   font-weight: 300;
+}
+
+.student-switch {
+  position: relative;
+  width: 49px;
+  -webkit-student-select: none;
+  -moz-student-select: none;
+  -ms-student-select: none;
+}
+
+.student-switch-checkbox {
+  display: none;
+}
+
+.student-switch-label {
+  display: block;
+  overflow: hidden;
+  cursor: pointer;
+  height: 25px;
+  padding: 0;
+  line-height: 25px;
+  border: 2px solid #E3E3E3;
+  border-radius: 25px;
+  background-color: #E74A3B;
+  transition: background-color 0.3s ease-in;
+}
+
+.student-switch-label:before {
+  content: "";
+  display: block;
+  width: 25px;
+  margin: 0px;
+  background: #FFFFFF;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 22px;
+  border: 2px solid #E3E3E3;
+  border-radius: 25px;
+  transition: all 0.3s ease-in 0s;
+}
+
+.student-switch-checkbox:checked + .student-switch-label {
+  background-color: #1CC88A;
+  border-color: #1CC88A;
+}
+
+.student-switch-checkbox:checked + .student-switch-label:before {
+  right: 0px;
 }
 
