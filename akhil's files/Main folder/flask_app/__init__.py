@@ -19,7 +19,7 @@ def create_app(config_file = 'settings.py'):
 
     @login_manager.user_loader
     def load_user(user_id):
-        return User.query.get(user_id)
+        return User.query.get(int(user_id))
 
     app.register_blueprint(main)
     app.register_blueprint(auth)

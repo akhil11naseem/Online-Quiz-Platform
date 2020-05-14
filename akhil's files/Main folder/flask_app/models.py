@@ -10,10 +10,11 @@ db.Column('results_id', db.Integer, db.ForeignKey('results.id'))
 
 class User(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(30))
+    username = db.Column(db.String(30), unique=True)
     password = db.Column(db.String(30))
     admin = db.Column(db.Boolean)
     student = db.Column(db.Boolean)
+    enabled = db.Column(db.Boolean)
 
     results = db.relationship('Results', backref='user_results')
 
@@ -28,8 +29,9 @@ class User(UserMixin, db.Model):
 
 class Topic(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    topicName = db.Column(db.String(30))
+    name = db.Column(db.String(30))
     questions = db.Column(db.Text(30))
+    enabled = db.Column(db.Boolean)
 
     results = db.relationship(
     'Results',
