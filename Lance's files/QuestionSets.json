@@ -1,0 +1,169 @@
+{
+    "Question Sets": {
+        "English": {
+            "Question1": {
+                "Question": "What is the name of the author that wrote the famous story MacBeth?",
+                "Answer": "Shakespeare",
+                "Hint": "Starts with 'S'"
+            },
+            "Question2": {
+                "Question": "Name a form of poem that has a syllabic structure of 5-7-5.",
+                "Answer": "Haiku",
+                "Hint": "Starts with 'H'"
+            },
+            "Question3": {
+                "Question": "What is the name of a poem that reads the same backwards and forwards?",
+                "Answer": "Palindrome",
+                "Hint": "Starts with 'P'"
+            },
+
+            "Question4": {
+                "Question": "What is the word for an extreme or irrational fear of something?",
+                "Answer": "Phobia",
+                "Hint": "Starts with 'P'"
+            },
+
+            "Question5": {
+                "Question": "What is the word that describes the scent after a rainy day?",
+                "Answer": "Petricor",
+                "Hint": "Starts with 'P'"
+            },
+            "Question6": {
+                "Question": "What colour most often symbolises passion in literature?",
+                "Answer": "Red",
+                "Hint": "Starts with 'R'"
+            },
+            "Question7": {
+                "Question": "What would you call a person who sets up a business and takes financial risks in view of profit?",
+                "Answer": "Entrepreneur",
+                "Hint": "Starts with 'E'"
+            },
+            "Question8": {
+                "Question": "What is the word that describes an exaggerated statement or a claim that is not meant to be taken literally?",
+                "Answer": "Hyperbole",
+                "Hint": "Starts with 'H'"
+            },
+            "Question9": {
+                "Question": "Given these letters, 'o n a d d l o w' what is the largest word that you can possibly make?",
+                "Answer": "Download",
+                "Hint": "Starts with 'D'"
+            },
+            "Question10": {
+                "Question": "Written by Lewis Carroll, name the poem that this excerpt was taken from 
+                '’Twas brillig, and the slithy toves
+                Did gyre and gimble in the wabe: All mimsy were the borogoves,
+                And the mome raths outgrabe.
+                '",
+                "Answer": "Jabberwocky",
+                "Hint": "Starts with 'J'"
+            }
+        },
+        "Science": {
+            "Question1": {
+                "Question": "What is the powerhouse of the cell?",
+                "Answer": "Mitochondria",
+                "Hint": "Starts with 'M'"
+            },
+            "Question2": {
+                "Question": "Which theory is Einstein most famously credited for? ",
+                "Answer": "Relativity",
+                "Hint": "Starts with 'R'"
+            },
+            "Question3": {
+                "Question": "Alexander Graham Bell is notably famous for this invention.",
+                "Answer": "Telephone",
+                "Hint": "Starts with 'T'"
+            },
+            "Question4": {
+                "Question": "What family of insects are spiders a member of?",
+                "Answer": "Arachnid",
+                "Hint": "Starts with 'A'"
+            },
+            "Question5": {
+                "Question": "What is the name of the process that trees use to convert sunlight into oxygen?",
+                "Answer": "Photosynthesis",
+                "Hint": "Starts with 'P'"
+            },
+            "Question6": {
+                "Question": "What is the unit of measurement we use to measure light?",
+                "Answer": "Lumens",
+                "Hint": "Starts with 'L'"
+            },
+            "Question7": {
+                "Question": "Name the smallest unit of measurement known to mankind.",
+                "Answer": "Planck",
+                "Hint": "Starts with 'P'"
+            },
+            "Question8": {
+                "Question": "Frederick Banting was a Canadian medical scientist and Nobel Laureate noted for his discovery of this form of medicine.",
+                "Answer": "Insulin",
+                "Hint": "Starts with 'I'"
+            },
+            "Question9": {
+                "Question": "What is the name of the famous mathematician responsible for the equation a2 + b2 = c2?",
+                "Answer": "Pythagoras",
+                "Hint": "Starts with 'P'"
+            },
+            "Question10": {
+                "Question": "What is the lightest element on the periodic table?",
+                "Answer": "Hydrogen",
+                "Hint": "Starts with 'H'"
+            }
+        },
+        "History": {
+            "Question1": {
+                "Question": "In the Second World War, the two sides that fought each other were named the Axis and the _____?",
+                "Answer": "Allies",
+                "Hint": "Starts with 'A'"
+            },
+            "Question2": {
+                "Question": "Known for its many conspiracies, these ancient egyptian tombs were built for the kings of past to rest, what were they called?",
+                "Answer": "Pyramids",
+                "Hint": "Starts with 'P'"
+            },
+            "Question3": {
+                "Question": "There is a popular story about a mighty flood and a man who had built an ark, what was his name?",
+                "Answer": "Moses",
+                "Hint": "Starts with 'M'"
+            },
+            "Question4": {
+                "Question": "What was the name of the famous french general, who is often referred to as 'The Conqueror'?",
+                "Answer": "Napoleon",
+                "Hint": "Starts with 'N'"
+            },
+            "Question5": {
+                "Question": "In greek mythology, the god of thunder, Zeus resides on his throne upon which mountain?",
+                "Answer": "Olympus",
+                "Hint": "Starts with 'O'"
+            },
+            "Question6": {
+                "Question": "Primarily from Scandanavia in the 8th to 11th Centuries, this tribe of people were famous for raiding and pillaging throughout Europe, who were they?",
+                "Answer": "Vikings",
+                "Hint": "Starts with 'V'"
+            },
+            "Question7": {
+                "Question": "Born in Macedon, Ancient Greece, this man is considered one of the greatest military minds in history and is commonly referred to as 'The Great', what was his name?",
+                "Answer": "Alexander",
+                "Hint": "Starts with 'A'"
+            },
+            "Question8": {
+                "Question": "The dinosaurs lived on Earth over 200 million years ago, name the Era in which they existed",
+                "Answer": "Mesozoic",
+                "Hint": "Starts with 'M'"
+            },
+            "Question9": {
+                "Question": "What is the study of human activity through the recovery and analysis of material culture?",
+                "Answer": "Archaeology",
+                "Hint": "Starts with 'A'"
+            },
+            "Question10": {
+                "Question": "What would you call a person who recovers and studies ancient dinosaur fossils?",
+                "Answer": "Paleontologist",
+                "Hint": "Starts with 'P'"
+            }
+        }
+
+    }
+
+
+}
