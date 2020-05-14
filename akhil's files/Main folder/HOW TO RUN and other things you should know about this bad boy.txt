@@ -10,7 +10,7 @@
 <----------------------------------Viola------------------------------------------->
 
 
-!! Points to note as of 14/05/2020 (11PM) !!
+!! Points to note as of 15/05/2020 (2:15AM) !!
 
 ---- This has been built following this guide that Varun shared (thanks man!):
 https://www.youtube.com/watch?time_continue=1715&v=z8Ewd7z1WpQ&feature=emb_title
@@ -32,5 +32,7 @@ https://www.youtube.com/watch?time_continue=1715&v=z8Ewd7z1WpQ&feature=emb_title
 -- Registered students will show up on the manage students page by going to '/manage-students'
 
 -- Currently working on the enabling/disabling feature of the manage students page to be connected to the database
+
+--- Manage students is now working. Enabling/Disabling students on the page get updated in the database as well
 
 !! PLEASE ASK ME IF YOU HAVE ANY QUESTIONS - AKHIL !!
