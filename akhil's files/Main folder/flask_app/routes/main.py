@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template
+from flask import Blueprint, render_template, request
 
 from flask_app.extensions import db
 from flask_app.models import User, Topic, Results
@@ -15,11 +15,42 @@ def classScores():
 
 @main.route('/manage-students')
 def manageStudents():
-    return render_template('Dashboard/Admin dashboard/manage students.html')
+
+    students = User.query.filter_by(student=True).all()
+    print(students)
+
+    context = {
+        'students' : students
+    }
+
+    return render_template('Dashboard/Admin dashboard/manage students.html', **context)
+
+@main.route('/update-manage-students')
+def updateManageStudents():
+    id = int(request.args.get('id'))
+    checked = request.args.get('checked')
+
+    if checked == "true":
+        update_val = 1;
+    else:
+        update_val = 0;
+
+    student = User.query.get(id)
+    student.enabled = update_val
+    db.session.commit()
+
+    return ("updated 'enabled' column of student " + student.username + " to " + checked)
 
 @main.route('/select-topics')
 def selectTopics():
-    return render_template('Dashboard/Admin dashboard/select topics.html')
+
+    topics = Topic.query.all()
+
+    context = {
+        'topics' : topics
+    }
+
+    return render_template('Dashboard/Admin dashboard/select topics.html', **context)
 
 @main.route('/choose-test-topic')
 def chooseTestTopic():
