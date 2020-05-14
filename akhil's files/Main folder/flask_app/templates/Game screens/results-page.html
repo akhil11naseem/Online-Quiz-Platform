@@ -4,11 +4,11 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>Dashboard - Brand</title>
-    <link rel="stylesheet" href="../assets/bootstrap/css/bootstrap.min.css">
+    <title>Student-Quiz Results</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/bootstrap/css/bootstrap.min.css')}}">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,600,700,800,900">
-    <link rel="stylesheet" href="../assets/css/main.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/main.css')}}">
 </head>
 
 <body style="color: rgb(0,0,0);">
@@ -36,7 +36,7 @@
             <div class="col right-main-column" id="results-page-right-column">
                 <div class="row border-bottom align-items-center mt-5" id="results-heading-row">
                     <div class="col">
-                        <h1 style="font-family: Montserrat, sans-serif;font-weight: bold;font-size: 60px;">Good job, student 1!</h1>
+                        <h1 class="main-heading">Good job, student 1!</h1>
                     </div>
                 </div>
                 <div class="row my-3" id="results-stats-row1">
@@ -73,10 +73,10 @@
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
-    <script src="../assets/js/bs-init.js"></script>
-    <script src="../assets/js/maintain%20focus%20on%20answer%20input%20area.js"></script>
-    <script src="../assets/js/timer.js"></script>
-    <script src="../assets/js/topic%20button.js"></script>
+    <script src="{{ url_for('static', filename='assets/js/bs-init.js')}}"></script>
+    <script src="{{ url_for('static', filename='assets/js/maintain focus on answer input area.js')}}"></script>
+    <script src="{{ url_for('static', filename='assets/js/timer.js')}}"></script>
+    <script src="{{ url_for('static', filename='assets/js/topic button.js')}}"></script>
 </body>
 
 </html>
