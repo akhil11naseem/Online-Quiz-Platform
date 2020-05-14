@@ -57,8 +57,8 @@
                               <td>{{ student.username }}</td>
                               <td>
                                   <div class="student-switch">
-                                    <input type="checkbox" id="student{{ student.id }}-switch" class="student-switch-checkbox" name="student{{ student.id }}-switch" {% if student.enabled %}checked{% endif %}>
-                                    <label class="student-switch-label" for="student{{ student.id }}-switch"></label>
+                                    <input type="checkbox" id="{{ student.id }}" class="student-switch-checkbox" name="student{{ student.id }}-switch" {% if student.enabled %}checked{% endif %}>
+                                    <label class="student-switch-label" for="{{ student.id }}"></label>
                                   </div>
                               </td>
                           </tr>
@@ -75,6 +75,19 @@
     <script src="{{ url_for('static', filename='assets/js/maintain focus on answer input area.js')}}"></script>
     <script src="{{ url_for('static', filename='assets/js/timer.js')}}"></script>
     <script src="{{ url_for('static', filename='assets/js/topic button.js')}}"></script>
+
+    <script type="text/javascript">
+    $(document).ready(function () {
+      $('.student-switch-checkbox').on('click', function (event) {
+        var id = event.target.id;
+        var checked = document.getElementById(id).checked;
+        $.getJSON('/update-manage-students', {
+          id:id,
+          checked:checked
+        });
+      });
+    });
+    </script>
 </body>
 
 </html>
