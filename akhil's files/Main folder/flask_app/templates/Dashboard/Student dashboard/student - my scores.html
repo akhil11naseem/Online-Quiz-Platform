@@ -15,12 +15,19 @@
     <div class="container-fluid fill">
         <div class="row">
             <div class="col-lg-3 border-right left-main-column">
-                <nav class="navbar navbar-light d-xl-flex justify-content-xl-start mt-5">
-                    <div class="container-fluid d-flex flex-column p-0">
-                        <h2 class="text-center mt-3" style="font-weight: bold;font-size: 35px;">Settings</h2><a class="text-center nav-item nav-link" href="Dashboard/Student dashboard/student- choose test topic.html">Test topics</a><a class="text-center nav-item nav-link current-page" href="Dashboard/Student dashboard/student- my scores.html">My scores</a>
-                        <a
-                            class="text-center nav-item nav-link" href="Dashboard/change password.html">Change password</a><a class="text-center nav-item nav-link" href="Dashboard/log in.html">Log out</a></div>
-                </nav>
+              <nav class="navbar navbar-light d-xl-flex justify-content-xl-start mt-5">
+                <div class="container-fluid d-flex flex-column p-0">
+                  <h2 class="text-center mt-3" style="sans-serif;font-weight: bold;font-size: 35px;">Settings</h2>
+
+                  <a class="text-center nav-item nav-link" href="{{ url_for('main.chooseTestTopic') }}">Test topics</a>
+
+                  <a class="text-center nav-item nav-link current-page" href="{{ url_for('main.myScores') }}">My scores</a>
+
+                  <a class="text-center nav-item nav-link" href="{{ url_for('main.changePassword') }}">Change password</a>
+
+                  <a class="text-center nav-item nav-link" href="{{ url_for('auth.login') }}">Log out</a>
+                </div>
+              </nav>
             </div>
             <div class="col right-main-column">
                 <div class="row border-bottom">

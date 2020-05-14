@@ -43,7 +43,10 @@ def login():
         if not user or not check_password_hash(user.password, unhashed_password):
             error_message = 'Invalid credentials, please try again.'
 
-        if not error_message:
+        elif not user.enabled:
+            error_message = 'User disabled, contact Admin.'
+
+        else:
             login_user(user)
             if user.admin:
                 return redirect(url_for('main.selectTopics'))

@@ -15,11 +15,26 @@ def classScores():
 
 @main.route('/manage-students')
 def manageStudents():
-    return render_template('Dashboard/Admin dashboard/manage students.html')
+
+    students = User.query.filter_by(student=True).all()
+    print(students)
+
+    context = {
+        'students' : students
+    }
+
+    return render_template('Dashboard/Admin dashboard/manage students.html', **context)
 
 @main.route('/select-topics')
 def selectTopics():
-    return render_template('Dashboard/Admin dashboard/select topics.html')
+
+    topics = Topic.query.all()
+
+    context = {
+        'topics' : topics
+    }
+
+    return render_template('Dashboard/Admin dashboard/select topics.html', **context)
 
 @main.route('/choose-test-topic')
 def chooseTestTopic():
