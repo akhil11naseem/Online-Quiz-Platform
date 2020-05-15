@@ -47,8 +47,8 @@
           <div class="col">
             <div class="btn-group-toggle" data-toggle="buttons">
               {% for topic in topics %}
-              <label class="btn btn-success topic-btn">{{ topic.name }}
-                <input type="checkbox" autocomplete="off" checked="">
+              <label class="btn topic-btn {% if topic.enabled %}btn-success{% else %}btn-outline-danger{% endif %}">{{ topic.name }}
+                <input type="checkbox" id="{{ topic.id }}" class="topic-btn-input" autocomplete="off" {% if topic.enabled %}checked{% endif %}>
               </label>
               {% endfor %}
             </div>
@@ -63,6 +63,19 @@
   <script src="{{ url_for('static', filename='assets/js/maintain focus on answer input area.js')}}"></script>
   <script src="{{ url_for('static', filename='assets/js/timer.js')}}"></script>
   <script src="{{ url_for('static', filename='assets/js/topic button.js')}}"></script>
+
+  <script type="text/javascript">
+  $(document).ready(function () {
+    $('.topic-btn-input').on('click', function (event) {
+      var id = event.target.id;
+      var checked = document.getElementById(id).checked;
+      $.getJSON('/update-available-topics', {
+        id:id,
+        checked:checked
+      });
+    });
+  });
+  </script>
 </body>
 
 </html>
