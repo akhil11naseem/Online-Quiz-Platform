@@ -41,6 +41,8 @@ def updateManageStudents():
 
     return ("updated 'enabled' column of student " + student.username + " to " + checked)
 
+
+
 @main.route('/select-topics')
 def selectTopics():
 
@@ -51,6 +53,22 @@ def selectTopics():
     }
 
     return render_template('Dashboard/Admin dashboard/select topics.html', **context)
+
+@main.route('/update-available-topics')
+def updateAvailableTopics():
+    id = int(request.args.get('id'))
+    checked = request.args.get('checked')
+
+    if checked == "true":
+        update_val = 1;
+    else:
+        update_val = 0;
+
+    topic = Topic.query.get(id)
+    topic.enabled = update_val
+    db.session.commit()
+
+    return ("updated 'enabled' column of topic " + topic.name + " to " + checked)
 
 @main.route('/choose-test-topic')
 def chooseTestTopic():
