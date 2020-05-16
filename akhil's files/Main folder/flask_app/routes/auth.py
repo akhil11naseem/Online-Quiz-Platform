@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request, redirect, url_for, flash
+from flask import Blueprint, render_template, request, redirect, url_for
 from werkzeug.security import check_password_hash
 from flask_login import login_user
 
@@ -20,8 +20,8 @@ def register():
         user = User(
             username=username,
             unhashed_password=unhashed_password,
-            admin=True,
-            student=False
+            admin=False,
+            student=True
         )
         db.session.add(user)
         db.session.commit()
