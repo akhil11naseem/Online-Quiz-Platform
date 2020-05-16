@@ -32,7 +32,7 @@
             <div class="col right-main-column">
                 <div class="row border-bottom">
                     <div class="col">
-                        <h1 class="mt-5" style="font-weight: bold;font-size: 60px;">Welcome, Student 1!</h1>
+                        <h1 class="mt-5" style="font-weight: bold;font-size: 60px;">Welcome, {{ name }}!</h1>
                     </div>
                 </div>
                 <div class="row my-3">
@@ -41,9 +41,13 @@
                     </div>
                 </div>
                 <div class="row d-flex flex-wrap mt-3 mb-5">
-                    <div class="col">
-                        <div><button class="btn ml-0 btn-success topic-btn">Biology</button><button class="btn ml-0 btn-success topic-btn">English</button><button class="btn ml-0 btn-success topic-btn">History</button></div>
-                    </div>
+                  {% for topic in topics %}
+                      <button type = "button" class = "btn topic-btn {% if topic.enabled %}btn-success {% endif %}"
+                          {% if not(topic.enabled) %} style = "text-decoration: line-through;" disabled {% endif %}>
+                          {{ topic.name }}</button>
+                  {% endfor %}
+                  </div>
+              </div>
                 </div>
             </div>
         </div>

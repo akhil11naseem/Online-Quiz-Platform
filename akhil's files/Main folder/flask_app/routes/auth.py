@@ -31,13 +31,12 @@ def register():
 
 @auth.route('/login', methods=['GET', 'POST'])
 def login():
+    error_message = ''
     if request.method == 'POST':
         username = request.form['username']
         unhashed_password = request.form['password']
 
         user = User.query.filter_by(username=username).first()
-
-        error_message = ''
 
         if not user or not check_password_hash(user.password, unhashed_password):
             error_message = 'Invalid credentials, please try again.'
@@ -53,4 +52,4 @@ def login():
                 return redirect(url_for('main.chooseTestTopic'))
 
 
-    return render_template('Dashboard/log in.html')
+    return render_template('Dashboard/log in.html', error=error_message)
