@@ -10,7 +10,7 @@
 <----------------------------------Viola------------------------------------------->
 
 
-!! Points to note as of 15/05/2020 (2:15AM) !!
+!! Points to note as of 17/05/2020 (6:15AM) !!
 
 ---- This has been built following this guide that Varun shared (thanks man!):
 https://www.youtube.com/watch?time_continue=1715&v=z8Ewd7z1WpQ&feature=emb_title
@@ -38,5 +38,7 @@ https://www.youtube.com/watch?time_continue=1715&v=z8Ewd7z1WpQ&feature=emb_title
 --- Login is working as well.
 
 --- Class Scores in Admin panel also works
+
+-- My scores in student panel also works
 
 !! PLEASE ASK ME IF YOU HAVE ANY QUESTIONS - AKHIL !!
