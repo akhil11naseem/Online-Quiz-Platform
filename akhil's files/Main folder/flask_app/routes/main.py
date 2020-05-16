@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, request
-
+from flask_login import current_user, login_required
 from flask_app.extensions import db
 from flask_app.models import User, Topic, Results
 
@@ -79,12 +79,30 @@ def updateAvailableTopics():
     return ("updated 'enabled' column of topic " + topic.name + " to " + checked)
 
 @main.route('/choose-test-topic')
+@login_required
 def chooseTestTopic():
+    topics = Topic.query.all()
+
+    context = {
+    'topics' : topics
+    }
+    return render_template('Dashboard/Student dashboard/student - choose test topic.html', name = current_user.username, **context)
+
     return render_template('Dashboard/Student dashboard/student - choose test topic.html')
 
 @main.route('/my-scores')
 def myScores():
-    return render_template('Dashboard/Student dashboard/student - my scores.html')
+    results = Results.query.filter_by().all()
+    students = User.query.filter_by(student=True).all()
+    topics = Topic.query.all()
+
+    context = {
+        'results' : results,
+        'students' : students,
+        'topics' : topics
+    }
+
+    return render_template('Dashboard/Student dashboard/student - my scores.html',  **context)
 
 @main.route('/question-page')
 def questionPage():
