@@ -10,6 +10,7 @@ def changePassword():
     return render_template('Dashboard/change password.html')
 
 @main.route('/class-scores')
+@login_required
 def classScores():
     myresults = Results.query.filter_by().all()
     students = User.query.filter_by(student=True).all()
@@ -24,6 +25,7 @@ def classScores():
     return render_template('Dashboard/Admin dashboard/class scores.html',  **context)
 
 @main.route('/manage-students')
+@login_required
 def manageStudents():
     students = User.query.filter_by(student=True).all()
 
@@ -34,6 +36,7 @@ def manageStudents():
     return render_template('Dashboard/Admin dashboard/manage students.html', **context)
 
 @main.route('/update-manage-students')
+@login_required
 def updateManageStudents():
     id = int(request.args.get('id'))
     checked = request.args.get('checked')
@@ -52,6 +55,7 @@ def updateManageStudents():
 
 
 @main.route('/select-topics')
+@login_required
 def selectTopics():
 
     topics = Topic.query.all()
@@ -63,6 +67,7 @@ def selectTopics():
     return render_template('Dashboard/Admin dashboard/select topics.html', **context)
 
 @main.route('/update-available-topics')
+@login_required
 def updateAvailableTopics():
     id = int(request.args.get('id'))
     checked = request.args.get('checked')
