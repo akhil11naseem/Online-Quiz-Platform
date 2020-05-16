@@ -11,13 +11,21 @@ def changePassword():
 
 @main.route('/class-scores')
 def classScores():
-    return render_template('Dashboard/Admin dashboard/class scores.html')
+    scores = Results.query.filter_by().all()
+    students = User.query.filter_by(student=True).all()
+    topics = Topic.query.all()
+
+    context = {
+        'scores' : scores,
+        'students' : students,
+        'topics' : topics
+    }
+
+    return render_template('Dashboard/Admin dashboard/class scores.html',  **context)
 
 @main.route('/manage-students')
 def manageStudents():
-
     students = User.query.filter_by(student=True).all()
-    print(students)
 
     context = {
         'students' : students

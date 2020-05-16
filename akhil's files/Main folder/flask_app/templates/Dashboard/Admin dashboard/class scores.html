@@ -47,31 +47,21 @@
                     <table class="table">
                         <thead style="color: rgb(0,0,0);">
                             <tr>
-                                <th style="color: rgb(0,0,0);">Students</th>
-                                <th>Biology</th>
-                                <th>English</th>
-                                <th>History</th>
+                                <th style="color: rgb(0,0,0);">Student</th>
+                                {% for topic in topics %}
+                                <th>{{ topic.name }}</th>
+                                {% endfor %}
                             </tr>
                         </thead>
                         <tbody style="color: rgb(0,0,0);">
+                          {% for student in students %}
                             <tr class="class-scores-row">
-                                <td>Student 1</td>
-                                <td>219</td>
-                                <td>234</td>
-                                <td>-</td>
+                                <td>{{ student.username }}</td>
+                                {% for score in scores.filter(scores.result_of_user_id(student.id)).all() %}
+                                  <td>{{ score.score}}</td>
+                                {% endfor %}
                             </tr>
-                            <tr class="class-scores-row">
-                                <td>Student 2</td>
-                                <td>345</td>
-                                <td>214</td>
-                                <td>142</td>
-                            </tr>
-                            <tr class="class-scores-row">
-                                <td>Student 3</td>
-                                <td>-</td>
-                                <td>-</td>
-                                <td>452</td>
-                            </tr>
+                          {% endfor %}
                         </tbody>
                     </table>
                 </div>
