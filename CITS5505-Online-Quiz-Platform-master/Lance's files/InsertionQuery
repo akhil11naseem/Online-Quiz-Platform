@@ -1,0 +1,15 @@
+INSERT INTO Student (StudentID, StudentName, Password, StatisticsTS, EnglishTS, ScienceTS)
+VALUES
+    (Student001, Student1, Password, 80, 0, 65),
+    (Student002, Student2, Password, 50, 60, 80),
+    (Student003, Student3, Password, 90, 20, 10)
+    ;
+
+INSERT INTO Topic (TopicID, TopicName, TopScore, QuestionSet)
+VALUES
+    (Topic001, English, 0, EnglishSet),
+    (Topic002, Science, 0, ScienceSet),
+    (Topic003, History, 0, HistorySet)
+    ;
+    
+

@@ -1,0 +1,43 @@
+
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="col-lg-3 border-right" id="settings-column">
+    <nav class="navbar navbar-light d-xl-flex justify-content-xl-start mt-5">
+        <div class="container-fluid d-flex flex-column p-0">
+            <h2 class="text-center mt-3" style="font-family: Montserrat, sans-serif;font-weight: bold;font-size: 35px;">Settings</h2>
+            <a class="text-center nav-item nav-link current-page" href="{{ url_for('topics') }}">Select topics</a>
+            <a class="text-center nav-item nav-link" href="{{ url_for('scores') }}">Class scores</a>
+            <a class="text-center nav-item nav-link" href="{{ url_for('students') }}">Manage students</a>
+            <a class="text-center nav-item nav-link" href="#">Change password</a>
+            <a class="text-center nav-item nav-link" href="#">Log out</a></div>
+    </nav>
+</div>
+            <div class="col" id="content-column">
+                <div class="row border-bottom">
+                    <div class="col">
+                        <h1 class="mt-5" style="font-family: Montserrat, sans-serif;font-weight: bold;font-size: 60px;">Welcome, Admin!</h1>
+                    </div>
+                </div>
+                <div class="row my-3">
+                    <div class="col">
+                        <h2 class="text-left mt-3" style="font-family: Montserrat, sans-serif;font-weight: bold;font-size: 35px;">Toggle topics</h2>
+                    </div>
+                    <div class="col">
+                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal">Add</button>
+                    </div>
+                    <div class="col">
+                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal">Subract</button>
+                    </div>
+                    
+                </div>
+                <div class="row d-flex flex-wrap mt-3 mb-5">
+                    <div class="col">
+                        <div class="btn-group-toggle" data-toggle="buttons"><label class="btn btn-success topic-btn">Biology<input type="checkbox" autocomplete="off" checked=""></label><label class="btn btn-success topic-btn">English<input type="checkbox" autocomplete="off" checked=""></label><label class="btn btn-success topic-btn">History<input type="checkbox" autocomplete="off" checked=""></label></div>
+                    </div>
+                </div>
+            </div>
+
+            {% endblock %}
+
