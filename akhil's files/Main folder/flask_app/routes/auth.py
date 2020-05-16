@@ -36,7 +36,6 @@ def login():
         unhashed_password = request.form['password']
 
         user = User.query.filter_by(username=username).first()
-        print(user)
 
         error_message = ''
 
@@ -52,7 +51,6 @@ def login():
                 return redirect(url_for('main.selectTopics'))
             if user.student:
                 return redirect(url_for('main.chooseTestTopic'))
-
 
 
     return render_template('Dashboard/log in.html')
