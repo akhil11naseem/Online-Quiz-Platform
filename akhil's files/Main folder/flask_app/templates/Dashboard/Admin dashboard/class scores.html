@@ -57,8 +57,10 @@
                           {% for student in students %}
                             <tr class="class-scores-row">
                                 <td>{{ student.username }}</td>
-                                {% for score in scores.filter(scores.result_of_user_id(student.id)).all() %}
-                                  <td>{{ score.score}}</td>
+                                {% for result in results %}
+                                  {% if result.result_of_user_id == student.id %}
+                                    <td>{% if result.score is none %}-{% else %}{{result.score}}{% endif %}</td>
+                                  {% endif %}
                                 {% endfor %}
                             </tr>
                           {% endfor %}

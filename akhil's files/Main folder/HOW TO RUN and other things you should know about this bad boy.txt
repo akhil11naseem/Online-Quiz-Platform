@@ -35,4 +35,6 @@ https://www.youtube.com/watch?time_continue=1715&v=z8Ewd7z1WpQ&feature=emb_title
 
 --- Manage students is now working. Enabling/Disabling students on the page get updated in the database as well
 
+--- Login is working as well.
+
 !! PLEASE ASK ME IF YOU HAVE ANY QUESTIONS - AKHIL !!
