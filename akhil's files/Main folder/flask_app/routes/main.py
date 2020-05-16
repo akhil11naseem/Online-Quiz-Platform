@@ -11,7 +11,7 @@ def changePassword():
 
 @main.route('/class-scores')
 def classScores():
-    results = Results.query.filter_by().all()
+    myresults = Results.query.filter_by().all()
     students = User.query.filter_by(student=True).all()
     topics = Topic.query.all()
 
@@ -91,18 +91,23 @@ def chooseTestTopic():
     return render_template('Dashboard/Student dashboard/student - choose test topic.html')
 
 @main.route('/my-scores')
+@login_required
 def myScores():
-    results = Results.query.filter_by().all()
-    students = User.query.filter_by(student=True).all()
+    myResults = Results.query.filter_by(result_of_user_id=current_user.id).all()
+
+    topResults_rowproxy = db.engine.execute("SELECT result_for_topic_id, score FROM( SELECT *, ROW_NUMBER()OVER(PARTITION BY result_for_topic_id ORDER BY score DESC) rn FROM Results)X WHERE rn = 1")
+    topResults = [{column: value for column, value in rowproxy.items()} for rowproxy in topResults_rowproxy]
+
+
     topics = Topic.query.all()
 
     context = {
-        'results' : results,
-        'students' : students,
+        'topResults' : topResults,
+        'myResults' : myResults,
         'topics' : topics
     }
 
-    return render_template('Dashboard/Student dashboard/student - my scores.html',  **context)
+    return render_template('Dashboard/Student dashboard/student - my scores.html', name = current_user.username,  **context)
 
 @main.route('/question-page')
 def questionPage():
