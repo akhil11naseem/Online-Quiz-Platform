@@ -32,7 +32,7 @@
             <div class="col right-main-column">
                 <div class="row border-bottom">
                     <div class="col">
-                        <h1 class="mt-5" style="font-weight: bold;font-size: 60px;">Good job, Student 1!</h1>
+                        <h1 class="mt-5" style="font-weight: bold;font-size: 60px;">Good job, {{ name }}!</h1>
                     </div>
                 </div>
                 <div class="row my-3">
@@ -50,21 +50,21 @@
                             </tr>
                         </thead>
                         <tbody style="color: rgb(0,0,0);">
-                            <tr class="class-scores-row">
-                                <td>Biology</td>
-                                <td>219</td>
-                                <td>234</td>
-                            </tr>
-                            <tr class="class-scores-row">
-                                <td>English</td>
-                                <td>345</td>
-                                <td>214</td>
-                            </tr>
-                            <tr class="class-scores-row">
-                                <td>History</td>
-                                <td>-</td>
-                                <td>-</td>
-                            </tr>
+                          {% for result in myResults %}
+                            {% for topic in topics %}
+                              {% for topResult in topResults %}
+                                <tr class="class-scores-row">
+                                    {% if result.result_for_topic_id == topic.id %}
+                                    {% if topResult.result_for_topic_id == topic.id %}
+                                      <td>{{ topic.name }}</td>
+                                      <td>{% if result.score is none %}-{% else %}{{ result.score }}{% endif %}</td>
+                                      <td>{% if topResult.score is none %}-{% else %}{{ topResult.score }}{% endif %}</td>
+                                    {% endif %}
+                                    {% endif %}
+                                </tr>
+                              {% endfor %}
+                            {% endfor %}
+                          {% endfor %}
                         </tbody>
                     </table>
                 </div>
