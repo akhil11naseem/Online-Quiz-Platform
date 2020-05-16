@@ -22,9 +22,14 @@
                     </div>
                 </div>
                 <div class="row my-3">
-                    <div class="col">
-                        <h2 class="text-left mt-3 main-heading" style="font-size: 35px;">Log in</h2>
-                    </div>
+                  <div class="col">
+                    {% if error %}
+                      <div class="alert alert-warning" role="alert" style="display: inline-block">
+                        {{ error }}
+                      </div>
+                    {% endif %}
+                    <h2 class="text-left mt-3 main-heading" style="font-size: 35px;">Log in</h2>
+                  </div>
                 </div>
                 <div class="row">
                     <div class="col">
