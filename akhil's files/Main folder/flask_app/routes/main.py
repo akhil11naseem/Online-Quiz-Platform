@@ -11,12 +11,12 @@ def changePassword():
 
 @main.route('/class-scores')
 def classScores():
-    scores = Results.query.filter_by().all()
+    results = Results.query.filter_by().all()
     students = User.query.filter_by(student=True).all()
     topics = Topic.query.all()
 
     context = {
-        'scores' : scores,
+        'results' : results,
         'students' : students,
         'topics' : topics
     }
