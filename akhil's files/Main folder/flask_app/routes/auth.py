@@ -52,4 +52,4 @@ def login():
                 return redirect(url_for('main.chooseTestTopic'))
 
 
-    return render_template('Dashboard/log in.html', error=error_message)
+    return render_template('Dashboard/log in.html', message=error_message)
