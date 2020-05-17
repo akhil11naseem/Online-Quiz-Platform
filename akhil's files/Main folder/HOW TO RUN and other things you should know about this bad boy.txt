@@ -10,22 +10,22 @@
 <----------------------------------Viola------------------------------------------->
 
 
-!! Points to note as of 17/05/2020 (6:15AM) !!
+!! Points to note as of 18/05/2020 (3:00AM) !!
 
----- This has been built following this guide that Varun shared (thanks man!):
+-- This has been built following this guide that Varun shared (thanks man!):
 https://www.youtube.com/watch?time_continue=1715&v=z8Ewd7z1WpQ&feature=emb_title
 
----- So far, I have implemented upto 54:00 of the video.
+-- So far, I have implemented upto 54:00 of the video.
 
----- I have made a db mimicking Lance's db schema (thanks dude!) with a few modifications in the models.py file. 
+-- I have made a db mimicking Lance's db schema (thanks dude!) with a few modifications in the models.py file. 
 
----- I skipped over using Jinja because I am not convinced that we're getting any benefit doing it (22:00-30:00 in the video), because it is merely just making our files smaller at the cost of readibility.
+-- I skipped over using Jinja because I am not convinced that we're getting any benefit doing it (22:00-30:00 in the video), because it is merely just making our files smaller at the cost of readibility.
 
----- The motivation to skip Jinja was that I had to keep editing some parts of the HTML because of some errors and Jinja bases and extensions were making it hard to find out the exact line I'm looking for. We CAN Jinja-fy (madeup word FYI) later if we need.
+-- The motivation to skip Jinja was that I had to keep editing some parts of the HTML because of some errors and Jinja bases and extensions were making it hard to find out the exact line I'm looking for. We CAN Jinja-fy (madeup word FYI) later if we need.
 
----- Added registration page as well. It was easy enough to do sooooo.
+-- Added registration page as well. It was easy enough to do sooooo.
 
----- The app can now register new users on the register page, and can then login successfully on the login page.
+-- The app can now register new users on the register page, and can then login successfully on the login page.
 
 -- Users can register as student and this gets recorded onto the database.
 
@@ -33,12 +33,16 @@ https://www.youtube.com/watch?time_continue=1715&v=z8Ewd7z1WpQ&feature=emb_title
 
 -- Currently working on the enabling/disabling feature of the manage students page to be connected to the database
 
---- Manage students is now working. Enabling/Disabling students on the page get updated in the database as well
+-- Manage students is now working. Enabling/Disabling students on the page get updated in the database as well
 
---- Login is working as well.
+-- Login is working as well. Can only access pages if logged in (except login and register pages)
 
---- Class Scores in Admin panel also works
+-- Class Scores in Admin panel also works
 
 -- My scores in student panel also works
+
+-- Logout button works and logs user out of session
+
+-- A user can only view their respective accessible routes (i.e student cannot view any admin page)
 
 !! PLEASE ASK ME IF YOU HAVE ANY QUESTIONS - AKHIL !!

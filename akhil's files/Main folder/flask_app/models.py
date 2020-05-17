@@ -18,6 +18,9 @@ class User(UserMixin, db.Model):
 
     results = db.relationship('Results', backref='user_results')
 
+    def is_admin(self):
+        return self.admin
+
     @property
     def unhashed_password(self):
         raise AttributeError('Cannot view unhashed password')
