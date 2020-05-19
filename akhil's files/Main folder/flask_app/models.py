@@ -2,11 +2,11 @@ from .extensions import db
 from flask_login import UserMixin
 from werkzeug.security import generate_password_hash
 
-topics_results_m2m_table = db.Table(
-'topics_results_m2m_table',
-db.Column('topic_id', db.Integer, db.ForeignKey('topic.id')),
-db.Column('results_id', db.Integer, db.ForeignKey('results.id'))
-)
+# topics_results_m2m_table = db.Table(
+# 'topics_results_m2m_table',
+# db.Column('topic_id', db.Integer, db.ForeignKey('topic.id')),
+# db.Column('results_id', db.Integer, db.ForeignKey('results.id'))
+# ) INITIALLY THOUGHT RESULTS/TOPIC IS M-M BUT IS ACTUALLY 1-M, SO THIS BLOCK IS NOT NEEDED
 
 class User(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -36,11 +36,7 @@ class Topic(db.Model):
     questions = db.Column(db.Text(30))
     enabled = db.Column(db.Boolean)
 
-    results = db.relationship(
-    'Results',
-    secondary = topics_results_m2m_table,
-    backref = 'topicResults'
-    )
+    results = db.relationship('Results', backref='topic_results')
 
 class Results(db.Model):
     id = db.Column(db.Integer, primary_key=True)
