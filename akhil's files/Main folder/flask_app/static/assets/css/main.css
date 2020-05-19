@@ -107,7 +107,7 @@ button:focus, .btn.focus, .btn:focus {
   line-height: 0;
   border-style: none;
   outline: none;
-  font-size: 3rem;
+  font-size: 3em;
   font-weight: 700;
 }
 
