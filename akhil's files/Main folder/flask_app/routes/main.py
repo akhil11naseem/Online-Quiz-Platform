@@ -86,8 +86,6 @@ def updateManageStudents():
 
     return ("updated 'enabled' column of student " + student.username + " to " + checked)
 
-
-
 @main.route('/select-topics')
 @login_required
 @requires_admin_access()
@@ -130,8 +128,6 @@ def chooseTestTopic():
     }
     return render_template('Dashboard/Student dashboard/student - choose test topic.html', name = current_user.username, **context)
 
-    return render_template('Dashboard/Student dashboard/student - choose test topic.html')
-
 @main.route('/my-scores')
 @login_required
 @requires_student_access()
@@ -156,7 +152,13 @@ def myScores():
 @login_required
 @requires_student_access()
 def questionPage():
-    return render_template('Game screens/question-page.html')
+    questions_arr = eval(Topic.query.filter_by(name="English").all()[0].questions)
+
+    context = {
+    'questions_arr' : questions_arr
+    }
+
+    return render_template('Game screens/question-page.html', **context)
 
 @main.route('/results-page')
 @login_required

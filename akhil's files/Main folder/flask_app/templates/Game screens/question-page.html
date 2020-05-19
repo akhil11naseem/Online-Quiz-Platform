@@ -40,13 +40,13 @@
                     </div>
                 </div>
                 <div class="row border-bottom align-items-end" id="hint-and-answer-row">
-                    <div class="col col-md-8"><input type="text" id="hint-and-answer-input" placeholder="Starts with V" spellcheck="false" autocapitalize="off" autofocus="" value=""></div>
+                    <div class="col col-md-8"><input type="text" id="hint-and-answer-input" placeholder="{{ questions_arr[1]['Hint'] }}" spellcheck="false" autocapitalize="off" autofocus="" value=""></div>
                     <div class="col"><a href=""><button class="btn" id="skip-btn">Skip</button></a></div>
                 </div>
                 <div class="row my-3" id="question-row">
                     <div class="col">
-                        <p class="my-3 question-text font-italic font-weight-bold">1. adjective</p>
-                        <p class="my-0 question-text">Using or expressed in more words than are needed.</p>
+                        <!-- <p class="my-3 question-text font-italic font-weight-bold">1. adjective</p> -->
+                        <p class="my-0 question-text">{{ questions_arr[0]['Question'] }}</p>
                     </div>
                 </div>
             </div>
