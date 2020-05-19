@@ -3,6 +3,7 @@ from flask_login import current_user, login_required, logout_user
 from flask_app.extensions import db
 from flask_app.models import User, Topic, Results
 from functools import wraps
+import json
 
 main = Blueprint('main', __name__)
 
@@ -152,10 +153,12 @@ def myScores():
 @login_required
 @requires_student_access()
 def questionPage():
-    questions_arr = eval(Topic.query.filter_by(name="English").all()[0].questions)
+    topic_name = "English"
+    questions_arr = eval(Topic.query.filter_by(name=topic_name).all()[0].questions)
 
     context = {
-    'questions_arr' : questions_arr
+    'questions_arr' : questions_arr,
+    'topic_name' : topic_name
     }
 
     return render_template('Game screens/question-page.html', **context)
@@ -165,3 +168,28 @@ def questionPage():
 @requires_student_access()
 def resultsPage():
     return render_template('Game screens/results-page.html')
+
+@main.route('/update-results', methods = ['POST','GET'])
+@login_required
+@requires_student_access()
+def updateResults():
+    if request.method == 'POST':
+        resultsDict = request.get_json()
+
+        topic_id = Topic.query.filter_by(name=resultsDict['results'][1]).first().id
+
+        student_id = current_user.id
+        score = int(resultsDict['results'][0])
+
+        myResult = Results.query.filter_by(result_of_user_id=student_id, result_for_topic_id=topic_id).first()
+
+        if not myResult:
+            print("YAAAAAAAAAAS")
+            insertResult = Results(score=score, result_of_user_id=student_id, result_for_topic_id=topic_id)
+            db.session.add(insertResult)
+            db.session.commit()
+        else:
+            myResult.score = score
+            db.session.commit()
+
+        return ("updated 'score' of user " + current_user.username + " to " + score)

@@ -10,7 +10,7 @@
 <----------------------------------Viola------------------------------------------->
 
 
-!! Points to note as of 18/05/2020 (3:00AM) !!
+!! Points to note as of 20/05/2020 (6:00AM) !!
 
 -- This has been built following this guide that Varun shared (thanks man!):
 https://www.youtube.com/watch?time_continue=1715&v=z8Ewd7z1WpQ&feature=emb_title
@@ -44,5 +44,11 @@ https://www.youtube.com/watch?time_continue=1715&v=z8Ewd7z1WpQ&feature=emb_title
 -- Logout button works and logs user out of session
 
 -- A user can only view their respective accessible routes (i.e student cannot view any admin page)
+
+-- Question page updates questions/hints/words answered/points/streaks with successful attempts or skips
+
+-- Question page redirects to '/results-page' after last question or when time is up
+
+-- Question page also sends final score back to main.py with route 'update-results', this is then updated in the results table in db
 
 !! PLEASE ASK ME IF YOU HAVE ANY QUESTIONS - AKHIL !!

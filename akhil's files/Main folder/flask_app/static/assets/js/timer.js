@@ -13,15 +13,16 @@ function getTimeRemaining(endtime) {
   };
 }
 
-function initializeClock(id, endtime) {
-  
+function initializeClock(endtime) {
+
   function updateClock() {
     var t = getTimeRemaining(endtime);
 
-    document.getElementById(id).innerHTML = ('0' + t.minutes).slice(-2) + ":" + ('0' + t.seconds).slice(-2);
+    document.getElementById("timer-box").innerHTML = ('0' + t.minutes).slice(-2) + ":" + ('0' + t.seconds).slice(-2);
 
     if (t.total <= 0) {
       clearInterval(timeinterval);
+      window.location.replace("/results-page");
     }
   }
 
@@ -29,9 +30,8 @@ function initializeClock(id, endtime) {
   var timeinterval = setInterval(updateClock, 1000);
 }
 
-
-var timeInMinutes = 3;
+var timeInMinutes = 5;
 var currentTime = Date.parse(new Date());
 var deadline = new Date(currentTime + timeInMinutes*60*1000);
 
-initializeClock('timer-box', deadline);
+initializeClock(deadline);
