@@ -34,6 +34,7 @@ def changePassword():
     return '<h1>This page is not ready yet</h1>'
 
 @main.route('/logout')
+@login_required
 def logout():
     logout_user()
     logged_out_message = "You are now logged out"
