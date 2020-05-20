@@ -6,15 +6,16 @@ from ..models import User, Topic, Results
 from flask_testing import TestCase
 from .. import create_app
 
+app=create_app(config_file='test_settings.py')
+
+app.test_client()
+
+
 class UserModelTest(unittest.TestCase):
     # will be called before every test
 
     def setUp(self):
         """Defines what should be done before every single test in this test group."""
-
-        app=create_app(config_file='test_settings.py')
-
-        self.app = app.test_client()
 
         # create test admin user
         admin = User(username="admin", password="admin", admin=True, student=False, enabled=True)
@@ -31,8 +32,9 @@ class UserModelTest(unittest.TestCase):
 
     def tearDown(self):
         """Defines what should be done after every single test in this test group."""
-        # db.session.remove()
-        # db.drop_all()
+        with app.app_context():
+            db.session.remove()
+            db.drop_all()
 
     def test_password_hashing(self):
         self.assertEqual(1,1)
