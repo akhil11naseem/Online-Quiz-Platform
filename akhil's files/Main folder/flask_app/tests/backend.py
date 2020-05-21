@@ -12,9 +12,6 @@ app.test_client()
 
 class TestBase(unittest.TestCase):
     # will be called before every test
-
-
-
     def setUp(self):
         """Defines what should be done before every single test in this test group."""
 
@@ -24,12 +21,15 @@ class TestBase(unittest.TestCase):
             db.create_all()
             # create test admin user
             admin = User(username="admin", password="admin", admin=True, student=False, enabled=True)
-            
+            student1 = User(username='akhil',password='akhil', admin=False, student=False, enabled=True)
+            student2 = User(username='varun',password='varun', admin=False, student=False, enabled=True)
+            student3 = User(username='lance',password='lance', admin=False, student=False, enabled=True)
             # create test non-admin user
-            student = User(username="student1", password="student1", admin=False, student=True, enabled=True)
-            
+            #student = User(username="student1", password="student1", admin=False, student=True, enabled=True)
             db.session.add(admin)
-            db.session.add(student)
+            db.session.add(student1)
+            db.session.add(student2)
+            db.session.add(student3)
             db.session.commit()
 
     def tearDown(self):
@@ -39,18 +39,31 @@ class TestBase(unittest.TestCase):
             #db.drop_all()
     
 
+
+
 class TestUserModel(TestBase):
 
-    def test_employee_model(self):
-        """
-        Test number of records in Employee table
-        """
-        self.assertEqual(User.query.count(), 2)
-
-
+    def test_user_model(self):
+        #checks the number of users in the data base 
+        self.assertEqual(User.query.count(), 4)
  
+    def test_user_firstName(self):
+        u1 = User.query.get(1)
+        u2 = User.query.get(2)
+        u3 = User.query.get(3)
+        u4 = User.query.get(4)
+        self.assertEqual(u1.username, 'admin')
+        self.assertEqual(u2.username, 'akhil')
+        self.assertEqual(u3.username, 'varun')
+        self.assertEqual(u4.username, 'lance')
+        self.assertTrue(u4.password, 'lance')
 
-class TestModel(TestBase):
+
+
+
+
+
+class TestView(TestBase):
 
     def test_login_system(self):
         tester = app.test_client(self)
