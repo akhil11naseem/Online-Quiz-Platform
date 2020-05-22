@@ -9,18 +9,13 @@ auth = Blueprint('auth', __name__)
 
 @auth.route('/')
 def index():
-    print(current_user.is_authenticated)
-    if not current_user.is_authenticated:
-        return render_template('Dashboard/log in.html')
-    elif current_user.admin:
-        return redirect(url_for('main.selectTopics'))
-    else:
-        return redirect(url_for('main.chooseTestTopic'))
-
+    return redirect(url_for('auth.login'))
 
 
 @auth.route('/register', methods=['GET', 'POST'])
 def register():
+    if current_user.is_authenticated:
+        return '<h1>Already logged in, go back.</h1>'
     if request.method=='POST':
         username = request.form['username']
         unhashed_password = request.form['password']
@@ -36,11 +31,15 @@ def register():
         db.session.commit()
 
         return redirect(url_for('auth.login'))
+        
     return render_template('Dashboard/register.html')
 
 @auth.route('/login', methods=['GET', 'POST'])
 def login():
     error_message = ''
+    if current_user.is_authenticated:
+        return '<h1>Already logged in, go back.</h1>'
+
     if request.method == 'POST':
         username = request.form['username']
         unhashed_password = request.form['password']

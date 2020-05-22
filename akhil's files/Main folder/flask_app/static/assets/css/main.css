@@ -57,7 +57,7 @@ html, body {
   font-weight: bolder;
 }
 
-.topic-btn, #log-in-btn, #register-btn, #skip-btn, #change-password-confirm-btn, #timer-box {
+.topic-btn, #log-in-btn, #register-btn, #log-in-register-btn, #skip-btn, #change-password-confirm-btn, #timer-box {
   margin: 20px;
   width: 200px;
   border-width: 3px;
@@ -71,14 +71,14 @@ html, body {
   border-radius: 35px;
 }
 
-#log-in-btn, #register-btn, #skip-btn, #username-input, #password-input, #current-password-input, #new-password-input, #change-password-confirm-btn, #timer-box {
+#log-in-btn, #register-btn, #log-in-register-btn, #skip-btn, #username-input, #password-input, #current-password-input, #new-password-input, #change-password-confirm-btn, #timer-box {
   border-color: black;
   color: black;
   border-width: 1px;
   max-width: 500px;
 }
 
-#log-in-btn:hover, #register-btn:hover, #skip-btn:hover, #change-password-confirm-btn:hover {
+#log-in-btn:hover, #register-btn:hover, #log-in-register-btn:hover, #skip-btn:hover, #change-password-confirm-btn:hover {
   color: #1cc88a;
   background-color: transparent;
   border-color: #1cc88a;

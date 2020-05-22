@@ -35,11 +35,17 @@ def changePassword():
     return '<h1>This page is not ready yet</h1>'
 
 @main.route('/logout')
-@login_required
 def logout():
-    logout_user()
-    logged_out_message = "You are now logged out"
-    return render_template('Dashboard/log in.html', message=logged_out_message)
+    logged_out_message=''
+    status_code=500
+    if current_user.is_authenticated:
+        logout_user()
+        logged_out_message = "You are now logged out"
+        status_code=200
+    else:
+        logged_out_message = "Please log in"
+        status_code=401
+    return (render_template('Dashboard/log in.html', message=logged_out_message), status_code)
 
 @main.route('/class-scores')
 @login_required

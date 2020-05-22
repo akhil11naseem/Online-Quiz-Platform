@@ -41,7 +41,11 @@
                           <input class="form-control" type="password" id="password-input" name="password" placeholder="password" required="True">
                         </div>
                         <button class="btn ml-0" id="log-in-btn" type="submit">Log in</button>
+                        <a href="{{ url_for('auth.register') }}">
+                          <button class="btn ml-0" id="log-in-register-btn" type="button">Register</button>
+                        </a>
                       </form>
+
                     </div>
                 </div>
             </div>
