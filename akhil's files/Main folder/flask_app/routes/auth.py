@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, request, redirect, url_for
 from werkzeug.security import check_password_hash
-from flask_login import login_user
+from flask_login import login_user, current_user
 
 from flask_app.extensions import db
 from flask_app.models import User
@@ -9,10 +9,12 @@ auth = Blueprint('auth', __name__)
 
 @auth.route('/')
 def index():
-    return render_template('Dashboard/log in.html')
+    return redirect(url_for('auth.login'))
 
 @auth.route('/register', methods=['GET', 'POST'])
 def register():
+    if current_user.is_authenticated:
+        return '<h1>Already logged in, go back.</h1>'
     if request.method=='POST':
         username = request.form['username']
         unhashed_password = request.form['password']
@@ -32,7 +34,10 @@ def register():
 @auth.route('/login', methods=['GET', 'POST'])
 def login():
     error_message = ''
-    if request.method == 'POST':
+    if current_user.is_authenticated:
+        return '<h1>Already logged in, go back.</h1>'
+    
+    if request.method == 'POST':       
         username = request.form['username']
         unhashed_password = request.form['password']
 
