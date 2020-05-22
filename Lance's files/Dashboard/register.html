@@ -4,11 +4,11 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>TYPEit Register</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='assets/bootstrap/css/bootstrap.min.css')}}">
+    <title>Dashboard - Brand</title>
+    <link rel="stylesheet" href="../assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,600,700,800,900">
-    <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/main.css')}}">
+    <link rel="stylesheet" href="../assets/css/main.css">
 </head>
 
 <body style="color: rgb(0,0,0);">
@@ -28,21 +28,20 @@
                 </div>
                 <div class="row">
                     <div class="col">
-                        <form id="register-form" method='POST' action="{{ url_for('auth.register') }}">
-                            <div class="form-group" id="username-form-group"><input class="form-control" type="text" id="username-input" name="username" placeholder="username" required="True"></div>
-                            <div class="form-group" id="password-input-group"><input class="form-control" type="text" id="password-input" name="password" placeholder="password" required="True"></div>
-                            <button class="btn ml-0" id="register-btn" type="submit">Register</button></a>
-                        </form>
-
+                        <form id="register-form">
+                            <div class="form-group" id="username-form-group"><input class="form-control" type="text" id="username-input" placeholder="username" required=""></div>
+                            <div class="form-group" id="password-input-group"><input class="form-control" type="text" id="password-input" placeholder="password" required=""></div><button class="btn ml-0" id="register-btn" type="submit">Register</button></form>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
-    <script src="{{ url_for('static', filename='assets/js/bs-init.js')}}"></script>
-
+    <script src="../assets/js/jquery.min.js"></script>
+    <script src="../assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="../assets/js/bs-init.js"></script>
+    <script src="../assets/js/maintain%20focus%20on%20answer%20input%20area.js"></script>
+    <script src="../assets/js/timer.js"></script>
+    <script src="../assets/js/topic%20button.js"></script>
 </body>
 
 </html>
