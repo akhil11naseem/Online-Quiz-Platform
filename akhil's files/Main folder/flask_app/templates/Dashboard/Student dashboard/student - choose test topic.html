@@ -42,9 +42,9 @@
                 </div>
                 <div class="row d-flex flex-wrap mt-3 mb-5">
                   {% for topic in topics %}
-                      <button type = "button" class = "btn topic-btn {% if topic.enabled %}btn-success {% endif %}"
-                          {% if not(topic.enabled) %} style = "text-decoration: line-through;" disabled {% endif %}>
-                          {{ topic.name }}</button>
+                      <button type = "button" class = "btn topic-btn {% if topic.enabled %}btn-success {% endif %}" id="{{ topic.name }}" {% if not(topic.enabled) %} style = "text-decoration: line-through;" disabled {% endif %}>
+                          {{ topic.name }}
+                      </button>
                   {% endfor %}
                   </div>
               </div>
@@ -58,6 +58,21 @@
     <script src="{{ url_for('static', filename='assets/js/maintain focus on answer input area.js')}}"></script>
     <script src="{{ url_for('static', filename='assets/js/timer.js')}}"></script>
     <script src="{{ url_for('static', filename='assets/js/topic button.js')}}"></script>
+    <script>
+      $(document).ready(function () {
+        $('.topic-btn').on('click', function (event) {
+          var topic_name = event.target.id;
+          $.ajax({
+            url: "/question-page",
+            type: "GET",
+            data: { topic_name: topic_name},
+            success: function(data) {
+              window.location.href = this.url;
+            }
+          });
+        });
+      });
+    </script>
 </body>
 
 </html>

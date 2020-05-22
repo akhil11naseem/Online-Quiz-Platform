@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, request, redirect, url_for
 from werkzeug.security import check_password_hash
-from flask_login import login_user
+from flask_login import login_user, current_user
 
 from flask_app.extensions import db
 from flask_app.models import User
@@ -9,7 +9,9 @@ auth = Blueprint('auth', __name__)
 
 @auth.route('/')
 def index():
-    return render_template('Dashboard/log in.html')
+    if not current_user.is_authenticated:
+        return render_template('Dashboard/log in.html')
+
 
 @auth.route('/register', methods=['GET', 'POST'])
 def register():
@@ -21,7 +23,8 @@ def register():
             username=username,
             unhashed_password=unhashed_password,
             admin=False,
-            student=True
+            student=True,
+            enabled=True
         )
         db.session.add(user)
         db.session.commit()

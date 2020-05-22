@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request, session
+from flask import Blueprint, render_template, request, session, Response
 from flask_login import current_user, login_required, logout_user
 from flask_app.extensions import db
 from flask_app.models import User, Topic, Results
@@ -13,7 +13,7 @@ def requires_admin_access():
         def decorated_function(*args, **kwargs):
             user = User.query.filter_by(id=current_user.id).all()[0]
             if not user.admin:
-                return '<h1>You do not have admin access!</h1>'
+                return ('<h1>You do not have admin access. Go back!</h1>', 401)
             return f(*args, **kwargs)
         return decorated_function
     return decorator
@@ -24,7 +24,7 @@ def requires_student_access():
         def decorated_function(*args, **kwargs):
             user = User.query.filter_by(id=current_user.id).all()[0]
             if not user.student:
-                return '<h1>You are an admin. You are trying to access a student page!</h1>'
+                return ('<h1>You are an admin. You are trying to access a student page. Go back!</h1>', 401)
             return f(*args, **kwargs)
         return decorated_function
     return decorator
@@ -69,7 +69,7 @@ def manageStudents():
 
     return render_template('Dashboard/Admin dashboard/manage students.html', **context)
 
-@main.route('/update-manage-students')
+@main.route('/update-manage-students', methods = ['POST','GET'])
 @login_required
 @requires_admin_access()
 def updateManageStudents():
@@ -100,7 +100,7 @@ def selectTopics():
 
     return render_template('Dashboard/Admin dashboard/select topics.html', **context)
 
-@main.route('/update-available-topics')
+@main.route('/update-available-topics', methods = ['POST','GET'])
 @login_required
 @requires_admin_access()
 def updateAvailableTopics():
@@ -149,12 +149,13 @@ def myScores():
 
     return render_template('Dashboard/Student dashboard/student - my scores.html', name = current_user.username,  **context)
 
-@main.route('/question-page')
+@main.route('/question-page', methods = ['POST','GET'])
 @login_required
 @requires_student_access()
 def questionPage():
-    topic_name = "English"
-    questions_arr = eval(Topic.query.filter_by(name=topic_name).all()[0].questions)
+    topic_name = request.args.get('topic_name')
+
+    questions_arr = eval(Topic.query.filter_by(name=topic_name).first().questions)
 
     context = {
     'questions_arr' : questions_arr,
