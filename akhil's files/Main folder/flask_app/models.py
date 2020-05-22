@@ -18,13 +18,6 @@ class User(UserMixin, db.Model):
 
     results = db.relationship('Results', backref='user_results')
 
-    def __init__(self, username, password, admin, student, enabled):
-        self.username = username
-        self.password = password 
-        self.admin = admin
-        self.student = student
-        self.enabled = enabled
-
 
     def is_admin(self):
         return self.admin
@@ -37,17 +30,7 @@ class User(UserMixin, db.Model):
     def unhashed_password(self, unhashed_password):
         self.password = generate_password_hash(unhashed_password)
 
-    @property 
-    def username_id(self):
-        return '{}'.format(self.username)
 
-    @property 
-    def is_student(self):
-        return self.student
-
-    @property 
-    def is_enabled(self):
-        return self.enabled
 
 
 class Topic(db.Model):
@@ -57,6 +40,22 @@ class Topic(db.Model):
     enabled = db.Column(db.Boolean)
 
     results = db.relationship('Results', backref='topic_results')
+
+
+    def __init__(self, name, questions, enabled):
+        self.name = name 
+        self.questions=questions 
+        self.enabled = enabled
+
+    @property 
+    def name_id(self):
+        return '{}'.format(self.name)
+
+
+
+    @property 
+    def is_enabled(self):
+        return self.enabled
 
 class Results(db.Model):
     id = db.Column(db.Integer, primary_key=True)
