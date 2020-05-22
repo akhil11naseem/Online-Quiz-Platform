@@ -14,25 +14,30 @@ def index():
 
 @auth.route('/register', methods=['GET', 'POST'])
 def register():
+    error_message = ''
+
     if current_user.is_authenticated:
         return '<h1>Already logged in, go back.</h1>'
     if request.method=='POST':
         username = request.form['username']
         unhashed_password = request.form['password']
 
-        user = User(
-            username=username,
-            unhashed_password=unhashed_password,
-            admin=False,
-            student=True,
-            enabled=True
-        )
-        db.session.add(user)
-        db.session.commit()
+        if User.query.filter_by(username=username).all():
+            error_message = 'This username is taken, try again.'
+        else:
+            user = User(
+                username=username,
+                unhashed_password=unhashed_password,
+                admin=False,
+                student=True,
+                enabled=True
+            )
+            db.session.add(user)
+            db.session.commit()
 
-        return redirect(url_for('auth.login'))
-        
-    return render_template('Dashboard/register.html')
+            return redirect(url_for('auth.login'))
+
+    return render_template('Dashboard/register.html', message=error_message)
 
 @auth.route('/login', methods=['GET', 'POST'])
 def login():
