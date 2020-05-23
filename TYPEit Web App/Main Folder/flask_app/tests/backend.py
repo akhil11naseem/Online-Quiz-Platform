@@ -63,18 +63,12 @@ class TestBase(unittest.TestCase):
         with app.app_context():
             db.session.remove()
             #db.drop_all()
-'''
-    def test_logout(self):
-        tester = app.test_client(self)
-        #user = User.query.filter_by(id=current_user.id).all()[0]
-        with app.app_context():
-            response = tester.post(
-            '/login',
-            data=dict(username="admin", password="admin"),
-            follow_redirects=True)
-            data = response.get_data(as_text=True)
-            self.assertIn(b'Welcome to Flask!', response.data)
-'''
+
+
+
+
+
+
 
 
 class UserLoginModel(TestBase):
@@ -84,6 +78,11 @@ class UserLoginModel(TestBase):
         tester = app.test_client()
         response = tester.get('/', content_type='html/text')
         self.assertEqual(response.status_code, 302)
+
+    def test_register_index(self):
+        tester = app.test_client()
+        response = tester.get('/register', content_type='html/text')
+        self.assertEqual(response.status_code, 200)
 
     #Ensure the choose-test-topic page requires user login
     def test_choose_test_topic_login(self):
@@ -100,9 +99,74 @@ class UserLoginModel(TestBase):
             password="lambo"), 
             follow_redirects=True
         )
+        self.assertFalse(User.query.filter_by(username='lambo').first())
         self.assertNotIn(b'invalid details, try again.', response.data)
         self.assertIn(b'Invalid credentials, please try again.', response.data)
         
+
+    #Ensure that the user can log in 
+    def test_login(self):
+        tester = app.test_client(self)
+        response = tester.post(
+            '/login',
+            data = dict(
+                username='akhil', 
+                password='akhil'
+                ),
+            follow_redirects = True
+        )
+        self.assertTrue(User.query.filter_by(username='akhil').first())
+        self.assertIn(b'Choose test topic', response.data)
+
+    #Ensure that a new user can register
+    #Ensure username can consists of letters (A-Z) and numbers (0-9)
+    def test_register(self):
+        tester = app.test_client(self)
+        response = tester.post(
+            '/register',
+            data = dict(
+                username='Johnny15', 
+                password='Johnboi15'
+                ),
+            follow_redirects = True
+        )
+        #Test if the new user is in the datavase
+        self.assertTrue(User.query.filter_by(username='Johnny15').first())
+
+    #Ensure duplicate names are not registered in the database 
+    def test_duplicates_name(self):
+        tester = app.test_client(self)
+        response = tester.post(
+            '/register',
+            data = dict(
+                username='akhil', 
+                password='akhil'
+                ),
+            follow_redirects = True
+        )
+
+        self.assertIn(b'Register', response.data)
+        #checks if the user is already in the database
+        #If the username already exists, new user cannot be registered, and therefore
+        #and therefore, has to select a new username, in order to register
+        self.assertIn(b'This username is taken, try again.', response.data)
+        #self.assertFalse(User.query.filter_by(username='akhifll').all())
+
+    '''
+    def login(self, username, password):
+        tester = app.test_client(self)
+        response = tester.post(
+            '/login',
+            data=dict(username=username, password=password), follow_redirects=True)
+        self.assertEqual(response.status_codec,200)
+
+    c'''
+
+        #print(response.data)
+        #self.assertEqual(response.status_code, 200)
+
+
+
 
     #Ensure that the currently logged user can logout
     def test_logging_out(self):
@@ -123,22 +187,13 @@ class UserLoginModel(TestBase):
         self.assertEqual(response.status_code, 200)
         self.assertIn(b'You are now logged out', response.data)
         #print(response.data)
-        #https://developpaper.com/configuration-tutorial-of-server_name-domain-name-item-in-pythons-flask-framework/
-        #assert url_for("logout", _external=False) in page
         #self.assertIn(b'You are now logged out', response.data)
+
         #check if the user is logged out or still active
 
 
     #Ensure log in behaves correclty when fed with user data
-    def test_login(self):
-       
-        tester = app.test_client(self)
-        response = tester.post(
-            '/login',
-            data = dict(username='akhil', password='akhil'),
-            follow_redirects = True
-        )
-        self.assertIn(b'Choose test topic', response.data)
+    
 
 #--------------- Students Login Page ---------------------------#
 
@@ -167,9 +222,14 @@ class UserLoginModel(TestBase):
         self.assertIn(b'You are now logged out', response.data)
 
     #check if the student is logged in, and from that check if the student can go back to the log in pge
-    #/select-topics
-    #/manage-students
-    #/class-scores
+
+#-------------------------------------------- Admin Page ---------------------------------------------------#
+
+    #When the admin is logged in, the admin should be able to access the following pages 
+    #   >/select-topics
+    #   >/class-scores
+    #   >/manage-students
+
     def test_check_admin_check_pages(self):
         
         tester = app.test_client(self)
@@ -184,42 +244,83 @@ class UserLoginModel(TestBase):
         #print(responsedd.data)
         #checks choose-test-topic page works
         response_Select_Topics = tester.get('/select-topics', follow_redirects=True)
+        self.assertEqual(response_Select_Topics.status_code, 200)
         self.assertIn(b'Welcome, Admin!', response_Select_Topics.data)
         self.assertIn(b'Toggle topics for students', response_Select_Topics.data)
         
-        #response_Test_Topics = tester.get('/logout', follow_redirects=True)
-        #response_Change_Password = tester.get('/logout', follow_redirects=True)
-
 
         #checks my-score page works
         response_Class_Score = tester.get('/class-scores', follow_redirects=True)
-        #print(response_Class_Score.data)
+        self.assertEqual(response_Class_Score.status_code, 200)
         self.assertIn(b'Welcome, Admin!', response_Class_Score.data)
         self.assertIn(b'Class scores', response_Class_Score.data)
         self.assertIn(b'Student', response_Class_Score.data)
         #self.assertIn(b'Class top score', response_My_Scores.data)
 
-
-        #self.assertIn(b'Choose test topic', response_Settings.data)
-        #self.assertIn(b'Welcome, akhil!', response_Settings.data)
-        #response_Test_Topics = tester.get('/logout', follow_redirects=True)
-        #response_Change_Password = tester.get('/logout', follow_redirects=True)
-        
-        
+        #check manage-student page works
         response_Manage_Students = tester.get('/manage-students', follow_redirects=True)
-        #print(response_My_Scores.data)
-        self.assertIn(b'Welcome, Admin!', response_Manage_Students .data)
-        self.assertIn(b'Manage students', response_Manage_Students .data)
-        self.assertIn(b'Students', response_Manage_Students .data)
-        self.assertIn(b'Enable/Disable', response_Manage_Students .data)
-        #self.assertIn(b'Class top score', response_My_Scores.data)
-        #response_Welcome = tester.get('/logout', follow_redirects=True)
-            #response = tester.get('/logout', follow_redirects=True)
-            #print(response.data)
-            #self.assertIn(b'Please log  in', response.data)
-            #self.assertEqual(response.status_code, 200)
-            #self.assertIn(b'You are now logged out', response.data)
+        self.assertEqual(response_Manage_Students.status_code, 200)
+        self.assertIn(b'Welcome, Admin!', response_Manage_Students.data)
+        self.assertIn(b'Manage students', response_Manage_Students.data)
+        self.assertIn(b'Students', response_Manage_Students.data)
+        self.assertIn(b'Enable/Disable', response_Manage_Students.data)
 
+    
+    #When admin is logged in, the admin should be able to log out from its admistration
+    #the page should redirect to the login page, once logout is clicked
+    #with the output, You are now logged out'
+    def test_check_admin_logging_out(self):
+        tester = app.test_client(self)
+        responsee = tester.post(
+            '/login',
+            data=dict(username="admin", 
+            password="admin"), 
+            follow_redirects=True,
+            #print(request.endpoint)
+        )     
+        self.assertEqual(responsee.status_code, 200)
+        response = tester.get('/logout', follow_redirects=True)
+        self.assertEqual(response.status_code, 200)
+        self.assertIn(b'You are now logged out', response.data)
+
+
+
+  #-------------------------------------------- Student Page ---------------------------------------------------#
+
+
+   #When the Student is logged in, the student should be able to access the following pages
+   # >/choose-test-topic
+   # >//my-scores
+
+    def test_check_student_check_pages(self):
+        
+        tester = app.test_client(self)
+        response = tester.post(
+            '/login',
+            data=dict(username='akhil', 
+            password='akhil'), 
+            follow_redirects=True,
+        )
+        self.assertEqual(response.status_code, 200)
+
+        #checks choose-test-topic page works
+        response_Test_Topics= tester.get('/choose-test-topic', follow_redirects=True)
+        self.assertEqual(response_Test_Topics.status_code, 200)
+        self.assertIn(b'Choose test topic', response_Test_Topics.data)
+        self.assertIn(b'Welcome, akhil!', response_Test_Topics.data)
+
+    
+        #checks my-score page works
+        response_My_Scores = tester.get('/my-scores', follow_redirects=True)
+        self.assertEqual(response_My_Scores.status_code, 200)
+        self.assertIn(b'My scores', response_My_Scores.data)
+        self.assertIn(b'Topic', response_My_Scores.data)
+        self.assertIn(b'Best score', response_My_Scores.data)
+        self.assertIn(b'Class top score', response_My_Scores.data)
+
+    
+    #When student is logged in, student should be able to log out
+    #Once, student logs out, the page will redirect to the log in page
 
     def test_check_student_logging_out(self):
         
@@ -232,70 +333,34 @@ class UserLoginModel(TestBase):
             #print(request.endpoint)
         )
         self.assertEqual(responsed.status_code, 200)
-        #print(responsed.data)
 
         response = tester.get('/logout', follow_redirects=True)
-        #print(response.data)
-        #self.assertIn(b'Please log  in', response.data)
+        self.assertIn(b'Log in', response.data)
         self.assertEqual(response.status_code, 200)
         self.assertIn(b'You are now logged out', response.data)
 
 
-  
-
-
-    #check once the user is logged in, it can access all the pages 
-
-    def test_check_student_check_pages(self):
-        
-        tester = app.test_client(self)
-        responsedd = tester.post(
-            '/login',
-            data=dict(username='akhil', 
-            password='akhil'), 
-            follow_redirects=True,
-            #print(request.endpoint)
-        )
-        self.assertEqual(responsedd.status_code, 200)
-        #print(responsedd.data)
-        #checks choose-test-topic page works
-        response_Settings = tester.get('/choose-test-topic', follow_redirects=True)
-        self.assertIn(b'Choose test topic', response_Settings.data)
-        self.assertIn(b'Welcome, akhil!', response_Settings.data)
-        #response_Test_Topics = tester.get('/logout', follow_redirects=True)
-        #response_Change_Password = tester.get('/logout', follow_redirects=True)
-
-        #self.assertRedirects(responseClient, redirect_url)
-
-
-        #checks my-score page works
-        response_My_Scores = tester.get('/my-scores', follow_redirects=True)
-        #print(response_My_Scores.data)
-        #self.assertEqual(response_My_Scores.status_code, 302)
-        self.assertIn(b'My scores', response_My_Scores.data)
-        self.assertIn(b'Topic', response_My_Scores.data)
-        self.assertIn(b'Best score', response_My_Scores.data)
-        self.assertIn(b'Class top score', response_My_Scores.data)
-        #self.assertIn(b'Choose test topic', response_Settings.data)
-        #self.assertIn(b'Welcome, akhil!', response_Settings.data)
-        #response_Test_Topics = tester.get('/logout', follow_redirects=True)
-        #response_Change_Password = tester.get('/logout', follow_redirects=True)
-
-        #response_Welcome = tester.get('/logout', follow_redirects=True)
-            #response = tester.get('/logout', follow_redirects=True)
-            #print(response.data)
-            #self.assertIn(b'Please log  in', response.data)
-            #self.assertEqual(response.status_code, 200)
-            #self.assertIn(b'You are now logged out', response.data)
-
+    '''
     #check if the correct user is logged in
-    
+    def test_redirect(self):
+     
         tester = app.test_client(self)
         target_url = '/logout'
         redirect_url = '/login'
         responseClient = tester.get(target_url)
-        self.assertEqual(responseClient.status_code, 401)
 
+        print(responseClient .path)
+        self.assertEqual(responseClient.status_code, 401)
+    
+
+    def test_login_and_registration(self):
+        tester = app.test_client(self)
+        login_url = '/login'
+        logout_url = '/logout'
+        responseClient = tester.get(login_url, follow_redirects=True)
+        self.assertEqual(responseClient.url)
+        print(responseClient.data)
+    '''
     #check when the user is logged in, it can access the tests topic and My scores 
 
 
@@ -310,17 +375,15 @@ class UserLoginModel(TestBase):
 #--------------- Admin Login Page ---------------------------#
 
 
+#check if i can go from login page to register page without any user logg requiremnet 
+
 
 
 
 #--------------- Registration ---------------------------#
 
 class UserRegisterationModel(TestBase):
-    #Check New User can be registered 
-    def test_register_index(self):
-        tester = app.test_client()
-        response = tester.get('/register', content_type='html/text')
-        self.assertEqual(response.status_code, 200)
+
 #print(response.data)
 
 
