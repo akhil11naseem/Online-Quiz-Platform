@@ -132,6 +132,7 @@ class UserLoginModel(TestBase):
         )
         #Test if the new user is in the datavase
         self.assertTrue(User.query.filter_by(username='Johnny15').first())
+    
 
     #Ensure duplicate names are not registered in the database 
     def test_duplicates_name(self):
@@ -160,10 +161,11 @@ class UserLoginModel(TestBase):
             data=dict(username=username, password=password), follow_redirects=True)
         self.assertEqual(response.status_codec,200)
 
-    c'''
+    '''
 
-        #print(response.data)
-        #self.assertEqual(response.status_code, 200)
+    #NEED TO CHECK USER LOGIN PASSWORD
+
+
 
 
 
@@ -180,7 +182,6 @@ class UserLoginModel(TestBase):
         )
         
         self.assertEqual(responsee.status_code, 200)
-        #print(responsee.data)
         response = tester.get('/logout', follow_redirects=True)
         #print(response.data)
         #self.assertIn(b'Please log  in', response.data)
@@ -194,34 +195,6 @@ class UserLoginModel(TestBase):
 
     #Ensure log in behaves correclty when fed with user data
     
-
-#--------------- Students Login Page ---------------------------#
-
-    #check if the correct password is given after unhashing 
-
-
-    #make sure that the logout page requires the user to be logged 
-    #checks if the admin is logged in, and from that check if the admin can go back to the log in page
-    def test_check_admin_logging_out(self):
-        tester = app.test_client(self)
-        responsee = tester.post(
-            '/login',
-            data=dict(username="admin", 
-            password="admin"), 
-            follow_redirects=True,
-            #print(request.endpoint)
-        )
-        
-        self.assertEqual(responsee.status_code, 200)
-        #print(responsee.data)
-
-        response = tester.get('/logout', follow_redirects=True)
-        #print(response.data)
-        #self.assertIn(b'Please log  in', response.data)
-        self.assertEqual(response.status_code, 200)
-        self.assertIn(b'You are now logged out', response.data)
-
-    #check if the student is logged in, and from that check if the student can go back to the log in pge
 
 #-------------------------------------------- Admin Page ---------------------------------------------------#
 
@@ -241,8 +214,10 @@ class UserLoginModel(TestBase):
             #print(request.endpoint)
         )
         self.assertEqual(responsedd.status_code, 200)
+        #self.assertTrue(current_user.id, 1)
         #print(responsedd.data)
         #checks choose-test-topic page works
+        self.assertTrue(User.query.filter_by(username='admin').first())
         response_Select_Topics = tester.get('/select-topics', follow_redirects=True)
         self.assertEqual(response_Select_Topics.status_code, 200)
         self.assertIn(b'Welcome, Admin!', response_Select_Topics.data)
@@ -338,6 +313,19 @@ class UserLoginModel(TestBase):
         self.assertIn(b'Log in', response.data)
         self.assertEqual(response.status_code, 200)
         self.assertIn(b'You are now logged out', response.data)
+    
+    #The user must authenicate itself before it can acccess the request
+                                                          
+    def test_give_auth(self):
+        tester = app.test_client(self)
+        url_login = '/login'
+
+        url_scores = '/my-scores'
+        respond_loginnn = tester.get(url_scores)
+        print(respond_loginnn.status_code)
+        print(respond_loginnn.data)
+        self.assertEqual('If not click the link', respond_loginnn.data)
+
 
 
     '''
@@ -361,16 +349,16 @@ class UserLoginModel(TestBase):
         self.assertEqual(responseClient.url)
         print(responseClient.data)
     '''
-    #check when the user is logged in, it can access the tests topic and My scores 
 
 
-    #check login and register 
 
 
-    #once you are logged, you shoudl not be able to go to the login or register page
 
 
-    #registration users with the same user name should not be allowed 
+#once you are logged, you shoudl not be able to go to the login or register page
+
+
+#registration users with the same user name should not be allowed 
 
 #--------------- Admin Login Page ---------------------------#
 
@@ -378,161 +366,21 @@ class UserLoginModel(TestBase):
 #check if i can go from login page to register page without any user logg requiremnet 
 
 
-
-
-#--------------- Registration ---------------------------#
-
-class UserRegisterationModel(TestBase):
-
 #print(response.data)
 
 
 #Check each New User added to the data base is unquie
 
 
-
-
-
-
-
-
-
-
-
 #Check the registration page can switch to login page 
-
-
-
-
-
-
-
-'''
-
-
-
-
-
-
-
-
-
 
 
 #class TestUserModel(TestBase):
 
 
+#Ensure the correct user is logged in
 
 
-
-
-    def test_registeration_page(self):
-        tester = app.test_client(self)
-        response = tester.post (
-            url_for('/register'),
-            data = dict(username="julie", password="julie"),
-            follow_redirects=True
-        )
-        self.assertEqual(b'Log in', response.data)
-
-
-
-
-
-    #Ensure the correct user is logged in
-
-
-
-    def test_incorrect_login(self):
-        tester = app.test_client(self)
-        with app.app_context():
-            response = tester.post('/login', data=dict(username="wrong", password="wrong"), follow_redirects=True)
-        self.assertIn(b'Invalid credentials, please try again.', response.data)
-
-    
-    def test_admin_loginnnc(self):
-        tester = app.test_client(self)
-        expectedPath = '/choose-test-topic'
-        with app.app_context():
-            #user_data = dict(username='admin', password='admin')
-            response = tester.post('/login', data = dict(username='admin', password='admindd'), follow_redirects=True)
-            assert response.status == '200 OK'
-        self.assertEqual(urlparse(response.location).path, b'')
-
-    
-
-class TestUserModel(TestBase):
-
-    def test_topic_model(self):
-        topic2 = Topic(name='maths', questions= 'abs', enabled = True)
-        topic3 = Topic(name='math', questions= 'absx', enabled = True)
-        db.session.add(topic2)
-        db.session.add(topic3)
-        db.session.commit()
-
-
-
-    def test_user_model(self):
-        
-        self.student1 = User(username='akhil',password='akhil', admin=False, student=False, enabled=True)
-        self.student2 = User(username='varun',password='varun', admin=False, student=False, enabled=True)
-        student3 = User(username='lance',password='lance', admin=False, student=False, enabled=True)
-        db.session.add(self.student1)
-        db.session.add(self.student2)
-        db.session.add(student3)
-        db.session.commit()
-        u1 = User.query.get(1)
-        u2 = User.query.get(2)
-        self.assertEqual(u1.username, 'admin')
-        self.assertEqual(u2.username, 'akhil')
-        #checks the number of users in the data base 
-        self.assertEqual(User.query.count(), 4)
-
-
-   
-
-
-
-class TestModel(TestBase):
-
-    def test_login_system(self):
-        tester = app.test_client(self)
-        response = tester.post (
-            '/login',
-            data = dict(username="admin", password="password"),
-            follow_redirects=True
-        )
-        self.assertIn(b'Invalid credentials, please try again', response.data)
-
-    def test_register_and_login(self):
-        # register a new account
-        tester = app.test_client(self)
-        with tester.app_context():
-            response = tester.post('/auth.login', data={
-                'username': 'john',
-                'password': 'cat',
-            })
-        self.assertTrue(response.status_code == 302)
-            
-    def test_root(self):
-        tester = app.test_client()
-        response = tester.get('/', follow_redirects=True)
-        self.assertEqual(response.status_code, 200)
-
-
-    
-    def test_root_login(self):
-        tester = app.test_client()
-        response = tester.get('/login', follow_redirects=True)
-        self.assertEqual(response.status_code, 200)
-        
-    def test_password(self):
-        self.assertEqual(3,3)
-    
-    def test_password_hashing(self):
-        self.assertEqual(1,1)
-
-'''
 
 if __name__ == '__main__':
     unittest.main(verbosity=2)
