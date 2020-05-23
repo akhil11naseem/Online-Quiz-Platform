@@ -170,11 +170,22 @@ def questionPage():
 
     return render_template('Game screens/question-page.html', **context)
 
-@main.route('/results-page')
+@main.route('/results-page', methods = ['POST','GET'])
 @login_required
 @requires_student_access()
 def resultsPage():
-    return render_template('Game screens/results-page.html')
+    context = {}
+    if request.method == 'POST':
+        resultsDict = request.get_json()
+        context = {
+            'score' : resultsDict['results2'][0],
+            'numCorrectAnswers' : resultsDict['results2'][1],
+            'longestStreak' : resultsDict['results2'][2],
+            'accuracy' : resultsDict['results2'][3],
+            'wordsAnswered' :  resultsDict['results2'][4]
+        }
+
+    return render_template('Game screens/results-page.html', name = current_user.username, **context)
 
 @main.route('/update-results', methods = ['POST','GET'])
 @login_required
@@ -191,7 +202,6 @@ def updateResults():
         myResult = Results.query.filter_by(result_of_user_id=student_id, result_for_topic_id=topic_id).first()
 
         if not myResult:
-            print("YAAAAAAAAAAS")
             insertResult = Results(score=score, result_of_user_id=student_id, result_for_topic_id=topic_id)
             db.session.add(insertResult)
             db.session.commit()
@@ -199,4 +209,4 @@ def updateResults():
             myResult.score = score
             db.session.commit()
 
-        return ("updated 'score' of user " + current_user.username + " to " + score)
+        return ("updated 'score' of user " + current_user.username + " to " + str(score))

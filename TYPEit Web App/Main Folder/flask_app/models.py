@@ -1,10 +1,6 @@
-from .extensions import db, login_manager 
+from .extensions import db
 from flask_login import UserMixin
 from werkzeug.security import generate_password_hash
-
-@login_manager.user_loader
-def load_user(user_id):
-    return User.query.get(int(user_id))
 
 class User(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -19,9 +15,6 @@ class User(UserMixin, db.Model):
 
     def is_admin(self):
         return self.admin
-
-    def is_active(self):
-        return true
 
     @property
     def unhashed_password(self):
@@ -44,17 +37,17 @@ class Topic(db.Model):
 
 
     def __init__(self, name, questions, enabled):
-        self.name = name 
-        self.questions=questions 
+        self.name = name
+        self.questions=questions
         self.enabled = enabled
 
-    @property 
+    @property
     def name_id(self):
         return '{}'.format(self.name)
 
 
 
-    @property 
+    @property
     def is_enabled(self):
         return self.enabled
 

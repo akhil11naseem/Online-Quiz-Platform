@@ -22,7 +22,8 @@ function initializeClock(endtime) {
 
     if (t.total <= 0) {
       clearInterval(timeinterval);
-      window.location.replace("/results-page");
+      timeUP = true;
+      processResults();
     }
   }
 
@@ -30,8 +31,9 @@ function initializeClock(endtime) {
   var timeinterval = setInterval(updateClock, 1000);
 }
 
-var timeInMinutes = 5;
+var timeInMinutes = 3;
 var currentTime = Date.parse(new Date());
 var deadline = new Date(currentTime + timeInMinutes*60*1000);
+var timeUP = false;
 
 initializeClock(deadline);

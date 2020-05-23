@@ -15,57 +15,33 @@
     <div class="container-fluid fill">
         <div class="row">
             <div class="col-lg-3 border-right left-main-column" id="results-page-left-column">
-                <div class="row mt-5" id="points-row">
-                    <div class="col">
-                        <h1 class="display-4 font-italic">0</h1>
-                        <p>Points</p>
-                    </div>
-                    <div class="col">
-                        <h1 class="display-4 font-italic">0</h1>
-                        <p>Streak</p>
-                    </div>
-                </div>
-                <div class="row mt-3" id="words-answered-row">
-                    <div class="col">
-                        <p>Words answered (2)</p>
-                        <p>Reflection ✔<br></p>
-                        <p>Interrupt&nbsp;✘<br></p>
-                    </div>
-                </div>
+                <div class="row mt-5" id="words-answered-row">{{ wordsAnswered|safe }}</div>
             </div>
             <div class="col right-main-column" id="results-page-right-column">
                 <div class="row border-bottom align-items-center mt-5" id="results-heading-row">
                     <div class="col">
-                        <h1 class="main-heading">Good job, student 1!</h1>
+                        <h1 class="main-heading">Good job, {{ name }}!</h1>
                     </div>
                 </div>
                 <div class="row my-3" id="results-stats-row1">
                     <div class="col">
-                        <p>Correct answers: 4</p>
+                        <p>Correct answers: {{ numCorrectAnswers }}</p>
                     </div>
                     <div class="col">
-                        <p>Accuracy: 89%</p>
+                        <p>Accuracy: {{ accuracy }}%</p>
                     </div>
                 </div>
                 <div class="row my-3" id="results-stats-row2">
                     <div class="col">
-                        <p>Longest streak: 4</p>
+                        <p>Longest streak: {{ longestStreak }}</p>
                     </div>
                     <div class="col">
-                        <p>Longest streak: 4</p>
-                    </div>
-                </div>
-                <div class="row" id="results-stats-row3">
-                    <div class="col">
-                        <p>Avg. time per word: 19s</p>
-                    </div>
-                    <div class="col">
-                        <p>Final score:&nbsp;<strong class="align-middle" style="font-size: 100px;">219</strong></p>
+                        <p>Final score:&nbsp;<strong class="align-middle" style="font-size: 100px;">{{ score }}</strong></p>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col offset-6">
-                        <div><a href="Game screens/question-page.html"><button class="btn btn-success" id="play-again-btn">Play again</button></a></div>
+                        <div><a href="{{ url_for('main.chooseTestTopic') }}"><button class="btn btn-success" id="play-again-btn">Play another</button></a></div>
                     </div>
                 </div>
             </div>
