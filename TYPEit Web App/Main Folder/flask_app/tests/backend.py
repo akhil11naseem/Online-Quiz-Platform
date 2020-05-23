@@ -83,7 +83,7 @@ class UserLoginModel(TestBase):
     def test_login_index(self):
         tester = app.test_client()
         response = tester.get('/', content_type='html/text')
-        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.status_code, 302)
 
     #Ensure the choose-test-topic page requires user login
     def test_choose_test_topic_login(self):
@@ -262,7 +262,10 @@ class UserLoginModel(TestBase):
         response_Settings = tester.get('/choose-test-topic', follow_redirects=True)
         self.assertIn(b'Choose test topic', response_Settings.data)
         self.assertIn(b'Welcome, akhil!', response_Settings.data)
+        #response_Test_Topics = tester.get('/logout', follow_redirects=True)
+        #response_Change_Password = tester.get('/logout', follow_redirects=True)
 
+        #self.assertRedirects(responseClient, redirect_url)
 
 
         #checks my-score page works
@@ -273,6 +276,17 @@ class UserLoginModel(TestBase):
         self.assertIn(b'Topic', response_My_Scores.data)
         self.assertIn(b'Best score', response_My_Scores.data)
         self.assertIn(b'Class top score', response_My_Scores.data)
+        #self.assertIn(b'Choose test topic', response_Settings.data)
+        #self.assertIn(b'Welcome, akhil!', response_Settings.data)
+        #response_Test_Topics = tester.get('/logout', follow_redirects=True)
+        #response_Change_Password = tester.get('/logout', follow_redirects=True)
+
+        #response_Welcome = tester.get('/logout', follow_redirects=True)
+            #response = tester.get('/logout', follow_redirects=True)
+            #print(response.data)
+            #self.assertIn(b'Please log  in', response.data)
+            #self.assertEqual(response.status_code, 200)
+            #self.assertIn(b'You are now logged out', response.data)
 
     #check if the correct user is logged in
     
@@ -307,7 +321,7 @@ class UserRegisterationModel(TestBase):
         tester = app.test_client()
         response = tester.get('/register', content_type='html/text')
         self.assertEqual(response.status_code, 200)
-        print(response.data)
+#print(response.data)
 
 
 #Check each New User added to the data base is unquie
