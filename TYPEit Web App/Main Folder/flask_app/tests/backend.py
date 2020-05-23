@@ -12,6 +12,10 @@ from flask_login import current_user
 from werkzeug.security import generate_password_hash, check_password_hash
 
 
+app = Flask(__name__)
+app=create_app(config_file='test_settings.py')
+app.testing = True
+app.test_client()
 
 class TestBase(unittest.TestCase):
 
@@ -21,8 +25,8 @@ class TestBase(unittest.TestCase):
     # will be called before every test
     def setUp(self):
         """Defines what should be done before every single test in this test group."""
-        self.app = self.create_app()
-        with self.app.app_context():
+
+        with app.app_context():
             #db.session.query(User).delete()
             db.session.commit()
             db.drop_all()
@@ -56,7 +60,7 @@ class TestBase(unittest.TestCase):
 
     def tearDown(self):
         """Defines what should be done after every single test in this test group."""
-        with self.app.app_context():
+        with app.app_context():
             db.session.remove()
             #db.drop_all()
 '''
@@ -79,7 +83,7 @@ class UserLoginModel(TestBase):
     def test_login_index(self):
         tester = app.test_client()
         response = tester.get('/', content_type='html/text')
-        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.status_code, 302)
 
     #Ensure the choose-test-topic page requires user login
     def test_choose_test_topic_login(self):
@@ -127,7 +131,7 @@ class UserLoginModel(TestBase):
 
     #Ensure log in behaves correclty when fed with user data
     def test_login(self):
-        app = self.create_app()
+       
         tester = app.test_client(self)
         response = tester.post(
             '/login',
@@ -258,7 +262,10 @@ class UserLoginModel(TestBase):
         response_Settings = tester.get('/choose-test-topic', follow_redirects=True)
         self.assertIn(b'Choose test topic', response_Settings.data)
         self.assertIn(b'Welcome, akhil!', response_Settings.data)
+        #response_Test_Topics = tester.get('/logout', follow_redirects=True)
+        #response_Change_Password = tester.get('/logout', follow_redirects=True)
 
+        #self.assertRedirects(responseClient, redirect_url)
 
 
         #checks my-score page works
@@ -269,6 +276,17 @@ class UserLoginModel(TestBase):
         self.assertIn(b'Topic', response_My_Scores.data)
         self.assertIn(b'Best score', response_My_Scores.data)
         self.assertIn(b'Class top score', response_My_Scores.data)
+        #self.assertIn(b'Choose test topic', response_Settings.data)
+        #self.assertIn(b'Welcome, akhil!', response_Settings.data)
+        #response_Test_Topics = tester.get('/logout', follow_redirects=True)
+        #response_Change_Password = tester.get('/logout', follow_redirects=True)
+
+        #response_Welcome = tester.get('/logout', follow_redirects=True)
+            #response = tester.get('/logout', follow_redirects=True)
+            #print(response.data)
+            #self.assertIn(b'Please log  in', response.data)
+            #self.assertEqual(response.status_code, 200)
+            #self.assertIn(b'You are now logged out', response.data)
 
     #check if the correct user is logged in
     
@@ -300,11 +318,10 @@ class UserLoginModel(TestBase):
 class UserRegisterationModel(TestBase):
     #Check New User can be registered 
     def test_register_index(self):
-        app = self.create_app()
         tester = app.test_client()
         response = tester.get('/register', content_type='html/text')
         self.assertEqual(response.status_code, 200)
-        print(response.data)
+#print(response.data)
 
 
 #Check each New User added to the data base is unquie
