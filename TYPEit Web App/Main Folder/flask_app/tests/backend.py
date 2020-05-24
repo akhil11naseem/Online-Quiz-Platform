@@ -62,11 +62,7 @@ class TestBase(unittest.TestCase):
         """Defines what should be done after every single test in this test group."""
         with app.app_context():
             db.session.remove()
-            #db.drop_all()
-
-
-
-
+            db.drop_all()
 
 
 
