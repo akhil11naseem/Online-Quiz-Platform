@@ -32,7 +32,7 @@ def requires_student_access():
 
 @main.route('/change-password')
 def changePassword():
-    return '<h1>This page is not ready yet</h1>'
+    return '<h1>This page is in development. Go back!</h1>'
 
 @main.route('/logout')
 def logout():
