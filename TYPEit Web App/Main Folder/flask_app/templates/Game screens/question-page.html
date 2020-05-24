@@ -14,7 +14,7 @@
 <body style="color: rgb(0,0,0);">
     <div class="container-fluid fill">
         <div class="row" id="container-row">
-            <div class="col-sm-3 border-right left-main-column">
+            <div class="col-lg-3 border-right left-main-column">
                 <div class="row mt-5" id="points-row">
                     <div class="col">
                         <h1 class="display-4 font-italic" id="points-h1">0</h1>
@@ -40,8 +40,14 @@
                 <div class="row border-bottom align-items-end" id="hint-and-answer-row">
                     <div class="col col-md-8">
                       <input type="text" id="hint-and-answer-input" placeholder="{{ questions_arr[0].Hint}}" spellcheck="false" autocapitalize="off" autofocus="" value="">
+
                     </div>
                     <div class="col"><button class="btn" id="skip-btn">Skip</button></div>
+                </div>
+                <div class="row">
+                  <div class="col">
+                    <hr class="my-0 ml-0" id="hint-hr" style="height:2px;">
+                  </div>
                 </div>
                 <div class="row my-3" id="question-row">
                     <div class="col">
@@ -63,6 +69,7 @@
 
       $('#hint-and-answer-input').on("input", function(){
         checkAnswer(this.value, questions_JSON);
+        hintLine(this.value, questions_JSON);
       });
 
     </script>

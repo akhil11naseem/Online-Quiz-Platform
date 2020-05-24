@@ -29,6 +29,27 @@ function checkAnswer(user_answer, questions_JSON){
   }
 }
 
+function hintLine(user_answer, questions_JSON){
+  actual_answer = (questions_JSON[qnum].Answer).toLowerCase();
+  user_answer = user_answer.toLowerCase();
+  hint_hr = document.getElementById('hint-hr');
+
+  if(user_answer.length == 0) {
+
+    hint_hr.style.marginRight = "100%";
+  }
+  else if(actual_answer.indexOf(user_answer) != 0){
+    hint_hr.style.marginRight = "0";
+    hint_hr.style.backgroundColor = "red";
+  }
+  else if(actual_answer.indexOf(user_answer) == 0) {
+    scaleX = 100-(100*user_answer.length/actual_answer.length) + "%";
+    hint_hr.style.marginRight = scaleX;
+    hint_hr.style.backgroundColor = "mediumspringgreen";
+  }
+
+}
+
 function showNextQuestion(questions_JSON, totalNumQs){
 
   if(qnum<totalNumQs && window.timeUP==false){
@@ -53,7 +74,7 @@ function processResults(){
     contentType: "application/json;charset=utf-8",
     url: "/update-results",
     traditional: "true",
-    data: JSON.stringify({results}),
+    data: JSON.stringify({results:results}),
     dataType: "json"
   });
 
@@ -72,7 +93,7 @@ function processResults(){
     contentType: "application/json;charset=utf-8",
     url: "/results-page",
     traditional: "true",
-    data: JSON.stringify({results2}),
+    data: JSON.stringify({results2:results2}),
     dataType: "html",
     success: function(response){
       document.write(response);
