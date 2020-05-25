@@ -99,7 +99,16 @@ Admins will also be able to see the highest score attained for each subject by t
   * `pip install -r requirements.txt`
   * `flask run`
   * `Open browser to the local host URL:`http://127.0.0.1:5000`
-
+  
+   ##### Adminstration 
+          `Sample Username: admin`
+          `Sample Password: admin`
+          
+   ##### Student 
+          `Sample Username: akhil`
+          `Sample Password: akhil`
+          
+          
 ## Testing
 ### Manual Testing using uniitests 
   
