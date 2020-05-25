@@ -45,7 +45,7 @@ class TestBase(unittest.TestCase):
                 #db.drop_all()
                 self.driver.get('http://localhost:5000/login')
                 self.driver.maximize_window()
-           
+
 
     def tearDown(self):
         #self.driver.quit()
@@ -58,10 +58,10 @@ class TestBase(unittest.TestCase):
 
 #New user should be able to successfully create an account
 #Once, the user is registered, the browser should redirect to the login page
-    
-    
+
+
 class TestRegisteration(TestBase):
-    
+
 
     def test_invalid_register(self):
 
@@ -73,7 +73,7 @@ class TestRegisteration(TestBase):
         username_taken_message = self.driver.find_element_by_class_name('alert').text
         self.assertEqual(username_taken_message, 'This username is taken, try again.')
 
-    
+
     def test_register(self):
         button_field = self.driver.find_element_by_id('log-in-register-btn').click()
         time.sleep(1)
@@ -85,10 +85,10 @@ class TestRegisteration(TestBase):
         password_field = self.driver.find_element_by_id('password-input').send_keys('Morty1234')
         button_field = self.driver.find_element_by_id('log-in-btn').click()
         time.sleep(3)
-    
+
 
 class TestLogin(TestBase):
-    
+
     def test_login_by_admin(self):
         time.sleep(2)
         user = self.driver.find_element_by_id('username-input').send_keys('admin')
@@ -113,8 +113,8 @@ class TestLogin(TestBase):
         time.sleep(2)
         username_taken_message = self.driver.find_element_by_class_name('alert').text
         self.assertEqual(username_taken_message, 'You are now logged out')
-    
-    
+
+
     def test_login_by_student(self):
         time.sleep(2)
         user = self.driver.find_element_by_id('username-input').send_keys('akhil')
@@ -134,49 +134,10 @@ class TestLogin(TestBase):
         time.sleep(2)
         username_taken_message = self.driver.find_element_by_class_name('alert').text
         self.assertEqual(username_taken_message, 'You are now logged out')
-    
-    
+
+
 
 #admin disables a topic, student cannot click on that quix
-
-#disable user 
-
-'''
-
-    def test_disable_student(self):
-         
-        time.sleep(2)
-        user = self.driver.find_element_by_id('username-input').send_keys('admin')
-        password = self.driver.find_element_by_id('password-input').send_keys('admin')
-        time.sleep(1)
-        button = self.driver.find_element_by_id('log-in-btn').click()
-        time.sleep(0.5)
-        self.driver.find_element_by_partial_link_text("Manage").click()
-        time.sleep(2)
-        user = User.query.filter_by(username='akhil').all()
-        self.driver.find_element_by_class_name('student-switch-label').click()
-        self.driver.find_element_by_partial_link_text("Log").click()
-        username_taken_message = self.driver.find_element_by_class_name('alert').text
-        time.sleep(3)
-        self.assertEqual(username_taken_message, 'You are now logged out')
-        time.sleep(6)
-        #if user.enabled is False:
-        #    self.driver.find_element_by_class_name('student-switch-label').click()
-        user = self.driver.find_element_by_id('username-input').send_keys('akhil')
-        password = self.driver.find_element_by_id('password-input').send_keys('akhil')
-        button = self.driver.find_element_by_id('log-in-btn').click()
-        disabed = self.
-        if user.enabled is False: 
-            username_disabled_message = self.driver.find_element_by_id('alert-message').text
-            self.assertEqual(username_disabled_message, 'User disabled, contact Admin.')
-            time.sleep(2)
-        else: 
-            self.driver.find_element_by_partial_link_text("My").click()
-            time.sleep(2)
-
-
-
-    '''
 
 class TestQuiz(TestBase):
 
@@ -283,16 +244,5 @@ class TestQuiz(TestBase):
         self.driver.find_element_by_partial_link_text("My").click()
         time.sleep(2)
 
-
-
-
-
 if __name__=='__main__':
   unittest.main(verbosity=2)
-        
-        
-
-
-
-
-
