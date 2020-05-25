@@ -137,6 +137,8 @@ Admins will also be able to see the highest score attained for each subject by t
     5. Finally, a automated test where the students logins in with its details, and plays a quiz. I give a automated demonstration of a student playing the quiz, and recieving its scores. 
 
 #### How to Execute 
+  * Note: The flask application should be running in the background
+  * Open up a new terminal with the virtial environment 
   * ensure you are within the `Main Folder` directory, 
   * on the terminal run: `python3 -m flask_app.tests.frontend`
   
