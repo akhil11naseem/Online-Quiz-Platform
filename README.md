@@ -3,7 +3,7 @@
 
 Varun Jain 21963986
 Akhil Naseem 22237476
-Lance Chew
+Lance Chew 22420498
 
 
 Welcome to the TYPEit Web App! This project is packaged as a Flask Application using SQLite as a database engine. 
@@ -98,8 +98,7 @@ Admins will also be able to see the highest score attained for each subject by t
   * `source venv/bin/activate` for macOS or `source venv/Script/activate` for Windows
   * `pip install -r requirements.txt`
   * `flask run`
-  * Open browser to the local host URL:`http://127.0.0.1:5000`
-  * Register a new user or log in as admin with username: `admin` and password: `admin`
+  * `Open browser to the local host URL:`http://127.0.0.1:5000`
 
 ## Testing
 ### Manual Testing using uniitests 
@@ -129,8 +128,6 @@ Admins will also be able to see the highest score attained for each subject by t
     5. Finally, a automated test where the students logins in with its details, and plays a quiz. I give a automated demonstration of a student playing the quiz, and recieving its scores. 
 
 #### How to Execute 
-  * Open TYPEit TYPEit Web App\Main folder\flask_app\__init__.py
-  * In line 8, change `def create_app(config_file = 'settings.py'):` to `def create_app(config_file = 'test_settings.py'):`
   * ensure you are within the `Main Folder` directory, 
   * on the terminal run: `python3 -m flask_app.tests.frontend`
   
@@ -157,16 +154,55 @@ The following image is the database structure we implemented in our TYPEit Quiz 
     │   ├── requirements.txt    
     │   ├── flask_app          
     │       ├── routes 
-    │       │   ├── __init__.py
-    │       │   ├── auth.py
-    │       │   ├── main.py
-    │       │
+    │          ├── __init__.py
+    │          ├── auth.py
+    │          ├── main.py
+    │       ├── static
+    |          ├── assets
+    |               ├── bootstrap
+    |                   ├── css
+    |                       ├── bootstrap.min.css
+    |               ├── css
+    |                   ├── main.css
+    |               ├── js
+    |                   ├── bs-init.js
+    |                   ├── checkAnswer.js
+    |                   ├── maintain focus on answer input area.js
+    |                   ├── timer.js
+    |                   ├── topic button.js
     │       ├── templates 
-    │           ├── Admin Dashbord 
-    │
-    │
-    │
-    │
+    │           ├── Dashbord
+    |               ├── Admin Dashboard
+    |               ├── Student Dashboard
+    |               ├── change password.html
+    |               ├── log in.html
+    │               ├── register.html
+    │          ├── Game Screens
+    │               ├── questions-page.html
+    │               ├── results-page.html
+    |       ├── tests
+    |               ├── _pycache_
+    |                     ├── _init_.cpython-37.pyc
+    |                     ├── _init_.cpython-38.pyc
+    |                     ├── backend.cpython-37.pyc
+    |                     ├── backend.cpython-38.pyc
+    |                     ├── frontend.cpython-37.pyc
+    |                     ├── frontend.cpython-38.pyc
+    |               ├── init.py
+    |               ├── backend.py
+    |               ├── base.py
+    |
+    |
+    |
+    |
+    |
+    |
+    |
+    |
+    |
+    |
+    |
+    |
     ├──         
     └── ...
   
@@ -174,7 +210,3 @@ The following image is the database structure we implemented in our TYPEit Quiz 
   
   
 ## Design 
-
-### Screenshots 
-* ![Login](/screenshots/login.PNG)
-* ![Register](/screenshots/register.PNG)
