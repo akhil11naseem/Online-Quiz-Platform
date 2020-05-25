@@ -79,9 +79,12 @@ Admins will also be able to see the highest score attained for each subject by t
   
 * Protected Routes 
   * Admin Routes 
-    * http://localhost/select-topics 
+    * `http://localhost/select-topics` - add/take away topics by enabling/disabling the topics 
+    * `http://localhost/manage-students` - disable/enable students, and have the option to delete users who are not welcomed
+    * `http://localhost/class-scores`  - shows the scores of each students after they finish a quiz 
   * Student Routes 
- 
+    * `http://localhost/choose-topic-test` - provided with a range of options with quiz topics
+    * `http://localhost/my-scores`  - shows the students their individual scores, alongside with the highest score in the class
 
 ## Instructions 
 
