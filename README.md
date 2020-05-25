@@ -21,27 +21,28 @@ user inputs the word, the line will turn green if the user is on the right path,
 characters. Beware, there is a timer that is ever diminishing, if you fail to answer all questions before the timer runs out, 
 your quiz run will end! If you get stuck on a word, do not worry, the skip button will allow continuation to the next word.
 
-At the student dashboard, there will be a results table that will display the best score attained for each subject. 
-Admins will also be able to see the highest score attained for each subject by the students.
+At the student dashboard, there will be a results table that will display the best score attained for each subject against the top score in the class.
+
+Admins can see the scores of all students across all subjects.
 
 
-User Story
+**User Story**
 1.	The user will be directed to a login page and asked for a username and password. This combination will be validated through the database and the login button will bring the user to the appropriate dashboard.
 2.	If the user has no existing account, one may be created using the registration page which allows for a custom username and password to be entered. By default, all created user accounts will be given student access only and additional admin access will have to be added manually from the backend.
-3.	The student dashboard opens up into the topic selection page, with sidebar options allowing the student to view his high scores in each subject as well as the highest score attained by classmates.
+3.	The student dashboard opens up into the topic selection page, with sidebar options allowing the student to view their high scores in each subject as well as the highest score attained by classmates.
 4.	The student may then choose a topic from the selection available on the choose topics page which will then bring them to the question page.
 5.	The question page consists of a score/streak counter on the top left, a timer on the top middle of the screen and the question in the centre with an input field pre-filled with a hint to start the student off.
 6.	As the user types in their attempt, the input field will gradually fill green proportional to how complete the word is. If the letter entered is incorrect, the bar will switch to red, notifying the student that the letter entered is wrong.
 7.	The user only needs to successfully type the full correct answer to submit the answer and the next question will automatically load with the previous answer appended with a tick on the left hand side.
-8.	If the user chooses to skip the word, score will not be awarded and the answer will be appended with a cross on the left-hand list.
+8.	If the user chooses to skip the word, a score will not be awarded and the answer will be appended with a cross on the left-hand list.
 9.	Upon completion, the student will be brought to a results screen showing the quiz outcome and a button to return to the dashboard to pick another topic.
 
 
-Admin Story
+**Admin Story**
 1.	Admins may login with the default admin login.
 2.	The admin dashboard will open up automatically starting at the choose topics screen where admins may choose to enable or disable topics.
-3.	Along the left bar, the manage students tab will bring up a page where admins are able to enable/disable login for students using a checkbox function.
-4.	Admins may also view the class scores for each topic and the highest score attained overall.
+3.	Along the left bar, the manage students tab will bring up a page where admin is able to enable/disable/delete students.
+4.	Admins may also view the scores of the whole class.
 
 
 
@@ -53,30 +54,12 @@ Admin Story
 * [Flask-Login](https://flask-login.readthedocs.io/en/latest/) - `pip install flask-login` 
 * [Flask-migrate](https://flask-migrate.readthedocs.io/en/latest/) - `pip install Flask-Migrate` 
 
-## Technologies 
-* Client Side 
-  * HTML 
-  * CSS
-  * Bootstrap 
-  * Javascript 
-  * JQuery - allows for DOM manipulation and Ajax requests
-  
-* Server Side 
-  * Flask 
-  * SQLite 
-  *	SQLAlchemy
-  * Jinja2 Templating for HTML
-
-## Agile Methodology
-
-
-
 
 ## Instructions 
 
 * Download the respository 
 * Navigate throught the respoitory to the `Main Folder`
-* Set up the virtual environment through the following commonds on the terminal 
+* Set up the virtual environment through the following commands on the terminal 
   *`python3 -m venv venv` 
   * `source venv/bin/activate`
   * `pip install -r requirements.txt`
