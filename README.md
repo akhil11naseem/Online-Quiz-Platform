@@ -3,7 +3,7 @@
 
 Varun Jain 21963986
 Akhil Naseem 22237476
-Lance Chew 22420498
+Lance Chew
 
 
 Welcome to the TYPEit Web App! This project is packaged as a Flask Application using SQLite as a database engine. 
@@ -154,55 +154,16 @@ The following image is the database structure we implemented in our TYPEit Quiz 
     │   ├── requirements.txt    
     │   ├── flask_app          
     │       ├── routes 
-    │          ├── __init__.py
-    │          ├── auth.py
-    │          ├── main.py
-    │       ├── static
-    |          ├── assets
-    |               ├── bootstrap
-    |                   ├── css
-    |                       ├── bootstrap.min.css
-    |               ├── css
-    |                   ├── main.css
-    |               ├── js
-    |                   ├── bs-init.js
-    |                   ├── checkAnswer.js
-    |                   ├── maintain focus on answer input area.js
-    |                   ├── timer.js
-    |                   ├── topic button.js
+    │       │   ├── __init__.py
+    │       │   ├── auth.py
+    │       │   ├── main.py
+    │       │
     │       ├── templates 
-    │           ├── Dashbord
-    |               ├── Admin Dashboard
-    |               ├── Student Dashboard
-    |               ├── change password.html
-    |               ├── log in.html
-    │               ├── register.html
-    │          ├── Game Screens
-    │               ├── questions-page.html
-    │               ├── results-page.html
-    |       ├── tests
-    |               ├── _pycache_
-    |                     ├── _init_.cpython-37.pyc
-    |                     ├── _init_.cpython-38.pyc
-    |                     ├── backend.cpython-37.pyc
-    |                     ├── backend.cpython-38.pyc
-    |                     ├── frontend.cpython-37.pyc
-    |                     ├── frontend.cpython-38.pyc
-    |               ├── init.py
-    |               ├── backend.py
-    |               ├── base.py
-    |
-    |
-    |
-    |
-    |
-    |
-    |
-    |
-    |
-    |
-    |
-    |
+    │           ├── Admin Dashbord 
+    │
+    │
+    │
+    │
     ├──         
     └── ...
   
@@ -210,3 +171,16 @@ The following image is the database structure we implemented in our TYPEit Quiz 
   
   
 ## Design 
+
+### Screenshots 
+Login Page 
+* ![Login Page](/Screenshots/login.PNG)
+Register Page for New Users 
+* ![Register](/Screenshots/register.PNG)
+
+The following images are related to the admin:
+
+Page to disable/enable topics
+* ![Admin Dashboard](/Screenshots/admin/admin%20dashboard.PNG)
+Page to disable/enable students + option given to delete students
+* ![Manage Students](/Screenshots/admin/admin%20manage%20students.PNG)
