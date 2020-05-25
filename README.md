@@ -46,9 +46,12 @@ Admin Story
 
 
 ## Modules 
-* [Flask](http://flask.pocoo.com) - `pip install Flask`
-* [Flask-SQLAlchemy]
 
+
+* [Flask](https://pypi.org/project/Flask/) - `pip install Flask`
+* [Flask-SQLAlchemy](https://flask-sqlalchemy.palletsprojects.com/en/2.x/) - `pip install flask-sqlalchemy`
+* [Flask-Login](https://flask-login.readthedocs.io/en/latest/) - `pip install flask-login` 
+* [Flask-migrate](https://flask-migrate.readthedocs.io/en/latest/) - `pip install Flask-Migrate` 
 
 
 
