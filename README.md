@@ -59,11 +59,11 @@ Admin Story
 * Download the respository 
 * Navigate throught the respoitory to the Main Folder
 * Set up the virtual environment through the following commonds on the terminal 
-      * `python3 -m venv venv` 
-      * `source venv/bin/activate`
-      * `pip install -r requirements.txt`
-      * `flask run`
-      * `Open browser to the following URL: http://127.0.0.1:5000
+  *`python3 -m venv venv` 
+  * `source venv/bin/activate`
+  * `pip install -r requirements.txt`
+  * `flask run`
+  * `Open browser to the following URL: http://127.0.0.1:5000
 
 ## Testing
 * Manual Testing using uniitests 
