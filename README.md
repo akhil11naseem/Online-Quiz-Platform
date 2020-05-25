@@ -1,6 +1,6 @@
-# Online-Quiz-Platform
+# TYPEit Quiz Platform
 
-CITS5505 Project
+
 Varun Jain 21963986
-Akhil   
-Lance
+Akhil Naseem 22237476
+Lance Chew
