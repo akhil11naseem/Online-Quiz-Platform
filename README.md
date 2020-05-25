@@ -98,7 +98,8 @@ Admins will also be able to see the highest score attained for each subject by t
   * `source venv/bin/activate` for macOS or `source venv/Script/activate` for Windows
   * `pip install -r requirements.txt`
   * `flask run`
-  * `Open browser to the local host URL:`http://127.0.0.1:5000`
+  * Open browser to the local host URL:`http://127.0.0.1:5000`
+  * Register a new user or log in as admin with username: `admin` and password: `admin`
 
 ## Testing
 ### Manual Testing using uniitests 
@@ -128,6 +129,8 @@ Admins will also be able to see the highest score attained for each subject by t
     5. Finally, a automated test where the students logins in with its details, and plays a quiz. I give a automated demonstration of a student playing the quiz, and recieving its scores. 
 
 #### How to Execute 
+  * Open TYPEit TYPEit Web App\Main folder\flask_app\__init__.py
+  * In line 8, change `def create_app(config_file = 'settings.py'):` to `def create_app(config_file = 'test_settings.py'):`
   * ensure you are within the `Main Folder` directory, 
   * on the terminal run: `python3 -m flask_app.tests.frontend`
   
@@ -173,5 +176,5 @@ The following image is the database structure we implemented in our TYPEit Quiz 
 ## Design 
 
 ### Screenshots 
-* ![Login Page](/Screenshots/login.PNG)
-* ![Register](/Screenshots/register.PNG)
+* ![Login](/screenshots/login.PNG)
+* ![Register](/screenshots/register.PNG)
