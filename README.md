@@ -67,8 +67,8 @@ Admin Story
 
 ## Testing
 * Manual Testing using uniitests 
- * ensure you are within the `Main Folder` directory,
- * on the terminal run: `python3 -m flask_app.tests.backend`
+  * ensure you are within the `Main Folder` directory,
+  * on the terminal run: `python3 -m flask_app.tests.backend`
 * Automation Testing using selenium testing
- * ensure you are within the `Main Folder` directory, 
- * on the terminal run: `python3 -m flask_app.tests.frontend`
+  * ensure you are within the `Main Folder` directory, 
+  * on the terminal run: `python3 -m flask_app.tests.frontend`
