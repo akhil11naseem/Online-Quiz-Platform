@@ -63,7 +63,7 @@ Admin Story
   * `source venv/bin/activate`
   * `pip install -r requirements.txt`
   * `flask run`
-  * `Open browser to the following URL: http://127.0.0.1:5000
+  * `Open browser to the local host URL: http://127.0.0.1:5000
 
 ## Testing
 * Manual Testing using uniitests 
