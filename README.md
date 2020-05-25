@@ -43,3 +43,14 @@ Admin Story
 3.	Along the left bar, the manage students tab will bring up a page where admins are able to enable/disable login for students using a checkbox function.
 4.	Admins may also view the class scores for each topic and the highest score attained overall.
 
+
+
+## Modules 
+* [Flask]
+* [Flask-SQLAlchemy]
+
+
+
+
+
+
