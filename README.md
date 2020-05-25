@@ -92,15 +92,28 @@ Admins will also be able to see the highest score attained for each subject by t
 * Navigate throught the respoitory to the `Main Folder`
 * Set up the virtual environment through the following commonds on the terminal 
   *`python3 -m venv venv` 
-  * `source venv/bin/activate`
+  * `source venv/bin/activate` for macOS or `source venv/Script/activate` for Windows
   * `pip install -r requirements.txt`
   * `flask run`
   * `Open browser to the local host URL: http://127.0.0.1:5000
 
 ## Testing
-* Manual Testing using uniitests 
+### Manual Testing using uniitests 
+#### How to Execute 
   * ensure you are within the `Main Folder` directory,
   * on the terminal run: `python3 -m flask_app.tests.backend`
+  
+### Cross Browser Compatible
+  * Works on all three engines: Internet Explorer, Firefox and Google Chrome 
+### Code Validation 
+  * Works prefectly for the following validators checks for HTML and CSS on [W3C](https://validator.w3.org/)
+### Backend Testing 
+  * The Application that i have tested is the quiz platform TYPEit. I have computed comprehensive tests for the login and register 
+  
+### 
 * Automation Testing using selenium testing
   * ensure you are within the `Main Folder` directory, 
   * on the terminal run: `python3 -m flask_app.tests.frontend`
+  
+  
+## Design 
