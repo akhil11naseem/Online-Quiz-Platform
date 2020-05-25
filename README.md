@@ -174,13 +174,13 @@ The following image is the database structure we implemented in our TYPEit Quiz 
 
 ### Screenshots 
 Login Page 
-* ![Login Page](/Screenshots/login.PNG)
+![Login Page](/Screenshots/login.PNG)
 Register Page for New Users 
-* ![Register](/Screenshots/register.PNG)
+![Register](/Screenshots/register.PNG)
 
 The following images are related to the admin:
 
 Page to disable/enable topics
-* ![Admin Dashboard](/Screenshots/admin/admin%20dashboard.PNG)
+![Admin Dashboard](/Screenshots/admin/admin%20dashboard.PNG)
 Page to disable/enable students + option given to delete students
 * ![Manage Students](/Screenshots/admin/admin%20manage%20students.PNG)
