@@ -53,6 +53,18 @@ Admin Story
 * [Flask-Login](https://flask-login.readthedocs.io/en/latest/) - `pip install flask-login` 
 * [Flask-migrate](https://flask-migrate.readthedocs.io/en/latest/) - `pip install Flask-Migrate` 
 
+## Technologies 
+* Client Side 
+  * HTML 
+  * CSS
+  * Bootstrap 
+  * Javascript 
+  * JQuery
+  
+* Server Side 
+  * Flask 
+  * SQLite 
+  *	SQLAlchemy
 
 ## Instructions 
 
