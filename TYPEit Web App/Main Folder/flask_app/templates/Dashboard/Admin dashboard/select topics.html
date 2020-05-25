@@ -36,9 +36,12 @@
             </div>
             <div class="col right-main-column" id="content-column">
                 <div class="row border-bottom">
-                    <div class="col">
-                        <h1 class="mt-5 main-heading" id="Welcome">Welcome, Admin!</h1>
+                  <div class="col">
+                    <h1 class="mt-5 main-heading" id="Welcome">Welcome, Admin!</h1>
+                    <div class="help-tip">
+                      <p>As an admin, you can toggle topics to enable or disable them for students to attempt. </p>
                     </div>
+                  </div>
                 </div>
                 <div class="row my-3">
                     <div class="col">
@@ -51,13 +54,16 @@
                             <!--Get all topics with the checkbox visible and draw for user-->
                             {% for topic in topics %}
                             <label class="btn topic-btn {% if topic.enabled %}btn-success{% else %}btn-outline-danger{% endif %}">{{ topic.name }}
-                <input type="checkbox" id="{{ topic.id }}" class="topic-btn-input" autocomplete="off" {% if topic.enabled %}checked{% endif %}>
+                <input type="checkbox" id="{{ topic.id }}" class="topic-btn-input" {% if topic.enabled %}checked{% endif %}>
               </label> {% endfor %}
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        <footer class="fixed-bottom">
+          <p class="mr-2" style="font-size: 0.5em; position:absolute; bottom:0; right:0;">Authors: Akhil Naseem, Varun Jain, Lance Chew</p>
+        </footer>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>

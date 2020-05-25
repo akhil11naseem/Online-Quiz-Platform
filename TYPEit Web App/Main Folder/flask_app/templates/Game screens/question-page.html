@@ -43,11 +43,14 @@
                 <div class="row border-bottom align-items-end" id="hint-and-answer-row">
                     <div class="col col-md-8">
                         <!--Input field for answers. External JS scripts handle the answer checking and quiz functionality-->
-                        <input type="text" id="hint-and-answer-input" placeholder="{{ questions_arr[0].Hint}}" spellcheck="false" autocapitalize="off" autofocus="" value="">
+                        <input type="text" id="hint-and-answer-input" placeholder="{{ questions_arr[0].Hint}}" spellcheck="false" autofocus="" value="" autocomplete="off">
 
                     </div>
                     <!--Skip button-->
                     <div class="col"><button class="btn" id="skip-btn">Skip</button></div>
+                    <div class="help-tip">
+                      <p>Start typing to guess the word that best matches the definition or question shown below.</p>
+                    </div>
                 </div>
                 <div class="row">
                     <div class="col">
@@ -70,11 +73,7 @@
     <script src="{{ url_for('static', filename='assets/js/timer.js')}}"></script>
     <script src="{{ url_for('static', filename='assets/js/checkAnswer.js')}}"></script>
     <script>
-        var questions_JSON = {
-            {
-                questions_arr | tojson | safe
-            }
-        };
+        var questions_JSON = {{questions_arr | tojson | safe}};
         var topic_name = "{{ topic_name }}";
 
         $('#hint-and-answer-input').on("input", function() {

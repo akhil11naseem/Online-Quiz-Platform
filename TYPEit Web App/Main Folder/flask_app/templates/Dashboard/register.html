@@ -39,21 +39,22 @@
                         <!--Forms for user input of username and password for registration-->
                         <form id="register-form" method='POST' action="{{ url_for('auth.register') }}">
                             <div class="form-group" id="username-form-group">
-                                <input class="form-control" type="text" id="username-input" name="username" placeholder="username" required="True">
+                                <input class="form-control" type="text" id="username-input" name="username" placeholder="username" required>
                             </div>
                             <div class="form-group" id="password-input-group">
-                                <input class="form-control" type="password" id="password-input" name="password" placeholder="password" required="True">
+                                <input class="form-control" type="password" id="password-input" name="password" placeholder="password" required>
                             </div>
                             <button class="btn ml-0" id="register-btn" type="submit">Register</button>
-                            <a href="{{ url_for('auth.login') }}">
-                                <button class="btn ml-0" id="log-in-register-btn" type="button">Login</button>
-                            </a>
+                            <a href="{{ url_for('auth.login') }}" class="btn ml-0" id="log-in-register-btn">Log in</a>
                         </form>
 
                     </div>
                 </div>
             </div>
         </div>
+        <footer class="fixed-bottom">
+          <p class="mr-2" style="font-size: 0.5em; position:absolute; bottom:0; right:0;">Authors: Akhil Naseem, Varun Jain, Lance Chew</p>
+        </footer>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
