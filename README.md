@@ -3,7 +3,7 @@
 
 Varun Jain 21963986
 Akhil Naseem 22237476
-Lance Chew
+Lance Chew 22420498
 
 
 Welcome to the TYPEit Web App! This project is packaged as a Flask Application using SQLite as a database engine. 
