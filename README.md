@@ -67,6 +67,11 @@ Admin Story
   *	SQLAlchemy
   * Jinja2 Templating for HTML
 
+## Agile Methodology
+
+
+
+
 ## Instructions 
 
 * Download the respository 
