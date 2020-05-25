@@ -183,4 +183,16 @@ The following images are related to the admin:
 Page to disable/enable topics
 ![Admin Dashboard](/Screenshots/admin/admin%20dashboard.PNG)
 Page to disable/enable students + option given to delete students
-* ![Manage Students](/Screenshots/admin/admin%20manage%20students.PNG)
+![Manage Students](/Screenshots/admin/admin%20manage%20students.PNG)
+
+The following images are related to the student
+
+![Test Topics](Screenshots/student/student%20dashboard.PNG)
+
+![My Score](/Screenshots/student/student%20scores.PNG)
+
+![Game Design](/Screenshots/student/Question%20Page.PNG)
+
+![Wrong Answer](/Screenshots/student/Qpage%20wrong%20ans.PNG)
+
+![Result Page](/Screenshots/student/Results%20page.PNG)
