@@ -3,7 +3,7 @@
 
 Varun Jain 21963986
 Akhil Naseem 22237476
-Lance Chew 22420498
+Lance Chew
 
 
 Welcome to the TYPEit Web App! This project is packaged as a Flask Application using SQLite as a database engine. 
@@ -154,81 +154,48 @@ The following image is the database structure we implemented in our TYPEit Quiz 
     │   ├── requirements.txt    
     │   ├── flask_app          
     │       ├── routes 
-    │          ├── __init__.py
-    │          ├── auth.py
-    │          ├── main.py
-    │       ├── static
-    |          ├── assets
-    |               ├── bootstrap
-    |                   ├── css
-    |                       ├── bootstrap.min.css
-    |               ├── css
-    |                   ├── main.css
-    |               ├── js
-    |                   ├── bs-init.js
-    |                   ├── checkAnswer.js
-    |                   ├── maintain focus on answer input area.js
-    |                   ├── timer.js
-    |                   ├── topic button.js
+    │       │   ├── __init__.py
+    │       │   ├── auth.py
+    │       │   ├── main.py
+    │       │
     │       ├── templates 
-    │           ├── Dashbord
-    |               ├── Admin Dashboard
-    |               ├── Student Dashboard
-    |               ├── change password.html
-    |               ├── log in.html
-    │               ├── register.html
-    │          ├── Game Screens
-    │               ├── questions-page.html
-    │               ├── results-page.html
-    |       ├── tests
-    |               ├── _pycache_
-    |                     ├── _init_.cpython-37.pyc
-    |                     ├── _init_.cpython-38.pyc
-    |                     ├── backend.cpython-37.pyc
-    |                     ├── backend.cpython-38.pyc
-    |                     ├── frontend.cpython-37.pyc
-    |                     ├── frontend.cpython-38.pyc
-    |               ├── init.py
-    |               ├── backend.py
-    |               ├── base.py
-    |               ├── db.testing.sqlite3
-    |               ├── frontend.py
-    |               ├── frontend_for_WINDOWS.py
-    |               ├── geckodriver
-    |               ├── geckodriver.exe
-    |      ├── .DS_Store
-    |      ├── _init_.py
-    |      ├── commands.py
-    |      ├── db.sqlite3
-    |      ├── extensions.py
-    |      ├── models.py
-    |      ├── settings.py
-    |      ├── test_settings.py
-    |   ├── migrations
-    |      ├── _pycache_
-    |            ├── env.cpython-38.pyc
-    |      ├── versions
-    |            ├── _pycache_
-    |                  ├── 30b4867ee5e7_users_table.cpython-38.pyc
-    |            ├── 30b4867ee5e7_users_table.py
-    |      ├── .DS_Store
-    |      ├── alembic.config
-    |      ├── env.py
-    |      ├── README
-    |      ├── script.py.mako
-    |   ├── .DS_Store
-    |   ├── .env
-    |   ├── .flaskenv
-    |   ├── geckodriver.txt
-    |   ├── HOW TO RUN
-    |   ├── launch terminal shortcut.cmd
-    |   ├── requirements.txt
-    ├── .DS_Store
-    ├── Online quiz.bsd
-    ├──          
+    │           ├── Admin Dashbord 
+    │
+    │
+    │
+    │
+    ├──         
     └── ...
   
   
   
   
 ## Design 
+
+### Screenshots 
+Login Page 
+![Login Page](/Screenshots/login.PNG)
+Register Page for New Users 
+![Register](/Screenshots/register.PNG)
+
+The following images are related to the admin:
+
+Page to disable/enable topics
+![Admin Dashboard](/Screenshots/admin/admin%20dashboard.PNG)
+Returns the score for each student after an quiz has been attempted by a student
+![Class Scores](/Screenshots/student/classscores.png)
+Page to disable/enable students + option given to delete students
+![Manage Students](/Screenshots/student/managestudents.png)
+
+
+The following images are related to the student
+Students cna choose from the quiz options that they would like to attempt
+![Test Topics](/Screenshots/student/testtopic.png)
+shows the student score 
+![My Score](/Screenshots/student/student%20scores.PNG)
+Game Design, so bascially if you get a letter right, the bar becomes green
+![Game Design](/Screenshots/student/Question%20Page.PNG)
+Game Design, if incorrect letter is added then bar turns red
+![Wrong Answer](/Screenshots/student/Qpage%20wrong%20ans.PNG)
+results page after the quiz has ended
+![Result Page](/Screenshots/student/Results%20page.PNG)
