@@ -99,19 +99,26 @@ Admins will also be able to see the highest score attained for each subject by t
 
 ## Testing
 ### Manual Testing using uniitests 
+  
+#### Cross Browser Compatible
+  * Works on all three engines: Internet Explorer, Firefox and Google Chrome 
+#### Code Validation 
+  * Works prefectly for the following validators checks for HTML and CSS on [W3C](https://validator.w3.org/)
+#### Backend Testing 
+  * The Application that i have tested is the quiz platform TYPEit. I have computed comprehensive tests for the login and register 
 #### How to Execute 
   * ensure you are within the `Main Folder` directory,
   * on the terminal run: `python3 -m flask_app.tests.backend`
   
-### Cross Browser Compatible
-  * Works on all three engines: Internet Explorer, Firefox and Google Chrome 
-### Code Validation 
-  * Works prefectly for the following validators checks for HTML and CSS on [W3C](https://validator.w3.org/)
-### Backend Testing 
-  * The Application that i have tested is the quiz platform TYPEit. I have computed comprehensive tests for the login and register 
-  
-### 
-* Automation Testing using selenium testing
+### Automation Testing using selenium testing
+  * For the TYPEit quiz application, i have computed fully automated tests using unittests. This is executable on firefox. I have ran 5 seperates tests
+    1. New User trys to make an new account on `http://localhost/register`, however authentication fails as there is already a pre-existing username in the database. In return the following messages appears on the screen: `This username is taken, try again.`
+    2. New User makes an new account with a unquie username. The register page redirects to the login, and user can access the contents
+    3. The admin logins with its username and password, and can access all the following pages: `/select-topics`, `/Class-scores`,`/Manage-students`
+    4. The student logins in with its username and password, and can access all the following wpages `/choose-test-topic`, `/my-scores`
+    5. Finally, a automated test where the students logins in with its details, and plays a quiz. I give a automated demonstration of a student playing the quiz, and recieving its scores. 
+
+#### How to Execute 
   * ensure you are within the `Main Folder` directory, 
   * on the terminal run: `python3 -m flask_app.tests.frontend`
   
