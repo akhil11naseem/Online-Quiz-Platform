@@ -67,8 +67,11 @@ Admins will also be able to see the highest score attained for each subject by t
   * SQLite 
   *	SQLAlchemy
   * Jinja2 Templating for HTML
+  
+* Git Bash and Github
 
-## Agile Methodology
+## Methodology
+  1. Throughout this project, we used trello as our base group to keep track of what had to be completed, what was completed, and who was assigned each task. We first discussed and planned about the potential quiz platform ideas, and created a basic template of what we thought would be appelling to us and the audience
 
 
 ## Routes 
@@ -128,5 +131,9 @@ Admins will also be able to see the highest score attained for each subject by t
   * ensure you are within the `Main Folder` directory, 
   * on the terminal run: `python3 -m flask_app.tests.frontend`
   
-  
+## Potential Future Features 
+* Give the users and admin the flexability to change their password and username
+* Flexability towards the question set variation, for instance: pictionary
+* have a really big databse, to give mix the order of the question set 
+
 ## Design 
