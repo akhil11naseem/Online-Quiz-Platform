@@ -5,7 +5,7 @@ from flask_login import login_user, current_user
 
 from flask_app.extensions import db
 from flask_app.models import User, Topic, Results
-#Using flask blueprint for resource use with routes 
+#Using flask blueprint for resource use with routes
 auth = Blueprint('auth', __name__)
 #default route for website returns user to login
 @auth.route('/')
@@ -18,7 +18,7 @@ def register():
     error_message = ''
 #check if user is already logged in and displays error message
     if current_user.is_authenticated:
-        return '<h1>Already logged in, go back.</h1>'
+        return '<h1 id="h1_error">Already logged in, go back.</h1>'
         #get user input for username and unhashed password for new entry into database
     if request.method=='POST':
         username = request.form['username']
@@ -27,7 +27,7 @@ def register():
 
         if User.query.filter_by(username=username).all():
             error_message = 'This username is taken, try again.'
-            
+
         else:
 #sets user privileges to student and then committ to db
 #get all results from db and add top score
@@ -61,7 +61,7 @@ def login():
 #check if user is already authenticated and trying to access this site
     error_message = ''
     if current_user.is_authenticated:
-        return '<h1>Already logged in, go back.</h1>'
+        return '<h1 id="h1_error">Already logged in, go back.</h1>'
 #Check if correct password or username
     if request.method == 'POST':
         username = request.form['username']

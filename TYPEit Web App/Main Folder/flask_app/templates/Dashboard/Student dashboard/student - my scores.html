@@ -36,6 +36,9 @@
                 <div class="row border-bottom">
                     <div class="col">
                         <h1 class="mt-5" style="font-weight: bold;font-size: 60px;">Good job, {{ name }}!</h1>
+                        <div class="help-tip">
+                          <p>Here is a tabulated list of all your scores against the class top scores. Topics that haven't been attempted will not show a score.</p>
+                        </div>
                     </div>
                 </div>
                 <div class="row my-3">
@@ -57,19 +60,23 @@
                         <tbody style="color: rgb(0,0,0);">
                             <!--Function for updating top score or setting one if there was not one already both for the current user and the best in class for the topic-->
                             {% for result in myResults %} {% for topic in topics %} {% for topResult in topResults %}
+                            {% if result.result_for_topic_id == topic.id %}
+                            {% if topResult.result_for_topic_id == topic.id %}
                             <tr class="class-scores-row">
-                                {% if result.result_for_topic_id == topic.id %} {% if topResult.result_for_topic_id == topic.id %}
                                 <td>{{ topic.name }}</td>
                                 <td>{% if result.score is none %}-{% else %}{{ result.score }}{% endif %}</td>
                                 <td>{% if topResult.score is none %}-{% else %}{{ topResult.score }}{% endif %}</td>
-                                {% endif %} {% endif %}
                             </tr>
+                            {% endif %} {% endif %}
                             {% endfor %} {% endfor %} {% endfor %}
                         </tbody>
                     </table>
                 </div>
             </div>
         </div>
+        <footer class="fixed-bottom">
+          <p class="mr-2" style="font-size: 0.5em; position:absolute; bottom:0; right:0;">Authors: Akhil Naseem, Varun Jain, Lance Chew</p>
+        </footer>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
