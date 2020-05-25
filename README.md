@@ -57,7 +57,7 @@ Admin Story
 ## Instructions 
 
 * Download the respository 
-* Navigate throught the respoitory to the Main Folder
+* Navigate throught the respoitory to the `Main Folder`
 * Set up the virtual environment through the following commonds on the terminal 
   *`python3 -m venv venv` 
   * `source venv/bin/activate`
