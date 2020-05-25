@@ -98,7 +98,7 @@ Admins will also be able to see the highest score attained for each subject by t
   * `source venv/bin/activate` for macOS or `source venv/Script/activate` for Windows
   * `pip install -r requirements.txt`
   * `flask run`
-  * `Open browser to the local host URL: http://127.0.0.1:5000
+  * `Open browser to the local host URL:`http://127.0.0.1:5000`
 
 ## Testing
 ### Manual Testing using uniitests 
@@ -137,3 +137,10 @@ Admins will also be able to see the highest score attained for each subject by t
 * have a really big databse, to give mix the order of the question set 
 
 ## Design 
+
+The following image is the database structure we implemented in our TYPEit Quiz Platform 
+* The database consists of three categories: User, Results and Topic. 
+  * User table holds the specific id of all users, login information, their hashed password, privilege details of each user and a Boolean value that denotes whether or not the student account is enabled by the admin.
+  * The result table is the link between the User Table and the topic table, it stores a users id and the result of a specifc topic 
+  * The The topic table holds the unique id of the different topics for the quiz, its name and its associated question sets to be selected by the student.
+  
