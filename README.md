@@ -46,7 +46,7 @@ Admin Story
 
 
 ## Modules 
-* [Flask]
+* [Flask](http://flask.pocoo.com) - `pip install Flask`
 * [Flask-SQLAlchemy]
 
 
