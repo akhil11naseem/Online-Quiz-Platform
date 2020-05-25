@@ -143,32 +143,12 @@ The following image is the database structure we implemented in our TYPEit Quiz 
   * User table holds the specific id of all users, login information, their hashed password, privilege details of each user and a Boolean value that denotes whether or not the student account is enabled by the admin.
   * The result table is the link between the User Table and the topic table, it stores a users id and the result of a specifc topic 
   * The The topic table holds the unique id of the different topics for the quiz, its name and its associated question sets to be selected by the student.
+  ![str](/Screenshots/ERDAWD.png)
   
+## Directory Layout 
   
-  ## Directory Layout 
-  
-    .
-    ├── TYPEit
-    ├── Main Folder                   
-    │   ├── migrations     
-    │   ├── requirements.txt    
-    │   ├── flask_app          
-    │       ├── routes 
-    │       │   ├── __init__.py
-    │       │   ├── auth.py
-    │       │   ├── main.py
-    │       │
-    │       ├── templates 
-    │           ├── Admin Dashbord 
-    │
-    │
-    │
-    │
-    ├──         
-    └── ...
-  
-  
-  
+  ![Dir](/Screenshots/directory_structure.png)
+    
   
 ## Design 
 
