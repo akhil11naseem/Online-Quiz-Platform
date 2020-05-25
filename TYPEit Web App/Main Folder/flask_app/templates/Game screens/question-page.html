@@ -70,11 +70,7 @@
     <script src="{{ url_for('static', filename='assets/js/timer.js')}}"></script>
     <script src="{{ url_for('static', filename='assets/js/checkAnswer.js')}}"></script>
     <script>
-        var questions_JSON = {
-            {
-                questions_arr | tojson | safe
-            }
-        };
+        var questions_JSON = {{questions_arr | tojson | safe}};
         var topic_name = "{{ topic_name }}";
 
         $('#hint-and-answer-input').on("input", function() {
