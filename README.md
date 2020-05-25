@@ -65,6 +65,7 @@ Admin Story
   * Flask 
   * SQLite 
   *	SQLAlchemy
+  * Jinja2 Templating for HTML
 
 ## Instructions 
 
