@@ -59,7 +59,7 @@ Admin Story
   * CSS
   * Bootstrap 
   * Javascript 
-  * JQuery
+  * JQuery - allows for DOM manipulation and Ajax requests
   
 * Server Side 
   * Flask 
