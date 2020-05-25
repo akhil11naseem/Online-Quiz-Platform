@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request, session, Response
+from flask import Blueprint, render_template, request, session, Response, redirect, url_for
 from flask_login import current_user, login_required, logout_user
 from flask_app.extensions import db
 from flask_app.models import User, Topic, Results
@@ -95,6 +95,7 @@ def updateManageStudents():
         update_val = 1;
     else:
         update_val = 0;
+
 #update db on boolean value of enabled status
 
     student = User.query.get(id)
@@ -102,6 +103,22 @@ def updateManageStudents():
     db.session.commit()
 
     return ("updated 'enabled' column of student " + student.username + " to " + checked)
+
+@main.route('/delete-student', methods = ['POST','GET'])
+@login_required
+@requires_admin_access()
+def deleteStudent():
+#function allowing the enabling and disabling of student accounts
+
+    if request.method == 'POST':
+        delete_id = request.get_json()['delete_id'][0]
+        student = User.query.get(delete_id)
+        delete_q = Results.__table__.delete().where(Results.result_of_user_id == delete_id)
+        db.session.execute(delete_q)
+        db.session.delete(student)
+        db.session.commit()
+
+    return redirect(url_for('main.manageStudents'))
 
 @main.route('/select-topics')
 @login_required
