@@ -171,3 +171,7 @@ The following image is the database structure we implemented in our TYPEit Quiz 
   
   
 ## Design 
+
+### Screenshots 
+* ![Login](/screenshots/login.PNG)
+* ![Register](/screenshots/register.PNG)
