@@ -70,25 +70,8 @@ Admins will also be able to see the highest score attained for each subject by t
   
 * Git Bash and Github
 
-## Agile Development Methodology
-
-For the development lifecycle, we used the vanilla agile scrum methodology. By using a Trello board with lists (TO DO, IN PROGRESS, and DONE), we were able to list out the main user stories with their motivations and acceptence criteria.
-
-Sprint 1:
-* Brainstorm ideas for quiz platforms
-* Create MVP for finalised idea
-
-Sprint 2:
-* Create wireframes for MVP
-* Build static HTML pages with Bootstrap CSS
-
-Sprint 3:
-* Build database and python flask app
-
-Sprint 4:
-* Unit testing
-* Selenium testing
-* Documentation
+## Methodology
+  1. Throughout this project, we used trello as our base group to keep track of what had to be completed, what was completed, and who was assigned each task. We first discussed and planned about the potential quiz platform ideas, and created a basic template of what we thought would be appelling to us and the audience
 
 
 ## Routes 
@@ -106,7 +89,7 @@ Sprint 4:
     * `http://localhost/choose-topic-test` - provided with a range of options with quiz topics
     * `http://localhost/my-scores`  - shows the students their individual scores, alongside with the highest score in the class
 
-## Instructions
+## Instructions 
 
 * Download the respository 
 * Navigate throught the respoitory to the `Main Folder`
@@ -115,42 +98,76 @@ Sprint 4:
   * `source venv/bin/activate` for macOS or `source venv/Script/activate` for Windows
   * `pip install -r requirements.txt`
   * `flask run`
-  * Open browser to the local host URL: `http://127.0.0.1:5000`
+  * `Open browser to the local host URL:`http://127.0.0.1:5000`
 
 ## Testing
-### Manual Testing using unit tests 
-
+### Manual Testing using uniitests 
+  
 #### Cross Browser Compatible
   * Works on all three engines: Internet Explorer, Firefox and Google Chrome 
 #### Code Validation 
-  * Tested for HTML and CSS on [W3C](https://validator.w3.org/)
-#### Backend Testing
-    1. Ensuring that the user logins with the correct credentials, 
-    2. Ensuring that no unregistered user can access the system without proper authentication, 
-    3. Ensuring no duplicate usernames, new user cannot register with a username that is already in the database.
-    4. Ensuring pages get redirected to the right URLs, no mismatch between the admin and student links.
+  * Works prefectly for the following validators checks for HTML and CSS on [W3C](https://validator.w3.org/)
+#### Backend Testing 
+  * The Application that i have tested is the quiz platform TYPEit. I have computed comprehensive tests for the login and register system. Some include:
+    1. ensuring that the user logins with the correct credentials, 
+    2. ensure that no unregistered user can access the system without proper authentication, 
+    3. no duplicate useranmes, new user cannot register with a username that is already in the database
+    4. Ensure pages get redirected to the right loctions, no mismatch between the admin and student links 
+    5. Ensures admin can only access the admin links, and students can only access links provided to them in the game. 
     
-#### How to Execute
+#### How to Execute 
   * ensure you are within the `Main Folder` directory,
   * on the terminal run: `python3 -m flask_app.tests.backend`
   
-### User Testing with Selenium Tests
-This test series uses Firefox and GeckoDriver to perform automated selenium tests. There are five tests:
-
-    1. New user tries to register an new account via `http://localhost/register`, however authentication fails as there is already a pre-existing user with the same username in the database. In return, the following message appears on the screen: `This username is taken, try again.`
-    2. New user makes an new account with a unquie username. On success, the page redirects to the login page, and user can proceed to login.
-    3. The admin logs in with correct username and password, and can access all the following pages: `/select-topics`, `/Class-scores`,`/Manage-students`
-    4. The student logs in in with correct username and password, and can access all the following wpages `/choose-test-topic`, `/my-scores`
-    5. Finally, a automated test where the students logins in with its details, and plays a quiz.
+### Automation Testing using selenium testing
+  * For the TYPEit quiz application, i have computed fully automated tests using unittests. This is executable on firefox. I have ran 5 seperates tests
+    1. New User trys to make an new account on `http://localhost/register`, however authentication fails as there is already a pre-existing username in the database. In return the following messages appears on the screen: `This username is taken, try again.`
+    2. New User makes an new account with a unquie username. The register page redirects to the login, and user can access the contents
+    3. The admin logins with its username and password, and can access all the following pages: `/select-topics`, `/Class-scores`,`/Manage-students`
+    4. The student logins in with its username and password, and can access all the following wpages `/choose-test-topic`, `/my-scores`
+    5. Finally, a automated test where the students logins in with its details, and plays a quiz. I give a automated demonstration of a student playing the quiz, and recieving its scores. 
 
 #### How to Execute 
   * ensure you are within the `Main Folder` directory, 
   * on the terminal run: `python3 -m flask_app.tests.frontend`
   
 ## Potential Future Features 
-* Give the users and admin the flexibility to change their password and username
+* Give the users and admin the flexability to change their password and username
 * Flexability towards the question set variation, for instance: pictionary
-* Ability for admin to assign other admins.
-* Adding audio cues for timer 
+* have a really big databse, to give mix the order of the question set 
 
-## Design
+## Project Structure 
+
+The following image is the database structure we implemented in our TYPEit Quiz Platform 
+* The database consists of three categories: User, Results and Topic. 
+  * User table holds the specific id of all users, login information, their hashed password, privilege details of each user and a Boolean value that denotes whether or not the student account is enabled by the admin.
+  * The result table is the link between the User Table and the topic table, it stores a users id and the result of a specifc topic 
+  * The The topic table holds the unique id of the different topics for the quiz, its name and its associated question sets to be selected by the student.
+  
+  
+  ## Directory Layout 
+  
+    .
+    ├── TYPEit
+    ├── Main Folder                   
+    │   ├── migrations     
+    │   ├── requirements.txt    
+    │   ├── flask_app          
+    │       ├── routes 
+    │       │   ├── __init__.py
+    │       │   ├── auth.py
+    │       │   ├── main.py
+    │       │
+    │       ├── templates 
+    │           ├── Admin Dashbord 
+    │
+    │
+    │
+    │
+    ├──         
+    └── ...
+  
+  
+  
+  
+## Design 
