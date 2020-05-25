@@ -105,7 +105,13 @@ Admins will also be able to see the highest score attained for each subject by t
 #### Code Validation 
   * Works prefectly for the following validators checks for HTML and CSS on [W3C](https://validator.w3.org/)
 #### Backend Testing 
-  * The Application that i have tested is the quiz platform TYPEit. I have computed comprehensive tests for the login and register 
+  * The Application that i have tested is the quiz platform TYPEit. I have computed comprehensive tests for the login and register system. Some include:
+    1. ensuring that the user logins with the correct credentials, 
+    2. ensure that no unregistered user can access the system without proper authentication, 
+    3. no duplicate useranmes, new user cannot register with a username that is already in the database
+    4. Ensure pages get redirected to the right loctions, no mismatch between the admin and student links 
+    5. Ensures admin can only access the admin links, and students can only access links provided to them in the game. 
+    
 #### How to Execute 
   * ensure you are within the `Main Folder` directory,
   * on the terminal run: `python3 -m flask_app.tests.backend`
