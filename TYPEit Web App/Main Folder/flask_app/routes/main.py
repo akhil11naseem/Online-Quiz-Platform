@@ -6,7 +6,7 @@ from functools import wraps
 import json
 
 main = Blueprint('main', __name__)
-
+#decorator function to check if user is admin and trying to access admin pages and to display message if not
 def requires_admin_access():
     def decorator(f):
         @wraps(f)
@@ -17,7 +17,7 @@ def requires_admin_access():
             return f(*args, **kwargs)
         return decorated_function
     return decorator
-
+#decorator function to check if user is admin and trying to access student pages
 def requires_student_access():
     def decorator(f):
         @wraps(f)
@@ -36,6 +36,7 @@ def changePassword():
 
 @main.route('/logout')
 def logout():
+#logic check if authenticated at time of logout
     logged_out_message=''
     status_code=500
     if current_user.is_authenticated:
@@ -45,11 +46,15 @@ def logout():
     else:
         logged_out_message = "Please log in"
         status_code=401
+#return the values into class scores page with results/students/topics already queried from db
+
     return (render_template('Dashboard/log in.html', message=logged_out_message), status_code)
 
 @main.route('/class-scores')
+#calling decorator functions for admin page
 @login_required
 @requires_admin_access()
+#query for all in results/user/topic tables
 def classScores():
     results = Results.query.filter_by().all()
     students = User.query.filter_by(student=True).all()
@@ -60,25 +65,29 @@ def classScores():
         'students' : students,
         'topics' : topics
     }
+#return the values into class scores page with results/students/topics already queried from db
 
     return render_template('Dashboard/Admin dashboard/class scores.html',  **context)
 
 @main.route('/manage-students')
+#calling decorator functions for admin access
 @login_required
 @requires_admin_access()
 def manageStudents():
+#query for students table
     students = User.query.filter_by(student=True).all()
 
     context = {
         'students' : students
     }
-
+#pass student values into manage students page
     return render_template('Dashboard/Admin dashboard/manage students.html', **context)
 
 @main.route('/update-manage-students', methods = ['POST','GET'])
 @login_required
 @requires_admin_access()
 def updateManageStudents():
+#function allowing the enabling and disabling of student accounts
     id = int(request.args.get('id'))
     checked = request.args.get('checked')
 
@@ -86,6 +95,7 @@ def updateManageStudents():
         update_val = 1;
     else:
         update_val = 0;
+#update db on boolean value of enabled status
 
     student = User.query.get(id)
     student.enabled = update_val
@@ -97,14 +107,16 @@ def updateManageStudents():
 @login_required
 @requires_admin_access()
 def selectTopics():
-
+#full query of topics and return to the select topics page
     topics = Topic.query.all()
 
     context = {
         'topics' : topics
     }
+#send topic values to student dashboard. Note that this should carry the boolean values set by admin
 
     return render_template('Dashboard/Admin dashboard/select topics.html', **context)
+#route for update-available-topics which takes the checked value of the topic button and sets the boolean value depending on the checked state.
 
 @main.route('/update-available-topics', methods = ['POST','GET'])
 @login_required
@@ -117,6 +129,7 @@ def updateAvailableTopics():
         update_val = 1;
     else:
         update_val = 0;
+#update DB on the boolean value of checked topics
 
     topic = Topic.query.get(id)
     topic.enabled = update_val
@@ -139,6 +152,7 @@ def chooseTestTopic():
 @login_required
 @requires_student_access()
 def myScores():
+#get top results from database via SQL query and display for student in myscores page
     myResults = Results.query.filter_by(result_of_user_id=current_user.id).all()
 
     topResults_rowproxy = db.engine.execute("SELECT result_for_topic_id, score FROM( SELECT *, ROW_NUMBER()OVER(PARTITION BY result_for_topic_id ORDER BY score DESC) rn FROM Results)X WHERE rn = 1")
@@ -159,8 +173,9 @@ def myScores():
 @login_required
 @requires_student_access()
 def questionPage():
+#requests the argument topic_name to set the correct question set for the quiz
     topic_name = request.args.get('topic_name')
-
+#set question array and find the first question
     questions_arr = eval(Topic.query.filter_by(name=topic_name).first().questions)
 
     context = {
@@ -175,6 +190,7 @@ def questionPage():
 @requires_student_access()
 def resultsPage():
     context = {}
+#function for updating the results into db for each student
     if request.method == 'POST':
         resultsDict = request.get_json()
         context = {

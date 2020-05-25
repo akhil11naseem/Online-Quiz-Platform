@@ -1,79 +1,82 @@
 <!DOCTYPE html>
 <html>
+<!--Loading external stylesheets in header-->
 
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-  <title>Admin-Select Topics</title>
-  <link rel="stylesheet" href="{{ url_for('static', filename='assets/bootstrap/css/bootstrap.min.css')}}">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,600,700,800,900">
-  <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/main.css')}}">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Admin-Select Topics</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/bootstrap/css/bootstrap.min.css')}}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,600,700,800,900">
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/main.css')}}">
 </head>
 
 <body>
-  <div class="container-fluid fill">
-    <div class="row">
-      <div class="col-lg-3 border-right left-main-column">
-        <nav class="navbar navbar-light d-xl-flex justify-content-xl-start mt-5">
-          <div class="container-fluid d-flex flex-column p-0">
-            <h2 class="text-center mt-3" style="font-weight: bold;font-size: 35px;">Settings</h2>
-            <a class="text-center nav-item nav-link current-page" href="{{ url_for('main.selectTopics') }}">Select topics</a>
+    <div class="container-fluid fill">
+        <div class="row">
+            <div class="col-lg-3 border-right left-main-column">
+                <nav class="navbar navbar-light d-xl-flex justify-content-xl-start mt-5">
+                    <div class="container-fluid d-flex flex-column p-0">
+                        <!--Code for the settings bar still active within this module-->
 
-            <a class="text-center nav-item nav-link" href="{{ url_for('main.classScores') }}">Class scores</a>
+                        <h2 class="text-center mt-3" style="font-weight: bold;font-size: 35px;">Settings</h2>
+                        <a class="text-center nav-item nav-link current-page" href="{{ url_for('main.selectTopics') }}">Select topics</a>
 
-            <a
-            class="text-center nav-item nav-link" href="{{ url_for('main.manageStudents') }}">Manage students</a>
+                        <a class="text-center nav-item nav-link" href="{{ url_for('main.classScores') }}">Class scores</a>
 
-            <a class="text-center nav-item nav-link" href="{{ url_for('main.changePassword') }}">Change password</a>
+                        <a class="text-center nav-item nav-link" href="{{ url_for('main.manageStudents') }}">Manage students</a>
 
-            <a class="text-center nav-item nav-link" href="{{ url_for('main.logout') }}">Log out</a>
+                        <a class="text-center nav-item nav-link" href="{{ url_for('main.changePassword') }}">Change password</a>
 
-          </div>
-        </nav>
-      </div>
-      <div class="col right-main-column" id="content-column">
-        <div class="row border-bottom">
-          <div class="col">
-            <h1 class="mt-5 main-heading" id = "Welcome">Welcome, Admin!</h1>
-          </div>
-        </div>
-        <div class="row my-3">
-          <div class="col">
-            <h2 class="text-left mt-3" style="font-weight: bold;font-size: 35px;">Toggle topics for students</h2>
-          </div>
-        </div>
-        <div class="row d-flex flex-wrap mt-3 mb-5">
-          <div class="col">
-            <div class="btn-group-toggle" data-toggle="buttons">
-              {% for topic in topics %}
-              <label class="btn topic-btn {% if topic.enabled %}btn-success{% else %}btn-outline-danger{% endif %}">{{ topic.name }}
-                <input type="checkbox" id="{{ topic.id }}" class="topic-btn-input" autocomplete="off" {% if topic.enabled %}checked{% endif %}>
-              </label>
-              {% endfor %}
+                        <a class="text-center nav-item nav-link" href="{{ url_for('main.logout') }}">Log out</a>
+
+                    </div>
+                </nav>
             </div>
-          </div>
+            <div class="col right-main-column" id="content-column">
+                <div class="row border-bottom">
+                    <div class="col">
+                        <h1 class="mt-5 main-heading" id="Welcome">Welcome, Admin!</h1>
+                    </div>
+                </div>
+                <div class="row my-3">
+                    <div class="col">
+                        <h2 class="text-left mt-3" style="font-weight: bold;font-size: 35px;">Toggle topics for students</h2>
+                    </div>
+                </div>
+                <div class="row d-flex flex-wrap mt-3 mb-5">
+                    <div class="col">
+                        <div class="btn-group-toggle" data-toggle="buttons">
+                            <!--Get all topics with the checkbox visible and draw for user-->
+                            {% for topic in topics %}
+                            <label class="btn topic-btn {% if topic.enabled %}btn-success{% else %}btn-outline-danger{% endif %}">{{ topic.name }}
+                <input type="checkbox" id="{{ topic.id }}" class="topic-btn-input" autocomplete="off" {% if topic.enabled %}checked{% endif %}>
+              </label> {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
-  <script src="{{ url_for('static', filename='assets/js/bs-init.js')}}"></script>
-  <script src="{{ url_for('static', filename='assets/js/topic button.js')}}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ url_for('static', filename='assets/js/bs-init.js')}}"></script>
+    <script src="{{ url_for('static', filename='assets/js/topic button.js')}}"></script>
+    <!--Inline script for the checkbox function of the topics. Once checked, this updates to database and the boolean value changes-->
 
-  <script type="text/javascript">
-  $(document).ready(function () {
-    $('.topic-btn-input').on('click', function (event) {
-      var id = event.target.id;
-      var checked = document.getElementById(id).checked;
-      $.getJSON('/update-available-topics', {
-        id:id,
-        checked:checked
-      });
-    });
-  });
-  </script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('.topic-btn-input').on('click', function(event) {
+                var id = event.target.id;
+                var checked = document.getElementById(id).checked;
+                $.getJSON('/update-available-topics', {
+                    id: id,
+                    checked: checked
+                });
+            });
+        });
+    </script>
 </body>
 
 </html>

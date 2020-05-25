@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+<!--Loading external style sheets in header-->
 
 <head>
     <meta charset="utf-8">
@@ -15,24 +16,27 @@
     <div class="container-fluid fill">
         <div class="row">
             <div class="col-lg-3 border-right left-main-column">
-              <nav class="navbar navbar-light d-xl-flex justify-content-xl-start mt-5">
-                <div class="container-fluid d-flex flex-column p-0">
-                  <h2 class="text-center mt-3" style="sans-serif;font-weight: bold;font-size: 35px;">Settings</h2>
+                <nav class="navbar navbar-light d-xl-flex justify-content-xl-start mt-5">
+                    <div class="container-fluid d-flex flex-column p-0">
+                        <!--Code for left hand side settings bar with references to the related pages-->
+                        <h2 class="text-center mt-3" style="sans-serif;font-weight: bold;font-size: 35px;">Settings</h2>
 
-                  <a class="text-center nav-item nav-link current-page" href="{{ url_for('main.chooseTestTopic') }}">Test topics</a>
+                        <a class="text-center nav-item nav-link current-page" href="{{ url_for('main.chooseTestTopic') }}">Test topics</a>
 
-                  <a class="text-center nav-item nav-link" href="{{ url_for('main.myScores') }}">My scores</a>
+                        <a class="text-center nav-item nav-link" href="{{ url_for('main.myScores') }}">My scores</a>
 
-                  <a class="text-center nav-item nav-link" href="{{ url_for('main.changePassword') }}">Change password</a>
+                        <a class="text-center nav-item nav-link" href="{{ url_for('main.changePassword') }}">Change password</a>
 
-                  <a class="text-center nav-item nav-link" href="{{ url_for('main.logout') }}">Log out</a>
-                </div>
-              </nav>
+                        <a class="text-center nav-item nav-link" href="{{ url_for('main.logout') }}">Log out</a>
+                    </div>
+                </nav>
             </div>
             <div class="col right-main-column">
                 <div class="row border-bottom">
                     <div class="col">
-                        <h1 class="mt-5" id = "Welcome" style="font-weight: bold;font-size: 60px;">Welcome, {{ name }}!</h1>
+                        <!--Text to player recognising user currently logged in-->
+
+                        <h1 class="mt-5" id="Welcome" style="font-weight: bold;font-size: 60px;">Welcome, {{ name }}!</h1>
                     </div>
                 </div>
                 <div class="row my-3">
@@ -41,35 +45,41 @@
                     </div>
                 </div>
                 <div class="row d-flex flex-wrap mt-3 mb-5">
-                  {% for topic in topics %}
-                      <button type = "button" class = "btn topic-btn {% if topic.enabled %}btn-success {% endif %}" id="{{ topic.name }}" {% if not(topic.enabled) %} style = "text-decoration: line-through;" disabled {% endif %}>
+                    <!--Find and show all topics. They will be available or unavailable based on the boolean value handled by the DB.-->
+
+                    {% for topic in topics %}
+                    <button type="button" class="btn topic-btn {% if topic.enabled %}btn-success {% endif %}" id="{{ topic.name }}" {% if not(topic.enabled) %} style="text-decoration: line-through;" disabled {% endif %}>
                           {{ topic.name }}
-                      </button>
-                  {% endfor %}
-                  </div>
-              </div>
+                      </button> {% endfor %}
                 </div>
             </div>
         </div>
+    </div>
+    </div>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
     <script src="{{ url_for('static', filename='assets/js/bs-init.js')}}"></script>
     <script src="{{ url_for('static', filename='assets/js/topic button.js')}}"></script>
+
+    <!--Inline script for the topic buttons that when clicked will take the user to question-page along with the variable topic-name which tells the questions page which question set to load-->
+
     <script>
-      $(document).ready(function () {
-        $('.topic-btn').on('click', function (event) {
-          var topic_name = event.target.id;
-          $.ajax({
-            url: "/question-page",
-            type: "GET",
-            data: { topic_name: topic_name},
-            success: function(data) {
-              window.location.href = this.url;
-            }
-          });
+        $(document).ready(function() {
+            $('.topic-btn').on('click', function(event) {
+                var topic_name = event.target.id;
+                $.ajax({
+                    url: "/question-page",
+                    type: "GET",
+                    data: {
+                        topic_name: topic_name
+                    },
+                    success: function(data) {
+                        window.location.href = this.url;
+                    }
+                });
+            });
         });
-      });
     </script>
 </body>
 

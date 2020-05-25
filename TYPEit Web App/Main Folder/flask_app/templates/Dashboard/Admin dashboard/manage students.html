@@ -15,22 +15,23 @@
     <div class="container-fluid fill">
         <div class="row">
             <div class="col-lg-3 border-right left-main-column">
-              <nav class="navbar navbar-light d-xl-flex justify-content-xl-start mt-5">
-                <div class="container-fluid d-flex flex-column p-0">
-                  <h2 class="text-center mt-3" style="font-weight: bold;font-size: 35px;">Settings</h2>
-                  <a class="text-center nav-item nav-link" href="{{ url_for('main.selectTopics') }}">Select topics</a>
+                <nav class="navbar navbar-light d-xl-flex justify-content-xl-start mt-5">
+                    <div class="container-fluid d-flex flex-column p-0">
+                        <!--Settings bar on left side with styled buttons that lead to related webpages via reference-->
 
-                  <a class="text-center nav-item nav-link" href="{{ url_for('main.classScores') }}">Class scores</a>
+                        <h2 class="text-center mt-3" style="font-weight: bold;font-size: 35px;">Settings</h2>
+                        <a class="text-center nav-item nav-link" href="{{ url_for('main.selectTopics') }}">Select topics</a>
 
-                  <a
-                  class="text-center nav-item nav-link current-page" href="{{ url_for('main.manageStudents') }}">Manage students</a>
+                        <a class="text-center nav-item nav-link" href="{{ url_for('main.classScores') }}">Class scores</a>
 
-                  <a class="text-center nav-item nav-link" href="{{ url_for('main.changePassword') }}">Change password</a>
+                        <a class="text-center nav-item nav-link current-page" href="{{ url_for('main.manageStudents') }}">Manage students</a>
 
-                  <a class="text-center nav-item nav-link" href="{{ url_for('main.logout') }}">Log out</a>
+                        <a class="text-center nav-item nav-link" href="{{ url_for('main.changePassword') }}">Change password</a>
 
-                </div>
-              </nav>
+                        <a class="text-center nav-item nav-link" href="{{ url_for('main.logout') }}">Log out</a>
+
+                    </div>
+                </nav>
             </div>
             <div class="col right-main-column">
                 <div class="row border-bottom">
@@ -43,6 +44,7 @@
                         <h2 class="text-left mt-3" style="font-weight: bold;font-size: 35px;">Manage students</h2>
                     </div>
                 </div>
+                <!--table object for manage students-->
                 <div class="table-responsive" id="manage-students-table">
                     <table class="table table-bordered">
                         <thead style="color: rgb(0,0,0);">
@@ -52,17 +54,21 @@
                             </tr>
                         </thead>
                         <tbody>
-                          {% for student in students %}
-                          <tr class="class-scores-row">
-                              <td>{{ student.username }}</td>
-                              <td>
-                                  <div class="student-switch">
-                                    <input type="checkbox" id="{{ student.id }}" class="student-switch-checkbox" name="student{{ student.id }}-switch" {% if student.enabled %}checked{% endif %}>
-                                    <label class="student-switch-label" for="{{ student.id }}"></label>
-                                  </div>
-                              </td>
-                          </tr>
-                          {% endfor %}
+                            <!--Get all students from user table and show usernames-->
+
+                            {% for student in students %}
+                            <tr class="class-scores-row">
+                                <td>{{ student.username }}</td>
+                                <td>
+                                    <!--Checkbox functionality for enabling/disabling students-->
+
+                                    <div class="student-switch">
+                                        <input type="checkbox" id="{{ student.id }}" class="student-switch-checkbox" name="student{{ student.id }}-switch" {% if student.enabled %}checked{% endif %}>
+                                        <label class="student-switch-label" for="{{ student.id }}"></label>
+                                    </div>
+                                </td>
+                            </tr>
+                            {% endfor %}
                         </tbody>
                     </table>
                 </div>
@@ -74,16 +80,16 @@
     <script src="{{ url_for('static', filename='assets/js/bs-init.js')}}"></script>
 
     <script type="text/javascript">
-    $(document).ready(function () {
-      $('.student-switch-checkbox').on('click', function (event) {
-        var id = event.target.id;
-        var checked = document.getElementById(id).checked;
-        $.getJSON('/update-manage-students', {
-          id:id,
-          checked:checked
+        $(document).ready(function() {
+            $('.student-switch-checkbox').on('click', function(event) {
+                var id = event.target.id;
+                var checked = document.getElementById(id).checked;
+                $.getJSON('/update-manage-students', {
+                    id: id,
+                    checked: checked
+                });
+            });
         });
-      });
-    });
     </script>
 </body>
 

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+<!--Loading external style sheets in header-->
 
 <head>
     <meta charset="utf-8">
@@ -17,6 +18,7 @@
             <div class="col-lg-3 border-right left-main-column">
                 <div class="row mt-5" id="points-row">
                     <div class="col">
+                        <!--Points and streak display-->
                         <h1 class="display-4 font-italic" id="points-h1">0</h1>
                         <p>Points</p>
                     </div>
@@ -34,23 +36,27 @@
             <div class="col right-main-column">
                 <div class="row" id="timer-row">
                     <div class="col">
+                        <!--Timer object-->
                         <div id="timer-box" class="border border-dark mx-auto text-center"></div>
                     </div>
                 </div>
                 <div class="row border-bottom align-items-end" id="hint-and-answer-row">
                     <div class="col col-md-8">
-                      <input type="text" id="hint-and-answer-input" placeholder="{{ questions_arr[0].Hint}}" spellcheck="false" autocapitalize="off" autofocus="" value="">
+                        <!--Input field for answers. External JS scripts handle the answer checking and quiz functionality-->
+                        <input type="text" id="hint-and-answer-input" placeholder="{{ questions_arr[0].Hint}}" spellcheck="false" autocapitalize="off" autofocus="" value="">
 
                     </div>
+                    <!--Skip button-->
                     <div class="col"><button class="btn" id="skip-btn">Skip</button></div>
                 </div>
                 <div class="row">
-                  <div class="col">
-                    <hr class="my-0 ml-0" id="hint-hr" style="height:2px;">
-                  </div>
+                    <div class="col">
+                        <hr class="my-0 ml-0" id="hint-hr" style="height:2px;">
+                    </div>
                 </div>
                 <div class="row my-3" id="question-row">
                     <div class="col">
+                        <!--Question text, taken from the first item of the questions_arr array. This value will be iterated via external JS script to show the next question-->
                         <p class="my-0 question-text" id="question-text">{{ questions_arr[0].Question}}</p>
                     </div>
                 </div>
@@ -64,14 +70,17 @@
     <script src="{{ url_for('static', filename='assets/js/timer.js')}}"></script>
     <script src="{{ url_for('static', filename='assets/js/checkAnswer.js')}}"></script>
     <script>
-      var questions_JSON = {{ questions_arr|tojson|safe }};
-      var topic_name = "{{ topic_name }}";
+        var questions_JSON = {
+            {
+                questions_arr | tojson | safe
+            }
+        };
+        var topic_name = "{{ topic_name }}";
 
-      $('#hint-and-answer-input').on("input", function(){
-        checkAnswer(this.value, questions_JSON);
-        hintLine(this.value, questions_JSON);
-      });
-
+        $('#hint-and-answer-input').on("input", function() {
+            checkAnswer(this.value, questions_JSON);
+            hintLine(this.value, questions_JSON);
+        });
     </script>
 </body>
 
