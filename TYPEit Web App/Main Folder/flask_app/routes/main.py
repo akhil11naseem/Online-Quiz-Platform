@@ -6,7 +6,7 @@ from functools import wraps
 import json
 
 main = Blueprint('main', __name__)
-
+#decorator function to check if user is admin and trying to access admin pages and to display message if not
 def requires_admin_access():
     def decorator(f):
         @wraps(f)
@@ -17,7 +17,7 @@ def requires_admin_access():
             return f(*args, **kwargs)
         return decorated_function
     return decorator
-
+#decorator function to check if user is admin and trying to access student pages
 def requires_student_access():
     def decorator(f):
         @wraps(f)
@@ -29,15 +29,16 @@ def requires_student_access():
         return decorated_function
     return decorator
 
-
+#in development
 @main.route('/change-password')
 def changePassword():
     return '<h1>This page is in development. Go back!</h1>'
-
+#route for logout function
 @main.route('/logout')
 def logout():
     logged_out_message=''
     status_code=500
+#logic check if authenticated at time of logout
     if current_user.is_authenticated:
         logout_user()
         logged_out_message = "You are now logged out"
@@ -46,10 +47,12 @@ def logout():
         logged_out_message = "Please log in"
         status_code=401
     return (render_template('Dashboard/log in.html', message=logged_out_message), status_code)
-
+#route for class scores page
 @main.route('/class-scores')
+#calling decorator functions for admin page
 @login_required
 @requires_admin_access()
+#query for all in results/user/topic tables
 def classScores():
     results = Results.query.filter_by().all()
     students = User.query.filter_by(student=True).all()
@@ -60,24 +63,27 @@ def classScores():
         'students' : students,
         'topics' : topics
     }
-
+    #return the values into class scores page with results/students/topics already queried from db
     return render_template('Dashboard/Admin dashboard/class scores.html',  **context)
-
+#route for manage students page
 @main.route('/manage-students')
+#calling decorator functions for admin access
 @login_required
 @requires_admin_access()
+#query for students table
 def manageStudents():
     students = User.query.filter_by(student=True).all()
 
     context = {
         'students' : students
     }
-
+#pass student values into manage students page
     return render_template('Dashboard/Admin dashboard/manage students.html', **context)
 
 @main.route('/update-manage-students', methods = ['POST','GET'])
 @login_required
 @requires_admin_access()
+#function allowing the enabling and disabling of student accounts
 def updateManageStudents():
     id = int(request.args.get('id'))
     checked = request.args.get('checked')
@@ -86,7 +92,7 @@ def updateManageStudents():
         update_val = 1;
     else:
         update_val = 0;
-
+#update db on boolean value of enabled status
     student = User.query.get(id)
     student.enabled = update_val
     db.session.commit()
@@ -94,8 +100,10 @@ def updateManageStudents():
     return ("updated 'enabled' column of student " + student.username + " to " + checked)
 
 @main.route('/select-topics')
+#decorator functions for admin access
 @login_required
 @requires_admin_access()
+#full query of topics and return to the select topics page
 def selectTopics():
 
     topics = Topic.query.all()
@@ -105,7 +113,7 @@ def selectTopics():
     }
 
     return render_template('Dashboard/Admin dashboard/select topics.html', **context)
-
+#route for update-available-topics which takes the checked value of the topic button and sets the boolean value depending on the checked state.
 @main.route('/update-available-topics', methods = ['POST','GET'])
 @login_required
 @requires_admin_access()
@@ -117,14 +125,15 @@ def updateAvailableTopics():
         update_val = 1;
     else:
         update_val = 0;
-
+#update DB on the boolean value of checked topics
     topic = Topic.query.get(id)
     topic.enabled = update_val
     db.session.commit()
 
     return ("updated 'enabled' column of topic " + topic.name + " to " + checked)
-
+#route for the choose-test-topic for students
 @main.route('/choose-test-topic')
+#decorator function for student access
 @login_required
 @requires_student_access()
 def chooseTestTopic():
@@ -133,6 +142,7 @@ def chooseTestTopic():
     context = {
     'topics' : topics
     }
+#send topic values to student dashboard. Note that this should carry the boolean values set by admin
     return render_template('Dashboard/Student dashboard/student - choose test topic.html', name = current_user.username, **context)
 
 @main.route('/my-scores')
@@ -140,7 +150,7 @@ def chooseTestTopic():
 @requires_student_access()
 def myScores():
     myResults = Results.query.filter_by(result_of_user_id=current_user.id).all()
-
+#get top results from database via SQL query and display for student in myscores page
     topResults_rowproxy = db.engine.execute("SELECT result_for_topic_id, score FROM( SELECT *, ROW_NUMBER()OVER(PARTITION BY result_for_topic_id ORDER BY score DESC) rn FROM Results)X WHERE rn = 1")
     topResults = [{column: value for column, value in rowproxy.items()} for rowproxy in topResults_rowproxy]
 
@@ -152,31 +162,36 @@ def myScores():
         'myResults' : myResults,
         'topics' : topics
     }
+#return topic values to student dashboard page
 
     return render_template('Dashboard/Student dashboard/student - my scores.html', name = current_user.username,  **context)
 
 @main.route('/question-page', methods = ['POST','GET'])
 @login_required
 @requires_student_access()
+#requests the argument topic_name to set the correct question set for the quiz
 def questionPage():
     topic_name = request.args.get('topic_name')
-
+#set question array and find the first question
     questions_arr = eval(Topic.query.filter_by(name=topic_name).first().questions)
 
     context = {
     'questions_arr' : questions_arr,
     'topic_name' : topic_name
     }
+#send values to question page
 
     return render_template('Game screens/question-page.html', **context)
 
 @main.route('/results-page', methods = ['POST','GET'])
+
 @login_required
 @requires_student_access()
 def resultsPage():
     context = {}
     if request.method == 'POST':
         resultsDict = request.get_json()
+#get values from results2 to bring to results page for printing to player.
         context = {
             'score' : resultsDict['results2'][0],
             'numCorrectAnswers' : resultsDict['results2'][1],
@@ -190,6 +205,7 @@ def resultsPage():
 @main.route('/update-results', methods = ['POST','GET'])
 @login_required
 @requires_student_access()
+#function for updating the results into db for each student
 def updateResults():
     if request.method == 'POST':
         resultsDict = request.get_json()
