@@ -34,7 +34,6 @@ class TestBase(unittest.TestCase):
         else:
             with app.app_context():
                 db.session.commit()
-                db.drop_all()
                 db.create_all()
                 self.driver.implicitly_wait(30)
                 self.base_url = 'http://localhost:5000/'

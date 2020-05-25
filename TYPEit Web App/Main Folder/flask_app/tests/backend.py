@@ -34,8 +34,8 @@ class TestBase(unittest.TestCase):
             # create test admin user
             admin = User(username="admin", password=generate_password_hash("admin"), admin=True, student=False, enabled=True)
             self.student1 = User(username='akhil',password=generate_password_hash('akhil'), admin=False, student=True, enabled=True)
-            self.student2 = User(username='varun',password='varun', admin=False, student=False, enabled=True)
-            student3 = User(username='lance',password='lance', admin=False, student=False, enabled=True)
+            self.student2 = User(username='varun',password=generate_password_hash('varun'), admin=False, student=False, enabled=True)
+            student3 = User(username='lance',password=generate_password_hash('lance'), admin=False, student=False, enabled=False)
             db.session.add(admin)
             db.session.add(self.student1)
             db.session.add(self.student2)
@@ -66,8 +66,17 @@ class TestBase(unittest.TestCase):
 
 
 
-
 class UserLoginModel(TestBase):
+
+    def test_admin_pwd(self):  
+        u = User.query.get(1)
+        self.assertFalse(check_password_hash(u.password, 'passw0rd'))
+        self.assertTrue(check_password_hash(u.password, 'admin'))
+
+    def test_student_pwd(self):  
+        u = User.query.get(2)
+        self.assertFalse(check_password_hash(u.password, 'ahseil'))
+        self.assertTrue(check_password_hash(u.password, 'akhil'))
 
     #Ensure Flask is setup correctly 
     def test_login_index(self):
@@ -106,13 +115,24 @@ class UserLoginModel(TestBase):
         response = tester.post(
             '/login',
             data = dict(
-                username='akhil', 
-                password='akhil'
+                username='varun', 
+                password='varunn'
                 ),
             follow_redirects = True
         )
-        self.assertTrue(User.query.filter_by(username='akhil').first())
-        self.assertIn(b'Choose test topic', response.data)
+        self.assertIn(b'Invalid credentials, please try again.', response.data)
+
+    def test_disabled_student(self):
+        tester = app.test_client(self)
+        response = tester.post(
+            '/login',
+            data = dict(
+                username='lance', 
+                password='lance'
+                ),
+            follow_redirects = True
+        )
+        self.assertIn(b'User disabled, contact Admin.', response.data)
 
     #Ensure that a new user can register
     #Ensure username can consists of letters (A-Z) and numbers (0-9)
@@ -147,23 +167,6 @@ class UserLoginModel(TestBase):
         #If the username already exists, new user cannot be registered, and therefore
         #and therefore, has to select a new username, in order to register
         self.assertIn(b'This username is taken, try again.', response.data)
-        #self.assertFalse(User.query.filter_by(username='akhifll').all())
-
-    '''
-    def login(self, username, password):
-        tester = app.test_client(self)
-        response = tester.post(
-            '/login',
-            data=dict(username=username, password=password), follow_redirects=True)
-        self.assertEqual(response.status_codec,200)
-
-    '''
-
-    #NEED TO CHECK USER LOGIN PASSWORD
-
-
-
-
 
 
     #Ensure that the currently logged user can logout
@@ -179,20 +182,16 @@ class UserLoginModel(TestBase):
         
         self.assertEqual(responsee.status_code, 200)
         response = tester.get('/logout', follow_redirects=True)
-        #print(response.data)
-        #self.assertIn(b'Please log  in', response.data)
         self.assertEqual(response.status_code, 200)
         self.assertIn(b'You are now logged out', response.data)
-        #print(response.data)
-        #self.assertIn(b'You are now logged out', response.data)
-
-        #check if the user is logged out or still active
 
 
-    #Ensure log in behaves correclty when fed with user data
-    
+
 
 #-------------------------------------------- Admin Page ---------------------------------------------------#
+
+
+class User_Admin_Model(TestBase):
 
     #When the admin is logged in, the admin should be able to access the following pages 
     #   >/select-topics
@@ -210,8 +209,6 @@ class UserLoginModel(TestBase):
             #print(request.endpoint)
         )
         self.assertEqual(responsedd.status_code, 200)
-        #self.assertTrue(current_user.id, 1)
-        #print(responsedd.data)
         #checks choose-test-topic page works
         self.assertTrue(User.query.filter_by(username='admin').first())
         response_Select_Topics = tester.get('/select-topics', follow_redirects=True)
@@ -226,7 +223,6 @@ class UserLoginModel(TestBase):
         self.assertIn(b'Welcome, Admin!', response_Class_Score.data)
         self.assertIn(b'Class scores', response_Class_Score.data)
         self.assertIn(b'Student', response_Class_Score.data)
-        #self.assertIn(b'Class top score', response_My_Scores.data)
 
         #check manage-student page works
         response_Manage_Students = tester.get('/manage-students', follow_redirects=True)
@@ -254,10 +250,26 @@ class UserLoginModel(TestBase):
         self.assertEqual(response.status_code, 200)
         self.assertIn(b'You are now logged out', response.data)
 
+    #Admin cannot access students page                                
+    def test_student_authentication(self):
+        tester = app.test_client(self)
+        responsed = tester.post(
+            '/login',
+            data=dict(username='admin', 
+            password='admin'), 
+            follow_redirects=True,
+        )
+        self.assertEqual(responsed.status_code, 200)
+        url_scores = '/choose-test-topic'
+        response = tester.get(url_scores)
+        self.assertEqual(response.status_code, 401)
+        self.assertIn(b'You are an admin. You are trying to access a student page. Go back!', response.data)
+   
 
 
   #-------------------------------------------- Student Page ---------------------------------------------------#
 
+class User_Student_Model(TestBase):
 
    #When the Student is logged in, the student should be able to access the following pages
    # >/choose-test-topic
@@ -311,70 +323,25 @@ class UserLoginModel(TestBase):
         self.assertIn(b'You are now logged out', response.data)
     
     #The user must authenicate itself before it can acccess the request
-                                                          
-    def test_give_auth(self):
+
+
+    #Student cannot access admins page                                 
+    def test_admin_authentication(self):
         tester = app.test_client(self)
-        url_login = '/login'
+        responsed = tester.post(
+            '/login',
+            data=dict(username='akhil', 
+            password='akhil'), 
+            follow_redirects=True,
+            #print(request.endpoint)
+        )
+        self.assertEqual(responsed.status_code, 200)
+        url_scores = '/select-topics'
+        response = tester.get(url_scores)
+        self.assertEqual(response.status_code, 401)
+        self.assertIn(b'You do not have admin access. Go back!', response.data)
+   
 
-        url_scores = '/my-scores'
-        respond_loginnn = tester.get(url_scores)
-        print(respond_loginnn.status_code)
-        print(respond_loginnn.data)
-        self.assertEqual('If not click the link', respond_loginnn.data)
-
-
-
-    '''
-    #check if the correct user is logged in
-    def test_redirect(self):
-     
-        tester = app.test_client(self)
-        target_url = '/logout'
-        redirect_url = '/login'
-        responseClient = tester.get(target_url)
-
-        print(responseClient .path)
-        self.assertEqual(responseClient.status_code, 401)
-    
-
-    def test_login_and_registration(self):
-        tester = app.test_client(self)
-        login_url = '/login'
-        logout_url = '/logout'
-        responseClient = tester.get(login_url, follow_redirects=True)
-        self.assertEqual(responseClient.url)
-        print(responseClient.data)
-    '''
-
-
-
-
-
-
-#once you are logged, you shoudl not be able to go to the login or register page
-
-
-#registration users with the same user name should not be allowed 
-
-#--------------- Admin Login Page ---------------------------#
-
-
-#check if i can go from login page to register page without any user logg requiremnet 
-
-
-#print(response.data)
-
-
-#Check each New User added to the data base is unquie
-
-
-#Check the registration page can switch to login page 
-
-
-#class TestUserModel(TestBase):
-
-
-#Ensure the correct user is logged in
 
 
 
