@@ -12,6 +12,7 @@ from urllib.parse import urlparse
 from flask_login import current_user
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_testing import LiveServerTestCase
+from selenium.webdriver.common.by import By
 
 
 basedir = os.path.abspath(os.path.dirname(__file__))
@@ -69,19 +70,18 @@ class TestBase(unittest.TestCase):
 
 #New user should be able to successfully create an account
 #Once, the user is registered, the browser should redirect to the login page
-    
-class TestRegisteration(TestBase):
 
+
+class TestRegisteration(TestBase):
+    '''
     def test_invalid_register(self):
 
-        #user = User.query.filter_by(username='akhil').first()
         button_field = self.driver.find_element_by_id('log-in-register-btn').click()
         time.sleep(1)
         user_field = self.driver.find_element_by_id('username-input').send_keys('akhil')
         password_field = self.driver.find_element_by_id('password-input').send_keys('akhil')
         button_field = self.driver.find_element_by_id('register-btn').click()
         username_taken_message = self.driver.find_element_by_class_name('alert').text
-        self.assertEqual(user.username, user_field)
         self.assertEqual(username_taken_message, 'This username is taken, try again.')
 
 
@@ -99,21 +99,7 @@ class TestRegisteration(TestBase):
     
 
 class TestLogin(TestBase):
-
-    def test_login_by_student(self):
-        time.sleep(2)
-        user = self.driver.find_element_by_id('username-input').send_keys('akhil')
-        password = self.driver.find_element_by_id('password-input').send_keys('akhil')
-        time.sleep(1)
-        button = self.driver.find_element_by_id('log-in-btn').click()
-        time.sleep(0.5)
-        self.driver.get(self.base_url+'/choose-test-topic')
-        #admin access
-        #self.driver.get(self.base_url+'/select-topics')
-        time.sleep(2)
-        greetings = self.driver.find_element_by_id('Welcome').text
-        self.assertIn(greetings, 'Welcome, akhil!')
-
+    
     def test_login_by_admin(self):
         time.sleep(2)
         user = self.driver.find_element_by_id('username-input').send_keys('admin')
@@ -127,8 +113,95 @@ class TestLogin(TestBase):
         time.sleep(2)
         greetings = self.driver.find_element_by_id('Welcome').text
         self.assertIn(greetings, 'Welcome, Admin!')
+        self.driver.implicitly_wait(5)
+        self.driver.find_element_by_partial_link_text("Class").click()
+        time.sleep(5)
+        self.driver.find_element_by_partial_link_text("Manage").click()
+        time.sleep(2)
+        #self.driver.find_element_by_partial_link_text("Change").click()
+        #time.sleep(2)
+        self.driver.find_element_by_partial_link_text("Log").click()
+        time.sleep(2)
+        username_taken_message = self.driver.find_element_by_class_name('alert').text
+        self.assertEqual(username_taken_message, 'You are now logged out')
+    
+    
+    def test_login_by_student(self):
+        time.sleep(2)
+        user = self.driver.find_element_by_id('username-input').send_keys('akhil')
+        password = self.driver.find_element_by_id('password-input').send_keys('akhil')
+        time.sleep(1)
+        button = self.driver.find_element_by_id('log-in-btn').click()
+        time.sleep(0.5)
+        self.driver.get(self.base_url+'/choose-test-topic')
+        #admin access
+        #self.driver.get(self.base_url+'/select-topics')
+        time.sleep(2)
+        greetings = self.driver.find_element_by_id('Welcome').text
+        self.assertIn(greetings, 'Welcome, akhil!')
+        #self.driver.find_element_by_partial_link_text("My").click()
+        #time.sleep(5)
+        self.driver.find_element_by_partial_link_text("Log").click()
+        time.sleep(2)
+        username_taken_message = self.driver.find_element_by_class_name('alert').text
+        self.assertEqual(username_taken_message, 'You are now logged out')
+    
+    '''
+
+#admin disables a topic, student cannot click on that quix
+
+#disable user 
+
+    def test_disable_student(self):
+        time.sleep(2)
+        user = self.driver.find_element_by_id('username-input').send_keys('admin')
+        password = self.driver.find_element_by_id('password-input').send_keys('admin')
+        time.sleep(1)
+        button = self.driver.find_element_by_id('log-in-btn').click()
+        time.sleep(0.5)
+        self.driver.find_element_by_partial_link_text("Manage").click()
+        time.sleep(2)
+        user = User.query.filter_by(username='akhil').first()
+        #if user.enabled is False:
+        #    self.driver.find_element_by_class_name('student-switch-label').click()
+        if user.enabled is True:
+            self.driver.find_element_by_class_name('student-switch-label').click()
+            self.driver.find_element_by_partial_link_text("Log").click()
+            username_disabled_message = self.driver.find_element_by_class_name('alert').text
+            self.assertEqual(username_taken_message, 'You are now logged out')
+            time.sleep(3)
+            user = self.driver.find_element_by_id('username-input').send_keys('akhil')
+            password = self.driver.find_element_by_id('password-input').send_keys('akhil')
+            time.sleep(1)
+            button = self.driver.find_element_by_id('log-in-btn').click()
+            username_disabled_message = self.driver.find_element_by_class_name('alert').text
+            self.assertEqual(username_taken_message, 'User disabled, contact Admin.')
+      
+
+
 
     '''
+
+#check if student can enter a quiz
+
+    def test_quiz(self):
+        time.sleep(2)
+        user = self.driver.find_element_by_id('username-input').send_keys('akhil')
+        password = self.driver.find_element_by_id('password-input').send_keys('akhil')
+        time.sleep(1)
+        button = self.driver.find_element_by_id('log-in-btn').click()
+        self.driver.find_element_by_id("English").click()
+        time.sleep(2)
+        self.driver.implicitly_wait(5)
+        self.driver.find_element_by_id("hint-and-answer-input").send_keys('impromptu')
+        self.driver.implicitly_wait(5)
+        time.sleep(4)
+
+
+    '''
+
+''' 
+    
 class TestLogin(TestBase):
 
 
@@ -147,6 +220,18 @@ class TestLogin(TestBase):
 
 
 
+    def test_access_denied(self):
+        user = self.driver.find_element_by_id('username-input').send_keys('akhil')
+        password = self.driver.find_element_by_id('password-input').send_keys('akhil')
+        button = self.driver.find_element_by_id('log-in-btn').click()
+
+        url_tag = self.driver.get(self.base_url+'/select-topics')
+
+        self.driver.get(url_tag)
+        error = self.driver.find_element_by_css_selector('h1').text
+        self.assertIn('You do not have admin access. Go back!', error)
+
+        
 
 
 
@@ -179,7 +264,7 @@ class TestLogin(TestBase):
 
 
 
-    '''
+'''
 
 
 
