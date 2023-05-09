@@ -1,11 +1,5 @@
 # TYPEit Quiz Platform
 
-
-Varun Jain 21963986
-Akhil Naseem 22237476
-Lance Chew 22420498
-
-
 Welcome to the TYPEit Web App! This project is packaged as a Flask Application using SQLite as a database engine. 
 This is an interactive quiz aimed at high school students aged between 13-17 with a variety of different subjects and 
 a range of difficulty to offer a broad spectrum of challenge to all users.
